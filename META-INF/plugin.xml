@@ -26,6 +26,9 @@
 
   <application-components>
     <!-- Add your application components here -->
+      <component>
+          <implementation-class>com.kukido.eclipser.EclipserConfigurationType</implementation-class>
+      </component>
   </application-components>
 
   <project-components>
@@ -43,5 +46,6 @@
   <extensions defaultExtensionNs="com.intellij">
       <!-- Add your extensions here -->
       <fileTypeFactory implementation="com.kukido.eclipser.EclipserFileTypeFactory"/>
+      <configurationType implementation="com.kukido.eclipser.EclipserConfigurationType"/>
   </extensions>
 </idea-plugin>
