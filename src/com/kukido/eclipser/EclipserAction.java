@@ -7,9 +7,7 @@ import com.intellij.execution.impl.RunManagerImpl;
 import com.intellij.execution.impl.RunnerAndConfigurationSettingsImpl;
 import com.intellij.execution.runners.ExecutionEnvironment;
 import com.intellij.execution.runners.ProgramRunner;
-import com.intellij.openapi.actionSystem.AnAction;
-import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.openapi.actionSystem.LangDataKeys;
+import com.intellij.openapi.actionSystem.*;
 import com.intellij.openapi.application.Application;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.module.Module;
@@ -18,6 +16,11 @@ import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.Messages;
 import com.intellij.openapi.util.JDOMUtil;
 import com.intellij.openapi.vfs.VirtualFile;
+import com.intellij.psi.PsiFile;
+import com.intellij.psi.PsiManager;
+import com.intellij.psi.xml.XmlDocument;
+import com.intellij.psi.xml.XmlFile;
+import com.intellij.psi.xml.XmlTag;
 import org.apache.commons.lang.StringUtils;
 import org.jdom.Document;
 import org.jdom.Element;
@@ -174,10 +177,57 @@ public class EclipserAction extends AnAction {
 
     @Override
     public void update(AnActionEvent e) {
-        super.update(e);
+
+        final Presentation presentation = e.getPresentation();
+        final Project project = e.getProject();
+
+        if (project == null) {
+            disable(presentation);
+            return;
+        }
+
+        final VirtualFile file = e.getData(PlatformDataKeys.VIRTUAL_FILE);
+        if (file == null) {
+            disable(presentation);
+            return;
+        }
+
+        final PsiFile psiFile = PsiManager.getInstance(project).findFile(file);
+        if (!(psiFile instanceof XmlFile)) {
+            disable(presentation);
+            return;
+        }
+
+        final XmlFile xmlFile = (XmlFile) psiFile;
+        final XmlDocument document = xmlFile.getDocument();
+        if (document == null) {
+            disable(presentation);
+            return;
+        }
+
+        final XmlTag rootTag = xmlFile.getRootTag();
+        if (rootTag == null) {
+            disable(presentation);
+            return;
+        }
+
+        if (!"launchConfiguration".equalsIgnoreCase(rootTag.getName())) {
+            disable(presentation);
+            return;
+        }
+
+        enable(presentation);
     }
 
     public void say(String message) {
         Messages.showMessageDialog(message, "Info", Messages.getInformationIcon());
+    }
+
+    private void disable(Presentation presentation) {
+        presentation.setEnabledAndVisible(false);
+    }
+
+    private void enable(Presentation presentation) {
+        presentation.setEnabledAndVisible(true);
     }
 }
