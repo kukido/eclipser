@@ -37,15 +37,15 @@
 
   <actions>
     <!-- Add your actions here -->
-      <action id="launch" class="com.kukido.eclipser.EclipserAction" text="Launch..."
+      <action id="launch" class="com.kukido.eclipser.EclipserAction" text="Convert..."
               description="Launch Eclipse run configuration file.">
           <add-to-group group-id="ProjectViewPopupMenuRunGroup" anchor="last"/>
       </action>
   </actions>
 
   <extensions defaultExtensionNs="com.intellij">
-      <!-- Add your extensions here -->
       <fileTypeFactory implementation="com.kukido.eclipser.EclipserFileTypeFactory"/>
       <configurationType implementation="com.kukido.eclipser.EclipserConfigurationType"/>
+      <syntaxHighlighter key="Eclipser" implementationClass="com.intellij.ide.highlighter.XmlFileHighlighter"/>
   </extensions>
 </idea-plugin>

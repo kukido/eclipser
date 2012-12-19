@@ -2,7 +2,6 @@ package com.kukido.eclipser;
 
 import com.intellij.execution.*;
 import com.intellij.execution.application.ApplicationConfiguration;
-import com.intellij.execution.application.ApplicationConfigurationType;
 import com.intellij.execution.executors.DefaultRunExecutor;
 import com.intellij.execution.impl.RunManagerImpl;
 import com.intellij.execution.impl.RunnerAndConfigurationSettingsImpl;
@@ -29,12 +28,16 @@ import java.io.InputStream;
 import java.util.List;
 
 public class EclipserAction extends AnAction {
+
+    public static final String MODULE_DIR = "$MODULE_DIR$";
+
     public void actionPerformed(AnActionEvent e) {
         VirtualFile virtualFile = e.getData(LangDataKeys.VIRTUAL_FILE);
 
         try {
             EclipserConfiguration configuration = load(virtualFile);
-            run(e, configuration);
+            if (configuration != null)
+                run(e, configuration);
         } catch (Exception exc) {
             exc.printStackTrace();
         }
@@ -89,16 +92,16 @@ public class EclipserAction extends AnAction {
         for (Object item : content) {
             if (item instanceof Element) {
                 Element element = (Element)item;
-                String key = element.getAttributeValue("key");
+                String key = element.getAttributeValue(EclipserXml.KEY);
 
-                if (key.equalsIgnoreCase("org.eclipse.jdt.launching.MAIN_TYPE")) {
-                    eclipserConfiguration.setMainClassName(element.getAttributeValue("value"));
-                } else if (key.equalsIgnoreCase("org.eclipse.jdt.launching.PROJECT_ATTR")) {
-                    eclipserConfiguration.setModuleName(element.getAttributeValue("value"));
-                } else if (key.equalsIgnoreCase("org.eclipse.jdt.launching.VM_ARGUMENTS")) {
-                    eclipserConfiguration.setVmParameters(element.getAttributeValue("value"));
+                if (key.equalsIgnoreCase(EclipserXml.MAIN_TYPE_KEY)) {
+                    eclipserConfiguration.setMainClassName(element.getAttributeValue(EclipserXml.VALUE));
+                } else if (key.equalsIgnoreCase(EclipserXml.PROJECT_ATTR_KEY)) {
+                    eclipserConfiguration.setModuleName(element.getAttributeValue(EclipserXml.VALUE));
+                } else if (key.equalsIgnoreCase(EclipserXml.VM_ARGUMENTS_KEY)) {
+                    eclipserConfiguration.setVmParameters(element.getAttributeValue(EclipserXml.VALUE));
                 } else {
-                    System.out.println(key + ":" + element.getAttributeValue("value"));
+                    System.out.println(key + ":" + element.getAttributeValue(EclipserXml.VALUE));
                 }
             }
         }
@@ -141,12 +144,12 @@ public class EclipserAction extends AnAction {
 
         conf.setModule(module);
         conf.setMainClassName(configuration.getMainClassName());
-        conf.setWorkingDirectory("$MODULE_DIR$");
-        String vm = "-ea -XX:MaxPermSize=128M -Xmx256M -DSHUTDOWN.PORT=23690 -Djetty.port=8087 -Dhibernate.config.file=\"../dbAccessLayer/resource/hibernate.cfg.xml\"";
+        conf.setWorkingDirectory(MODULE_DIR);
         conf.setVMParameters(configuration.getVmParameters());
 
         runManager.setSelectedConfiguration(runnerAndConfigurationSettings);
 
+        /*
         Executor executor = DefaultRunExecutor.getRunExecutorInstance();
         ProgramRunner runner = RunnerRegistry.getInstance().getRunner(executor.getId(), conf);
         ExecutionEnvironment environment = new ExecutionEnvironment(runner, runnerAndConfigurationSettings, project);
@@ -156,7 +159,7 @@ public class EclipserAction extends AnAction {
         } catch (ExecutionException e1) {
             JavaExecutionUtil.showExecutionErrorMessage(e1, "Error", project);
         }
-
+        */
     }
 
     private RunnerAndConfigurationSettingsImpl findConfigurationByName(String name, RunManagerImpl runManager){
@@ -167,6 +170,7 @@ public class EclipserAction extends AnAction {
         return null;
 
     }
+
 
     @Override
     public void update(AnActionEvent e) {
