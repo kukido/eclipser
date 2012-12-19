@@ -2,25 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ac3a6fb-6453-494e-a495-9eb656c3b620" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/kukido/eclipser/action/AddAntBuildFileAction.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/kukido/eclipser/action/AddApplicationConfigurationAction.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/kukido/eclipser/action/AddJUnitConfigurationAction.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/resources/ant.launch" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/resources/java.launch" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/resources/junit.launch" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/test/Developer Portal Port 8087.launch" afterPath="$PROJECT_DIR$/test/resources/Developer Portal Port 8087.launch" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/kukido/eclipser/EclipserAction.java" afterPath="$PROJECT_DIR$/src/com/kukido/eclipser/EclipserAction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eclipser.iml" afterPath="$PROJECT_DIR$/eclipser.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="eclipser.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="9ac3a6fb-6453-494e-a495-9eb656c3b620" time="1355894660085" ignored="false" />
-    <file path="$PROJECT_DIR$/.idea/workspace.xml" changelist="9ac3a6fb-6453-494e-a495-9eb656c3b620" time="1355879466981" ignored="false" />
-    <file path="/EclipserAction.java" changelist="9ac3a6fb-6453-494e-a495-9eb656c3b620" time="1355951047062" ignored="false" />
+    <file path="/EclipserAction.java" changelist="9ac3a6fb-6453-494e-a495-9eb656c3b620" time="1355960333318" ignored="false" />
     <file path="$PROJECT_DIR$/.idea/misc.xml" changelist="9ac3a6fb-6453-494e-a495-9eb656c3b620" time="1355858738927" ignored="false" />
     <file path="/EclipserConfigurationType.java" changelist="9ac3a6fb-6453-494e-a495-9eb656c3b620" time="1355860678066" ignored="false" />
-    <file path="/fragment.java" changelist="9ac3a6fb-6453-494e-a495-9eb656c3b620" time="1355894660085" ignored="false" />
+    <file path="/fragment.java" changelist="9ac3a6fb-6453-494e-a495-9eb656c3b620" time="1355960257580" ignored="false" />
     <file path="/plugin.xml" changelist="9ac3a6fb-6453-494e-a495-9eb656c3b620" time="1355893649909" ignored="false" />
     <file path="/EclipserConfiguration.java" changelist="9ac3a6fb-6453-494e-a495-9eb656c3b620" time="1355875749034" ignored="false" />
     <file path="/EclipserXml.java" changelist="9ac3a6fb-6453-494e-a495-9eb656c3b620" time="1355883414800" ignored="false" />
@@ -42,6 +33,7 @@
     <file path="$PROJECT_DIR$/../declipser/src/com/kukido/declipser/DeclipserXml.java" changelist="9ac3a6fb-6453-494e-a495-9eb656c3b620" time="1355893778025" ignored="false" />
     <file path="$PROJECT_DIR$/../declipser/.idea/misc.xml" changelist="9ac3a6fb-6453-494e-a495-9eb656c3b620" time="1355893798225" ignored="false" />
     <file path="/AddJUnitConfigurationAction.java" changelist="9ac3a6fb-6453-494e-a495-9eb656c3b620" time="1355899399713" ignored="false" />
+    <file path="/EclipserFileTypeFactory.java" changelist="9ac3a6fb-6453-494e-a495-9eb656c3b620" time="1355958958055" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,66 +93,73 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="AddAntBuildFileAction.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/kukido/eclipser/action/AddAntBuildFileAction.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="28" selection-start="221" selection-end="221" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AddApplicationConfigurationAction.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/kukido/eclipser/action/AddApplicationConfigurationAction.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="46" selection-start="239" selection-end="239" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AddJUnitConfigurationAction.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/kukido/eclipser/action/AddJUnitConfigurationAction.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="8" selection-start="790" selection-end="790" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="EclipserAction.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/kukido/eclipser/EclipserAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="206" column="83" selection-start="7966" selection-end="7966" vertical-scroll-proportion="0.6496063">
+            <state line="224" column="10" selection-start="8450" selection-end="8450" vertical-scroll-proportion="0.7682119">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ant.launch" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/resources/ant.launch">
+      <file leaf-file-name="PsiFile.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../community/platform/core-api/src/com/intellij/psi/PsiFile.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="20" selection-start="56" selection-end="75" vertical-scroll-proportion="0.0">
+            <state line="32" column="38" selection-start="1301" selection-end="1301" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="java.launch" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/resources/java.launch">
+      <file leaf-file-name="EclipserFileType.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/kukido/eclipser/EclipserFileType.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="0" selection-start="1202" selection-end="1202" vertical-scroll-proportion="0.0">
+            <state line="11" column="13" selection-start="321" selection-end="321" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="junit.launch" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/resources/junit.launch">
+      <file leaf-file-name="FileType.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../community/platform/core-api/src/com/intellij/openapi/fileTypes/FileType.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="20" selection-start="56" selection-end="75" vertical-scroll-proportion="0.0">
+            <state line="27" column="42" selection-start="979" selection-end="979" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FileTypes.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../community/platform/platform-api/src/com/intellij/openapi/fileTypes/FileTypes.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="27" column="31" selection-start="938" selection-end="938" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LanguageFileType.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../community/platform/core-api/src/com/intellij/openapi/fileTypes/LanguageFileType.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="28" column="0" selection-start="954" selection-end="954" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="XmlFileType.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../community/xml/impl/src/com/intellij/ide/highlighter/XmlFileType.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="25" column="25" selection-start="885" selection-end="937" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ActionUtil.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../community/platform/platform-api/src/com/intellij/openapi/actionSystem/ex/ActionUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="109" column="0" selection-start="4360" selection-end="4360" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -196,6 +195,8 @@
         <option value="$PROJECT_DIR$/src/com/kukido/eclipser/action/AddAntBuildFileAction.java" />
         <option value="$PROJECT_DIR$/src/com/kukido/eclipser/action/AddApplicationConfigurationAction.java" />
         <option value="$PROJECT_DIR$/src/com/kukido/eclipser/action/AddJUnitConfigurationAction.java" />
+        <option value="$PROJECT_DIR$/src/com/kukido/eclipser/EclipserFileType.java" />
+        <option value="$PROJECT_DIR$/src/com/kukido/eclipser/EclipserFileTypeFactory.java" />
         <option value="$PROJECT_DIR$/src/com/kukido/eclipser/EclipserAction.java" />
       </list>
     </option>
@@ -532,26 +533,26 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1351" height="946" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.375" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.374092" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292978" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24973032" sideWeight="0.67065215" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2743295" sideWeight="0.99878937" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2743295" sideWeight="0.625908" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32934782" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32934782" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32934782" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -616,106 +617,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/kukido/eclipser/EclipserXml.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="41" selection-start="145" selection-end="145" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/META-INF/plugin.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="14" selection-start="1912" selection-end="1912" vertical-scroll-proportion="0.8367347">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/kukido/eclipser/EclipserConfigurationType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="5" selection-start="1163" selection-end="1163" vertical-scroll-proportion="0.3537415">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../community/platform/lang-impl/src/com/intellij/execution/impl/RunManagerImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="863" column="101" selection-start="34096" selection-end="34096" vertical-scroll-proportion="0.034013607">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../community/platform/lang-api/src/com/intellij/execution/configurations/ConfigurationFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="0" selection-start="945" selection-end="945" vertical-scroll-proportion="0.034013607">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/kukido/eclipser/EclipserFileType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="13" selection-start="477" selection-end="477" vertical-scroll-proportion="0.034013607">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/kukido/eclipser/EclipserConfiguration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="42" selection-start="284" selection-end="284" vertical-scroll-proportion="0.023961661">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/kukido/eclipser/action/AddAntBuildFileAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="28" selection-start="221" selection-end="221" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../community/java/compiler/impl/src/com/intellij/compiler/ant/GenerateAntApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="13" selection-start="1394" selection-end="1394" vertical-scroll-proportion="0.20338982">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/kukido/eclipser/action/AddApplicationConfigurationAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="46" selection-start="239" selection-end="239" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/kukido/eclipser/action/AddJUnitConfigurationAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="8" selection-start="790" selection-end="790" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/resources/ant.launch">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="20" selection-start="56" selection-end="75" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/resources/java.launch">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="0" selection-start="1202" selection-end="1202" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/resources/junit.launch">
       <provider selected="true" editor-type-id="text-editor">
         <state line="1" column="20" selection-start="56" selection-end="75" vertical-scroll-proportion="0.0">
@@ -723,9 +624,107 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/META-INF/plugin.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../community/platform/platform-api/src/com/intellij/openapi/fileTypes/FileTypeFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="22" selection-start="791" selection-end="791" vertical-scroll-proportion="0.26490065">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../community/platform/core-api/src/com/intellij/openapi/fileTypes/FileType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="42" selection-start="979" selection-end="979" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../community/platform/platform-api/src/com/intellij/openapi/fileTypes/FileTypes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="31" selection-start="938" selection-end="938" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../community/platform/core-api/src/com/intellij/openapi/fileTypes/LanguageFileType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="0" selection-start="954" selection-end="954" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../community/xml/impl/src/com/intellij/ide/highlighter/XmlFileType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="25" selection-start="885" selection-end="937" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../community/platform/core-api/src/com/intellij/lang/Language.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="22" selection-start="1796" selection-end="1796" vertical-scroll-proportion="0.46357617">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/kukido/eclipser/EclipserFileType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="13" selection-start="321" selection-end="321" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/kukido/eclipser/EclipserFileTypeFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="55" selection-start="365" selection-end="365" vertical-scroll-proportion="0.22532189">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../community/platform/platform-api/src/com/intellij/openapi/actionSystem/ex/ActionUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="109" column="0" selection-start="4360" selection-end="4360" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../community/xml/impl/src/com/intellij/psi/impl/source/html/HtmlFileImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="13" selection-start="957" selection-end="957" vertical-scroll-proportion="0.25751072">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../community/xml/impl/src/com/intellij/psi/impl/source/xml/XmlFileImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="0" selection-start="1438" selection-end="1438" vertical-scroll-proportion="-1.8807946">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../community/xml/openapi/src/com/intellij/psi/xml/XmlFile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="17" selection-start="800" selection-end="800" vertical-scroll-proportion="0.25751072">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../community/platform/core-api/src/com/intellij/psi/PsiFile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="38" selection-start="1301" selection-end="1301" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/kukido/eclipser/EclipserAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="206" column="83" selection-start="7966" selection-end="7966" vertical-scroll-proportion="0.6496063">
+        <state line="224" column="10" selection-start="8450" selection-end="8450" vertical-scroll-proportion="0.7682119">
           <folding />
         </state>
       </provider>

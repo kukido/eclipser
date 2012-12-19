@@ -193,7 +193,14 @@ public class EclipserAction extends AnAction {
         }
 
         final PsiFile psiFile = PsiManager.getInstance(project).findFile(file);
-        if (!(psiFile instanceof XmlFile)) {
+        if (psiFile == null) {
+            disable(presentation);
+            return;
+        }
+
+        /* todo: associate .launch files with XML */
+        /*
+        if (!(psiFile.getFileType() instanceof EclipserFileType)) {
             disable(presentation);
             return;
         }
@@ -215,6 +222,7 @@ public class EclipserAction extends AnAction {
             disable(presentation);
             return;
         }
+        */
 
         enable(presentation);
     }
