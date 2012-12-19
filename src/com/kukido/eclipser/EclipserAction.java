@@ -33,14 +33,14 @@ public class EclipserAction extends AnAction {
         VirtualFile virtualFile = e.getData(LangDataKeys.VIRTUAL_FILE);
 
         try {
-            load(virtualFile);
-            run(e);
+            EclipserConfiguration configuration = load(virtualFile);
+            run(e, configuration);
         } catch (Exception exc) {
             exc.printStackTrace();
         }
     }
 
-    private void load(VirtualFile vf) throws IOException, JDOMException {
+    private EclipserConfiguration load(VirtualFile vf) throws IOException, JDOMException {
 
         Document physical;
 
@@ -63,6 +63,8 @@ public class EclipserAction extends AnAction {
         String configuration = root.getName();
         if (!"launchConfiguration".equalsIgnoreCase(configuration)) {
             // show message - unsupported configuration type
+            say("Unsupported launch configuration");
+            return null;
         }
 
         String type = root.getAttributeValue("type");
@@ -73,6 +75,15 @@ public class EclipserAction extends AnAction {
         // "org.eclipse.ant.AntLaunchConfigurationType"
         // "org.eclipse.jdt.junit.launchconfig"
 
+        if (!"org.eclipse.jdt.launching.localJavaApplication".equalsIgnoreCase(type)) {
+            say("Unsupported launch configuration type:" + type);
+            return null;
+        }
+
+        EclipserConfiguration eclipserConfiguration = new EclipserConfiguration();
+
+        eclipserConfiguration.setConfigurationName(name);
+
         List content = root.getContent();
 
         for (Object item : content) {
@@ -81,19 +92,21 @@ public class EclipserAction extends AnAction {
                 String key = element.getAttributeValue("key");
 
                 if (key.equalsIgnoreCase("org.eclipse.jdt.launching.MAIN_TYPE")) {
-                    System.out.println("main:"+element.getAttributeValue("value"));
+                    eclipserConfiguration.setMainClassName(element.getAttributeValue("value"));
                 } else if (key.equalsIgnoreCase("org.eclipse.jdt.launching.PROJECT_ATTR")) {
-                    System.out.println("module:"+element.getAttributeValue("value"));
+                    eclipserConfiguration.setModuleName(element.getAttributeValue("value"));
                 } else if (key.equalsIgnoreCase("org.eclipse.jdt.launching.VM_ARGUMENTS")) {
-                    System.out.println("vm args:"+element.getAttributeValue("value"));
+                    eclipserConfiguration.setVmParameters(element.getAttributeValue("value"));
                 } else {
                     System.out.println(key + ":" + element.getAttributeValue("value"));
                 }
             }
         }
+
+        return eclipserConfiguration;
     }
 
-    private void run(AnActionEvent event) {
+    private void run(AnActionEvent event, EclipserConfiguration configuration) {
 
         Application application = ApplicationManager.getApplication();
 
@@ -104,19 +117,19 @@ public class EclipserAction extends AnAction {
 
         RunManagerImpl runManager = (RunManagerImpl) RunManager.getInstance(project);
 
-        RunnerAndConfigurationSettingsImpl runnerAndConfigurationSettings = findConfigurationByName("eclipser", runManager);
+        RunnerAndConfigurationSettingsImpl runnerAndConfigurationSettings = findConfigurationByName(configuration.getConfigurationName(), runManager);
 
         if (runnerAndConfigurationSettings != null) {
             conf = (ApplicationConfiguration) runnerAndConfigurationSettings.getConfiguration();
         } else {
             EclipserConfigurationType type = application.getComponent(EclipserConfigurationType.class);
-            runnerAndConfigurationSettings = (RunnerAndConfigurationSettingsImpl) runManager.createRunConfiguration("eclipser", type.getConfigurationFactories()[0]);
+            runnerAndConfigurationSettings = (RunnerAndConfigurationSettingsImpl) runManager.createRunConfiguration(configuration.getConfigurationName(), type.getConfigurationFactories()[0]);
             conf = (ApplicationConfiguration) runnerAndConfigurationSettings.getConfiguration();
             //updateConfiguration(mainClassName, file, module, conf);
             runManager.addConfiguration(runnerAndConfigurationSettings, true);
         }
 
-        String moduleNameOfRunner = "developerPortal";
+        String moduleNameOfRunner = configuration.getModuleName();
 
         Module module = ModuleManager.getInstance(project).findModuleByName(moduleNameOfRunner);
 
@@ -127,9 +140,10 @@ public class EclipserAction extends AnAction {
         }
 
         conf.setModule(module);
-        conf.setMainClassName("com.flurry.jetty.JettyServer");
+        conf.setMainClassName(configuration.getMainClassName());
         conf.setWorkingDirectory("$MODULE_DIR$");
-        conf.setVMParameters("-ea -XX:MaxPermSize=128M -Xmx256M -DSHUTDOWN.PORT=23690 -Djetty.port=8087 -Dhibernate.config.file=\"../dbAccessLayer/resource/hibernate.cfg.xml\"");
+        String vm = "-ea -XX:MaxPermSize=128M -Xmx256M -DSHUTDOWN.PORT=23690 -Djetty.port=8087 -Dhibernate.config.file=\"../dbAccessLayer/resource/hibernate.cfg.xml\"";
+        conf.setVMParameters(configuration.getVmParameters());
 
         runManager.setSelectedConfiguration(runnerAndConfigurationSettings);
 
