@@ -2,11 +2,8 @@ package com.kukido.eclipser;
 
 import com.intellij.execution.*;
 import com.intellij.execution.application.ApplicationConfiguration;
-import com.intellij.execution.executors.DefaultRunExecutor;
 import com.intellij.execution.impl.RunManagerImpl;
 import com.intellij.execution.impl.RunnerAndConfigurationSettingsImpl;
-import com.intellij.execution.runners.ExecutionEnvironment;
-import com.intellij.execution.runners.ProgramRunner;
 import com.intellij.openapi.actionSystem.*;
 import com.intellij.openapi.application.Application;
 import com.intellij.openapi.application.ApplicationManager;
@@ -18,9 +15,10 @@ import com.intellij.openapi.util.JDOMUtil;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiManager;
-import com.intellij.psi.xml.XmlDocument;
-import com.intellij.psi.xml.XmlFile;
-import com.intellij.psi.xml.XmlTag;
+import com.intellij.tools.Enabler;
+import com.intellij.tools.Tool;
+import com.intellij.tools.ToolManager;
+import com.intellij.tools.ToolsGroup;
 import org.apache.commons.lang.StringUtils;
 import org.jdom.Document;
 import org.jdom.Element;
@@ -28,6 +26,8 @@ import org.jdom.JDOMException;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class EclipserAction extends AnAction {
@@ -77,6 +77,11 @@ public class EclipserAction extends AnAction {
         String type = root.getAttributeValue("type");
         System.out.println("type:" + type);
 
+        if (EclipserXml.CONFIGURATION_TYPE_PROGRAM_LAUNCH.equalsIgnoreCase(type)) {
+            createExternalTool(null);
+            return null;
+        }
+
         if (!EclipserXml.CONFIGURATION_TYPE_LOCAL_JAVA_APPLICATION.equalsIgnoreCase(type)) {
             say("Unsupported launch configuration type:" + type);
             return null;
@@ -106,6 +111,32 @@ public class EclipserAction extends AnAction {
         }
 
         return eclipserConfiguration;
+    }
+
+    private void createExternalTool(AnActionEvent event) {
+
+        String name = "";
+        String program = "";
+        String arguments = "";
+
+        ToolManager manager = ToolManager.getInstance();
+
+        Collection<ToolsGroup> groups = new ArrayList<ToolsGroup>();
+
+        Enabler enabler = new Enabler("Eclipser", true, true);
+
+        Tool tool = enabler.create();
+
+        tool.setProgram("/kafka/kafka/bin/zookeeper-server-start.sh");
+        tool.setParameters("/kafka/kafka/config/zookeeper.properties");
+        tool.setGroupName("Converted");
+
+        ToolsGroup group = new ToolsGroup("Converted");
+        group.addElement(tool);
+
+        groups.add(group);
+
+        manager.setTools(groups.toArray(new ToolsGroup[groups.size()]));
     }
 
     private void run(AnActionEvent event, EclipserConfiguration configuration) {
@@ -234,4 +265,5 @@ public class EclipserAction extends AnAction {
     private void enable(Presentation presentation) {
         presentation.setEnabledAndVisible(true);
     }
+
 }
