@@ -33,6 +33,7 @@ import java.util.List;
 public class EclipserAction extends AnAction {
 
     public static final String MODULE_DIR = "$MODULE_DIR$";
+    public static final String LOCAL_JAVA_APPLICATION = "org.eclipse.jdt.launching.localJavaApplication";
 
     public void actionPerformed(AnActionEvent e) {
         VirtualFile virtualFile = e.getData(LangDataKeys.VIRTUAL_FILE);
@@ -76,12 +77,7 @@ public class EclipserAction extends AnAction {
         String type = root.getAttributeValue("type");
         System.out.println("type:" + type);
 
-        // check for type
-        // "org.eclipse.jdt.launching.localJavaApplication"
-        // "org.eclipse.ant.AntLaunchConfigurationType"
-        // "org.eclipse.jdt.junit.launchconfig"
-
-        if (!"org.eclipse.jdt.launching.localJavaApplication".equalsIgnoreCase(type)) {
+        if (!EclipserXml.CONFIGURATION_TYPE_LOCAL_JAVA_APPLICATION.equalsIgnoreCase(type)) {
             say("Unsupported launch configuration type:" + type);
             return null;
         }
