@@ -2,6 +2,7 @@ package com.kukido.eclipser;
 
 import com.intellij.openapi.actionSystem.*;
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.ui.Messages;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiManager;
@@ -18,6 +19,8 @@ public class EclipserAction extends AnAction {
 
         PsiFile psiFile = e.getData(LangDataKeys.PSI_FILE);
 
+        String message;
+
         try {
             ConfigurationBuilder builder = new ConfigurationBuilder(psiFile);
             Configuration configuration = builder.build();
@@ -26,10 +29,20 @@ public class EclipserAction extends AnAction {
                 Command command = configuration.getCommand();
                 command.execute(e.getProject());
             }
+
+            message = "Eclipse launch file was successfully converted";
+
         } catch (Exception exc) {
             exc.printStackTrace();
+            message = "Eclipser was unable to convert launch file. Please submit support ticket at http://bitbucket.org/";
         }
 
+        say(message);
+
+    }
+
+    public void say(String message) {
+        Messages.showMessageDialog(message, "Info", Messages.getInformationIcon());
     }
 
     @Override

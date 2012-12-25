@@ -11,11 +11,12 @@ public class ConfigurationBuilder {
 
     private PsiFile psiFile;
 
-    private String configurationName;
+    private String name;
     private String mainType;
     private String moduleName;
-    private String workingDirectory;
     private String vmParameters;
+    private String parameters;
+    private String program;
 
     public ConfigurationBuilder(PsiFile psiFile) {
         this.psiFile = psiFile;
@@ -52,17 +53,23 @@ public class ConfigurationBuilder {
                         vmParameters = value;
                     } else if (EclipserXml.PROJECT_ATTR_KEY.equalsIgnoreCase(key)) {
                         moduleName = value;
+                    } else if (EclipserXml.ATTR_LOCATION_KEY.equalsIgnoreCase(key)) {
+                        program = value;
+                    } else if (EclipserXml.ATTR_TOOL_ARGUMENTS_KEY.equalsIgnoreCase(key)) {
+                        parameters = value;
                     }
                 }
             }
         }
 
         if (EclipserXml.CONFIGURATION_TYPE_LOCAL_JAVA_APPLICATION.equalsIgnoreCase(configurationType)) {
-            configurationName = psiFile.getVirtualFile().getNameWithoutExtension();
+            name = psiFile.getVirtualFile().getNameWithoutExtension();
         }
 
         if (EclipserXml.CONFIGURATION_TYPE_LOCAL_JAVA_APPLICATION.equalsIgnoreCase(configurationType)) {
-            return new JavaConfiguration(configurationName, mainType, moduleName, vmParameters);
+            return new JavaConfiguration(name, mainType, moduleName, vmParameters);
+        } else if (EclipserXml.CONFIGURATION_TYPE_PROGRAM_LAUNCH.equalsIgnoreCase(configurationType)) {
+            return new ExternalToolConfiguration(name, program, parameters);
         } else {
             // throw exception?
             return null;
