@@ -15,6 +15,9 @@ import com.intellij.openapi.util.JDOMUtil;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiManager;
+import com.intellij.psi.xml.XmlDocument;
+import com.intellij.psi.xml.XmlFile;
+import com.intellij.psi.xml.XmlTag;
 import com.intellij.tools.Enabler;
 import com.intellij.tools.Tool;
 import com.intellij.tools.ToolManager;
@@ -225,9 +228,7 @@ public class EclipserAction extends AnAction {
             return;
         }
 
-        /* todo: associate .launch files with XML */
-        /*
-        if (!(psiFile.getFileType() instanceof EclipserFileType)) {
+        if (!(psiFile instanceof XmlFile)) {
             disable(presentation);
             return;
         }
@@ -249,7 +250,6 @@ public class EclipserAction extends AnAction {
             disable(presentation);
             return;
         }
-        */
 
         enable(presentation);
     }

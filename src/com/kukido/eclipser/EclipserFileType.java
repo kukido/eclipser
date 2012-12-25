@@ -1,15 +1,24 @@
 package com.kukido.eclipser;
 
+import com.intellij.ide.highlighter.XmlLikeFileType;
+import com.intellij.lang.Language;
+import com.intellij.lang.xml.XMLLanguage;
 import com.intellij.openapi.fileTypes.FileType;
 import com.intellij.openapi.vfs.CharsetToolkit;
 import com.intellij.openapi.vfs.VirtualFile;
 import icons.EclipserIcons;
+import org.apache.xmlbeans.XmlLanguage;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 
-public class EclipserFileType implements FileType {
+public class EclipserFileType extends XmlLikeFileType {
+
+    public EclipserFileType() {
+        super(XMLLanguage.INSTANCE);
+    }
+
     @NotNull
     @Override
     public String getName() {
@@ -32,11 +41,6 @@ public class EclipserFileType implements FileType {
     @Override
     public Icon getIcon() {
         return EclipserIcons.Launch;
-    }
-
-    @Override
-    public boolean isBinary() {
-        return false;
     }
 
     @Override
