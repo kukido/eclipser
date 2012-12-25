@@ -1,5 +1,6 @@
 package com.kukido.eclipser.command;
 
+import com.intellij.openapi.project.Project;
 import com.intellij.tools.Enabler;
 import com.intellij.tools.Tool;
 import com.intellij.tools.ToolManager;
@@ -11,7 +12,7 @@ import java.util.Collection;
 public class AddExternalToolCommand implements Command {
 
     @Override
-    public void execute() {
+    public void execute(Project project) {
         String name = "";
         String program = "";
         String arguments = "";

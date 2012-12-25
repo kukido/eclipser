@@ -8,14 +8,14 @@ public class JavaConfiguration implements Configuration {
     public static final String MODULE_DIR = "$MODULE_DIR$";
 
     private String configurationName;
-    private String mainType;
+    private String mainClassName;
     private String moduleName;
     private String vmParameters;
     private String workingDirectory = MODULE_DIR;
 
-    public JavaConfiguration(String configurationName, String mainType, String moduleName, String vmParameters) {
+    public JavaConfiguration(String configurationName, String mainClassName, String moduleName, String vmParameters) {
         this.configurationName = configurationName;
-        this.mainType = mainType;
+        this.mainClassName = mainClassName;
         this.moduleName = moduleName;
         this.vmParameters = vmParameters;
     }
@@ -24,8 +24,8 @@ public class JavaConfiguration implements Configuration {
         return configurationName;
     }
 
-    public String getMainType() {
-        return mainType;
+    public String getMainClassName() {
+        return mainClassName;
     }
 
     public String getModuleName() {
