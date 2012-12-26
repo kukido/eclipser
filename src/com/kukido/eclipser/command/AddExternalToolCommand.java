@@ -32,6 +32,7 @@ public class AddExternalToolCommand implements Command {
         tool.setEnabled(true);
         tool.setProgram(configuration.getProgram());
         tool.setParameters(configuration.getParameters());
+        tool.setWorkingDirectory(configuration.getWorkingDirectory());
         tool.setGroupName(DEFAULT_GROUP_NAME);
 
         ToolsGroup group = new ToolsGroup(DEFAULT_GROUP_NAME);

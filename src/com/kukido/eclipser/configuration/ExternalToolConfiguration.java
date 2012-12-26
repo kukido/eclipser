@@ -5,6 +5,8 @@ import com.kukido.eclipser.command.Command;
 
 public class ExternalToolConfiguration implements  Configuration {
 
+    public static final String PROJECT_FILE_DIR = "$ProjectFileDir$";
+
     private String name;
     private String program;
     private String parameters;
@@ -25,6 +27,10 @@ public class ExternalToolConfiguration implements  Configuration {
 
     public String getName() {
         return name;
+    }
+
+    public String getWorkingDirectory() {
+        return PROJECT_FILE_DIR;
     }
 
     @Override

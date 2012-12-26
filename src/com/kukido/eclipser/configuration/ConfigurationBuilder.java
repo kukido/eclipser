@@ -7,6 +7,9 @@ import com.intellij.psi.xml.XmlFile;
 import com.intellij.psi.xml.XmlTag;
 import com.kukido.eclipser.EclipserXml;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class ConfigurationBuilder {
 
     private PsiFile psiFile;
@@ -54,15 +57,16 @@ public class ConfigurationBuilder {
                     } else if (EclipserXml.PROJECT_ATTR_KEY.equalsIgnoreCase(key)) {
                         moduleName = value;
                     } else if (EclipserXml.ATTR_LOCATION_KEY.equalsIgnoreCase(key)) {
-                        program = value;
+                        program = extractText(value);
                     } else if (EclipserXml.ATTR_TOOL_ARGUMENTS_KEY.equalsIgnoreCase(key)) {
-                        parameters = value;
+                        parameters = extractText(value);
                     }
                 }
             }
         }
 
-        if (EclipserXml.CONFIGURATION_TYPE_LOCAL_JAVA_APPLICATION.equalsIgnoreCase(configurationType)) {
+        if (EclipserXml.CONFIGURATION_TYPE_LOCAL_JAVA_APPLICATION.equalsIgnoreCase(configurationType) ||
+                EclipserXml.CONFIGURATION_TYPE_PROGRAM_LAUNCH.equalsIgnoreCase(configurationType)) {
             name = psiFile.getVirtualFile().getNameWithoutExtension();
         }
 
@@ -75,4 +79,14 @@ public class ConfigurationBuilder {
             return null;
         }
     }
+
+    private String extractText(String value) {
+        Pattern pattern = Pattern.compile("([a-zA-Z_]*):([a-zA_Z_/.]*)");
+        Matcher matcher = pattern.matcher(value);
+        matcher.find();
+        return matcher.group(2);
+    }
+
+
+
 }

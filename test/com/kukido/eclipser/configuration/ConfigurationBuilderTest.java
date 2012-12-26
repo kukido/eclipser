@@ -6,6 +6,7 @@ import com.intellij.testFramework.LightIdeaTestCase;
 import org.junit.Test;
 
 import java.io.File;
+import java.io.IOException;
 
 public class ConfigurationBuilderTest extends LightIdeaTestCase {
 
@@ -14,7 +15,7 @@ public class ConfigurationBuilderTest extends LightIdeaTestCase {
     @Test
     public void testWithJavaConfiguration() throws Exception {
 
-        PsiFile file = createFile("java.launch", FileUtil.loadFile(new File(this.getClass().getResource("/resources/java.launch").getPath())));
+        PsiFile file = getPsiFile("java.launch");
 
         builder = new ConfigurationBuilder(file);
 
@@ -31,4 +32,28 @@ public class ConfigurationBuilderTest extends LightIdeaTestCase {
         assertEquals("-ea -XX:MaxPermSize=128M -Xmx256M -DSHUTDOWN.PORT=&quot;28087&quot; -Djetty.port=&quot;8087&quot; -Dhibernate.config.file=&quot;../dbAccessLayer/resource/hibernate.cfg.xml&quot;", jc.getVmParameters());
 
     }
+
+    @Test
+    public void testWithExternalToolConfiguration() throws Exception {
+        PsiFile file = getPsiFile("tool.launch");
+        builder = new ConfigurationBuilder(file);
+        Configuration conf = builder.build();
+
+        assertInstanceOf(conf, ExternalToolConfiguration.class);
+
+        ExternalToolConfiguration etc = (ExternalToolConfiguration)conf;
+
+        assertEquals("tool", etc.getName());
+        assertEquals("/kafka/kafka/config/zookeeper.properties", etc.getParameters());
+        assertEquals("/kafka/kafka/bin/zookeeper", etc.getProgram());
+        assertEquals(ExternalToolConfiguration.PROJECT_FILE_DIR, etc.getWorkingDirectory());
+    }
+
+
+
+    private PsiFile getPsiFile(String name) throws IOException {
+        return createFile(name, FileUtil.loadFile(new File(this.getClass().getResource("/resources/" + name).getPath())));
+    }
+
+
 }
