@@ -87,6 +87,23 @@ public class AddExternalToolCommand implements Command {
         public void setEnabled(boolean enabled) {
             this.enabled = enabled;
         }
+
+        @Override
+        public String getActionId() {
+
+            StringBuilder id = new StringBuilder(ACTION_ID_PREFIX);
+
+            String group = getGroup();
+
+            if (group != null) {
+                id.append(group);
+                id.append('_');
+            }
+            if (name != null) {
+                id.append(name);
+            }
+            return id.toString();
+        }
     }
 
 }
