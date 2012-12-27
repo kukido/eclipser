@@ -7,11 +7,12 @@ import com.intellij.tools.ToolsGroup;
 import com.kukido.eclipser.configuration.ExternalToolConfiguration;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 
 public class AddExternalToolCommand implements Command {
 
-    public static final String DEFAULT_GROUP_NAME = "Converted";
+    public static final String DEFAULT_GROUP_NAME = "Eclipser";
 
     private ExternalToolConfiguration configuration;
 
@@ -23,7 +24,20 @@ public class AddExternalToolCommand implements Command {
     public void execute(Project project) {
         ToolManager manager = ToolManager.getInstance();
 
-        Collection<ToolsGroup> groups = new ArrayList<ToolsGroup>();
+        ToolsGroup target = null;
+
+        Collection<ToolsGroup> groups = new ArrayList<ToolsGroup>(Arrays.asList(manager.getGroups()));
+
+        for (ToolsGroup group : groups) {
+            if (group.getName().equalsIgnoreCase(DEFAULT_GROUP_NAME)) {
+                target = group;
+            }
+        }
+
+        if (target == null) {
+            target = new ToolsGroup(DEFAULT_GROUP_NAME);
+            groups.add(target);
+        }
 
         EclipserTool tool = new EclipserTool();
 
@@ -35,10 +49,7 @@ public class AddExternalToolCommand implements Command {
         tool.setWorkingDirectory(configuration.getWorkingDirectory());
         tool.setGroupName(DEFAULT_GROUP_NAME);
 
-        ToolsGroup group = new ToolsGroup(DEFAULT_GROUP_NAME);
-        group.addElement(tool);
-
-        groups.add(group);
+        target.addElement(tool);
 
         manager.setTools(groups.toArray(new ToolsGroup[groups.size()]));
     }
