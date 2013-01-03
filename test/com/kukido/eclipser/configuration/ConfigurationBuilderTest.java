@@ -29,7 +29,7 @@ public class ConfigurationBuilderTest extends LightIdeaTestCase {
         assertEquals("com.flurry.jetty.JettyServer", jc.getMainClassName());
         assertEquals("developerPortal", jc.getModuleName());
         assertEquals(JavaConfiguration.MODULE_DIR, jc.getWorkingDirectory());
-        assertEquals("-ea -XX:MaxPermSize=128M -Xmx256M -DSHUTDOWN.PORT=&quot;28087&quot; -Djetty.port=&quot;8087&quot; -Dhibernate.config.file=&quot;../dbAccessLayer/resource/hibernate.cfg.xml&quot;", jc.getVmParameters());
+        assertEquals("-ea -XX:MaxPermSize=128M -Xmx256M -DSHUTDOWN.PORT=\"28087\" -Djetty.port=\"8087\" -Dhibernate.config.file=\"../dbAccessLayer/resource/hibernate.cfg.xml\"", jc.getVmParameters());
 
     }
 

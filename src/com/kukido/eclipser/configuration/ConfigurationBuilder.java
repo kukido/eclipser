@@ -53,7 +53,7 @@ public class ConfigurationBuilder {
                     if (EclipserXml.MAIN_TYPE_KEY.equalsIgnoreCase(key)) {
                         mainType = value;
                     } else if (EclipserXml.VM_ARGUMENTS_KEY.equalsIgnoreCase(key)) {
-                        vmParameters = value;
+                        vmParameters = normalizeQuotes(value);
                     } else if (EclipserXml.PROJECT_ATTR_KEY.equalsIgnoreCase(key)) {
                         moduleName = value;
                     } else if (EclipserXml.ATTR_LOCATION_KEY.equalsIgnoreCase(key)) {
@@ -85,6 +85,10 @@ public class ConfigurationBuilder {
         Matcher matcher = pattern.matcher(value);
         matcher.find();
         return matcher.group(2);
+    }
+
+    private String normalizeQuotes(String value) {
+        return value.replace("&quot;", "\"");
     }
 
 
