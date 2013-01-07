@@ -5,6 +5,7 @@ import com.intellij.psi.PsiFile;
 import com.intellij.psi.impl.source.xml.XmlTagImpl;
 import com.intellij.psi.xml.XmlFile;
 import com.intellij.psi.xml.XmlTag;
+import com.kukido.eclipser.EclipserException;
 import com.kukido.eclipser.EclipserXml;
 
 import java.util.regex.Matcher;
@@ -25,7 +26,7 @@ public class ConfigurationBuilder {
         this.psiFile = psiFile;
     }
 
-    public Configuration build() {
+    public Configuration build() throws EclipserException {
 
         // read configuration type
         // based on the type create configuration
@@ -75,8 +76,7 @@ public class ConfigurationBuilder {
         } else if (EclipserXml.CONFIGURATION_TYPE_PROGRAM_LAUNCH.equalsIgnoreCase(configurationType)) {
             return new ExternalToolConfiguration(name, program, parameters);
         } else {
-            // throw exception?
-            return null;
+            throw new EclipserException("Unsupported configuration type: " + configurationType);
         }
     }
 

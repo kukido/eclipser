@@ -10,8 +10,8 @@ import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.module.ModuleManager;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.ui.Messages;
 import com.kukido.eclipser.EclipserConfigurationType;
+import com.kukido.eclipser.EclipserException;
 import com.kukido.eclipser.configuration.JavaConfiguration;
 import org.apache.commons.lang.StringUtils;
 
@@ -24,11 +24,21 @@ public class AddApplicationConfigurationCommand implements Command {
     }
 
     @Override
-    public void execute(Project project) {
+    public void execute(Project project) throws EclipserException {
         createRunConfiguration(project);
     }
 
-    private void createRunConfiguration(Project project) {
+    private void createRunConfiguration(Project project) throws EclipserException {
+
+        String moduleNameOfRunner = javaConfiguration.getModuleName();
+
+        Module module = ModuleManager.getInstance(project).findModuleByName(moduleNameOfRunner);
+
+        if (module == null) {
+            String message = "Could not find the module of the runner with name '" + moduleNameOfRunner + "'. You can either update Eclipse launch file with the correct name or create a new module." +
+                    "\n\nHere is the list of modules that were found:\n   " + StringUtils.join(ModuleManager.getInstance(project).getModules(), "\n   ");
+            throw new EclipserException(message);
+        }
 
         Application application = ApplicationManager.getApplication();
 
@@ -47,16 +57,6 @@ public class AddApplicationConfigurationCommand implements Command {
             runManager.addConfiguration(runnerAndConfigurationSettings, true);
         }
 
-        String moduleNameOfRunner = javaConfiguration.getModuleName();
-
-        Module module = ModuleManager.getInstance(project).findModuleByName(moduleNameOfRunner);
-
-        if (module == null) {
-            say("Could not find the module of the runner with name '" + moduleNameOfRunner + "'. Check settings." +
-                    "\n\nHere is the list of modules that were found:\n   " + StringUtils.join(ModuleManager.getInstance(project).getModules(), "\n   "));
-            return;
-        }
-
         applicationConfiguration.setModule(module);
         applicationConfiguration.setMainClassName(javaConfiguration.getMainClassName());
         applicationConfiguration.setWorkingDirectory(javaConfiguration.getWorkingDirectory());
@@ -71,9 +71,5 @@ public class AddApplicationConfigurationCommand implements Command {
                 return (RunnerAndConfigurationSettingsImpl) settings;
         }
         return null;
-    }
-
-    public void say(String message) {
-        Messages.showMessageDialog(message, "Info", Messages.getInformationIcon());
     }
 }
