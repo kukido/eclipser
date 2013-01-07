@@ -15,14 +15,13 @@ import com.kukido.eclipser.configuration.ConfigurationBuilder;
 
 public class EclipserAction extends AnAction {
 
-    public static final String SUCCESS_MESSAGE = "Eclipse launch file was successfully converted";
-    public static final String FAILURE_MESSAGE = "Eclipser was unable to convert launch file. Please submit support ticket at http://bitbucket.org/kukido/eclipser/issues";
+    public static final String DEFAULT_FAILURE_MESSAGE = "Eclipser was unable to convert launch file. Please submit support ticket at http://bitbucket.org/kukido/eclipser/issues";
 
     public void actionPerformed(AnActionEvent e) {
 
         PsiFile psiFile = e.getData(LangDataKeys.PSI_FILE);
 
-        String message = FAILURE_MESSAGE;
+        String message = null;
 
         try {
             ConfigurationBuilder builder = new ConfigurationBuilder(psiFile);
@@ -31,16 +30,16 @@ public class EclipserAction extends AnAction {
             if (configuration != null) {
                 Command command = configuration.getCommand();
                 command.execute(e.getProject());
-                message = SUCCESS_MESSAGE;
             }
 
-        }catch (EclipserException ee) {
+        } catch (EclipserException ee) {
             message = ee.getMessage();
         } catch (Exception exc) {
             exc.printStackTrace();
+            message = DEFAULT_FAILURE_MESSAGE;
         }
 
-        say(message);
+        if (message != null) say(message);
     }
 
     public void say(String message) {

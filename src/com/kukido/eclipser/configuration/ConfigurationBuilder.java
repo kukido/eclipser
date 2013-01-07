@@ -21,6 +21,8 @@ public class ConfigurationBuilder {
     private String vmParameters;
     private String parameters;
     private String program;
+    private String programArguments;
+    private String workingDirectory;
 
     public ConfigurationBuilder(PsiFile psiFile) {
         this.psiFile = psiFile;
@@ -58,9 +60,13 @@ public class ConfigurationBuilder {
                     } else if (EclipserXml.PROJECT_ATTR_KEY.equalsIgnoreCase(key)) {
                         moduleName = value;
                     } else if (EclipserXml.ATTR_LOCATION_KEY.equalsIgnoreCase(key)) {
-                        program = extractText(value);
+                        program = convertWorkspace(value);
                     } else if (EclipserXml.ATTR_TOOL_ARGUMENTS_KEY.equalsIgnoreCase(key)) {
-                        parameters = extractText(value);
+                        parameters = convertWorkspace(value);
+                    } else if (EclipserXml.PROGRAM_ARGUMENTS_KEY.equalsIgnoreCase(key)) {
+                        programArguments = value;
+                    } else if (EclipserXml.ATTR_WORKING_DIRECTORY_KEY.equalsIgnoreCase(key)) {
+                        workingDirectory = convertWorkspace(value);
                     }
                 }
             }
@@ -72,16 +78,16 @@ public class ConfigurationBuilder {
         }
 
         if (EclipserXml.CONFIGURATION_TYPE_LOCAL_JAVA_APPLICATION.equalsIgnoreCase(configurationType)) {
-            return new JavaConfiguration(name, mainType, moduleName, vmParameters);
+            return new JavaConfiguration(name, mainType, moduleName, vmParameters, programArguments);
         } else if (EclipserXml.CONFIGURATION_TYPE_PROGRAM_LAUNCH.equalsIgnoreCase(configurationType)) {
-            return new ExternalToolConfiguration(name, program, parameters);
+            return new ExternalToolConfiguration(name, program, parameters, workingDirectory);
         } else {
             throw new EclipserException("Unsupported configuration type: " + configurationType);
         }
     }
 
     private String extractText(String value) {
-        Pattern pattern = Pattern.compile("([a-zA-Z_]*):([a-zA_Z_/.]*)");
+        Pattern pattern = Pattern.compile("([a-zA-Z_]*):([a-zA-Z_/.[-]]*)");
         Matcher matcher = pattern.matcher(value);
         matcher.find();
         return matcher.group(2);
@@ -89,6 +95,10 @@ public class ConfigurationBuilder {
 
     private String normalizeQuotes(String value) {
         return value.replace("&quot;", "\"");
+    }
+
+    private String convertWorkspace(String value) {
+        return value.replace("}", "").replace("${workspace_loc:", ExternalToolConfiguration.PROJECT_FILE_DIR);
     }
 
 

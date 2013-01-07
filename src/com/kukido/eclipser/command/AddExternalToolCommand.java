@@ -44,6 +44,7 @@ public class AddExternalToolCommand implements Command {
         tool.setName(configuration.getName());
         tool.setShownInMainMenu(true);
         tool.setEnabled(true);
+        tool.setUseConsole(true);
         tool.setProgram(configuration.getProgram());
         tool.setParameters(configuration.getParameters());
         tool.setWorkingDirectory(configuration.getWorkingDirectory());
@@ -59,6 +60,7 @@ public class AddExternalToolCommand implements Command {
         private String name;
         private boolean shownInMainMenu;
         private boolean enabled;
+        private boolean useConsole;
 
         @Override
         public String getName() {
@@ -86,6 +88,15 @@ public class AddExternalToolCommand implements Command {
         @Override
         public void setEnabled(boolean enabled) {
             this.enabled = enabled;
+        }
+
+        public void setUseConsole(boolean useConsole) {
+            this.useConsole = useConsole;
+        }
+
+        @Override
+        public boolean isUseConsole() {
+            return useConsole;
         }
 
         @Override

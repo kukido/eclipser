@@ -11,13 +11,15 @@ public class JavaConfiguration implements Configuration {
     private String mainClassName;
     private String moduleName;
     private String vmParameters;
+    private String programParameters;
     private String workingDirectory = MODULE_DIR;
 
-    public JavaConfiguration(String configurationName, String mainClassName, String moduleName, String vmParameters) {
+    public JavaConfiguration(String configurationName, String mainClassName, String moduleName, String vmParameters, String programParameters) {
         this.configurationName = configurationName;
         this.mainClassName = mainClassName;
         this.moduleName = moduleName;
         this.vmParameters = vmParameters;
+        this.programParameters = programParameters;
     }
 
     public String getConfigurationName() {
@@ -38,6 +40,10 @@ public class JavaConfiguration implements Configuration {
 
     public String getVmParameters() {
         return vmParameters;
+    }
+
+    public String getProgramParameters() {
+        return programParameters;
     }
 
     @Override

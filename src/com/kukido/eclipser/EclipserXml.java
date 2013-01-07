@@ -11,8 +11,10 @@ public interface EclipserXml {
     @NonNls String MAIN_TYPE_KEY = "org.eclipse.jdt.launching.MAIN_TYPE";
     @NonNls String PROJECT_ATTR_KEY = "org.eclipse.jdt.launching.PROJECT_ATTR";
     @NonNls String VM_ARGUMENTS_KEY = "org.eclipse.jdt.launching.VM_ARGUMENTS";
+    @NonNls String PROGRAM_ARGUMENTS_KEY = "org.eclipse.jdt.launching.PROGRAM_ARGUMENTS";
     @NonNls String ATTR_LOCATION_KEY = "org.eclipse.ui.externaltools.ATTR_LOCATION";
     @NonNls String ATTR_TOOL_ARGUMENTS_KEY = "org.eclipse.ui.externaltools.ATTR_TOOL_ARGUMENTS";
+    @NonNls String ATTR_WORKING_DIRECTORY_KEY = "org.eclipse.ui.externaltools.ATTR_WORKING_DIRECTORY";
 
     // attribute type
     @NonNls String LIST_ATTRIBUTE = "listAttribute";

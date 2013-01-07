@@ -11,7 +11,7 @@
         <listEntry value="org.eclipse.debug.ui.launchGroup.debug"/>
         <listEntry value="org.eclipse.debug.ui.launchGroup.run"/>
     </listAttribute>
-    <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.flurry.jetty.JettyServer"/>
+    <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.example.jetty.JettyServer"/>
     <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="developerPortal"/>
     <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-ea -XX:MaxPermSize=128M -Xmx256M -DSHUTDOWN.PORT=&quot;28087&quot; -Djetty.port=&quot;8087&quot; -Dhibernate.config.file=&quot;../dbAccessLayer/resource/hibernate.cfg.xml&quot;"/>
 </launchConfiguration>
