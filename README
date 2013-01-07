@@ -1,3 +1,21 @@
-eclipser - IntelliJ IDEA plugin allows to run Eclipse launch configurations
+##Eclipser will automatically convert Eclipse launch configurations into IntelliJ IDEA configurations:
+* local Java application Eclipse launcher will be converted into run configuration
+* program launch Eclipse launcher will be converted into external tool in Tools menu
 
-change for bitbucket roundtrip test
+##Known issues:
+* (WARNING) When converting external tools with IDEA version prior to 12.1, make sure that you restart IDE before making any updates to converted external tools. If you enter external tools screen before restart, the screen will not display any information, you will see "processing" indicator, click on "cancel" button. If you click on "OK", all existing external tools configuration and new converted will be gone(no kidding). IDEA 12.1 will have updates in core code for seamless integration with Eclipser.
+* If the configuration already exists, then Eclipser will override settings with the ones from Eclipse launcher file. Plugin will not ask for override confirmation, see [issue #10](https://bitbucket.org/kukido/eclipser/issue/10/confirmation-dialog-if-the-configuration)
+
+##Functionality limitations:
+* Current support for one Eclipse macro only: 
+	- $workspace_loc
+* Current support for the following Eclipse launch configurations:
+	- local Java application - converted to run configuration
+	- program launch - converted to external tool
+	
+##Disclaimer:
+* Plugin is currently in beta. Please report any errors and suggestions to the link below.
+
+##Support:
+* Email: mclovin@kukido.com
+* Support tickets: https://bitbucket.org/kukido/eclipser/issues
