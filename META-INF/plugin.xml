@@ -2,17 +2,20 @@
   <id>com.kukido.eclipser</id>
   <name>Eclipser</name>
   <version>0.1</version>
-  <vendor email="mclovin@kukido.com" url="http://www.kukido.com">Kukido</vendor>
+  <vendor email="mclovin@kukido.com" url="https://bitbucket.org/kukido/eclipser">Kukido</vendor>
 
   <description><![CDATA[
-      Enter short description for your plugin here.<br>
-      <small>most HTML tags may be used</small>
+      Eclipser will automatically convert Eclipse launch configurations into IntelliJ IDEA configurations:
+        <ul>
+        <li>local Java application Eclipse launcher will be converted into run configuration</li>
+        <li>program launch Eclipse launcher will be converted into external tool in Tools menu</li>
+        </ul>
+      For limitations, known issues and support please refer to plugin wiki:
+        <a href="https://bitbucket.org/kukido/eclipser/wiki">https://bitbucket.org/kukido/eclipser/wiki</a>
       ]]></description>
 
-  <change-notes><![CDATA[
-      Add change notes here.<br>
-      <small>most HTML tags may be used</small>
-      ]]>
+  <change-notes>
+      0.1 - Initial release (beta)
   </change-notes>
 
   <!-- please see http://confluence.jetbrains.net/display/IDEADEV/Build+Number+Ranges for description -->
