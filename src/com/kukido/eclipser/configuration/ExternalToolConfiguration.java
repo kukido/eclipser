@@ -2,6 +2,7 @@ package com.kukido.eclipser.configuration;
 
 import com.kukido.eclipser.command.AddExternalToolCommand;
 import com.kukido.eclipser.command.Command;
+import org.jetbrains.annotations.NotNull;
 
 public class ExternalToolConfiguration implements  Configuration {
 
@@ -12,7 +13,7 @@ public class ExternalToolConfiguration implements  Configuration {
     private String parameters;
     private String workingDirectory;
 
-    public ExternalToolConfiguration(String name, String program, String parameters, String workingDirectory) {
+    public ExternalToolConfiguration(@NotNull String name, @NotNull String program, String parameters, String workingDirectory) {
         this.name = name;
         this.program = program;
         this.parameters = parameters;

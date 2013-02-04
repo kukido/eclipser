@@ -3,6 +3,7 @@ package com.kukido.eclipser.command;
 import com.intellij.execution.RunManager;
 import com.intellij.execution.application.ApplicationConfiguration;
 import com.intellij.execution.configurations.RunConfiguration;
+import com.intellij.execution.impl.RunManagerImpl;
 import com.intellij.openapi.project.Project;
 import com.intellij.testFramework.LightIdeaTestCase;
 import com.kukido.eclipser.EclipserException;
@@ -47,7 +48,7 @@ public class AddApplicationConfigurationCommandTest extends LightIdeaTestCase {
         }catch (EclipserException ignored) {}
     }
 
-    public void testExecuteWithMinimumConfiguration() throws Exception {
+    public void testExecuteWithMinimalConfiguration() throws Exception {
         JavaConfiguration configuration = new JavaConfiguration(
                 "configuration",
                 "Main",
@@ -84,5 +85,10 @@ public class AddApplicationConfigurationCommandTest extends LightIdeaTestCase {
         }
     }
 
-
+    @Override
+    protected void tearDown() throws Exception {
+        RunManagerImpl manager = (RunManagerImpl) RunManager.getInstance(getProject());
+        manager.clearAll();
+        super.tearDown();
+    }
 }
