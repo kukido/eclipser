@@ -2,6 +2,7 @@ package com.kukido.eclipser.configuration;
 
 import com.kukido.eclipser.command.AddApplicationConfigurationCommand;
 import com.kukido.eclipser.command.Command;
+import org.jetbrains.annotations.NotNull;
 
 public class JavaConfiguration implements Configuration {
 
@@ -14,7 +15,7 @@ public class JavaConfiguration implements Configuration {
     private String programParameters;
     private String workingDirectory = MODULE_DIR;
 
-    public JavaConfiguration(String configurationName, String mainClassName, String moduleName, String vmParameters, String programParameters) {
+    public JavaConfiguration(@NotNull String configurationName, @NotNull String mainClassName, @NotNull String moduleName, String vmParameters, String programParameters) {
         this.configurationName = configurationName;
         this.mainClassName = mainClassName;
         this.moduleName = moduleName;
