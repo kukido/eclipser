@@ -35,8 +35,7 @@ public class AddApplicationConfigurationCommand implements Command {
         Module module = ModuleManager.getInstance(project).findModuleByName(moduleNameOfRunner);
 
         if (module == null) {
-            String message = "Could not find the module with name '" + moduleNameOfRunner + "'. You can either update Eclipse launch file with the correct name or create a new module." +
-                    "\n\nHere is the list of modules that were found:\n   " + StringUtils.join(ModuleManager.getInstance(project).getModules(), "\n   ");
+            String message = "Could not find the module with name '" + moduleNameOfRunner + "'. You can either update Eclipse launch file with the correct name or create a new module.";
             throw new EclipserException(message);
         }
 
