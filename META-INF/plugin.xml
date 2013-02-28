@@ -1,7 +1,7 @@
 <idea-plugin version="2">
   <id>com.kukido.eclipser</id>
   <name>Eclipser</name>
-  <version>0.1</version>
+  <version>0.2</version>
   <vendor email="mclovin@kukido.com" url="https://bitbucket.org/kukido/eclipser">Kukido</vendor>
 
   <description><![CDATA[
@@ -16,10 +16,11 @@
 
   <change-notes>
       0.1 - Initial release (beta)
+      0.2 - Updated unit tests, updated error dialogs, updates for 12.1 version of IDEA
   </change-notes>
 
   <!-- please see http://confluence.jetbrains.net/display/IDEADEV/Build+Number+Ranges for description -->
-  <idea-version since-build="107.105"/>
+  <idea-version since-build="126.232"/>
 
   <!-- please see http://confluence.jetbrains.net/display/IDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products
        on how to target different products -->

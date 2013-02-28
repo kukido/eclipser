@@ -7,8 +7,7 @@ import com.intellij.tools.ToolsGroup;
 import com.kukido.eclipser.configuration.ExternalToolConfiguration;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
+import java.util.List;
 
 public class AddExternalToolCommand implements Command {
 
@@ -24,18 +23,18 @@ public class AddExternalToolCommand implements Command {
     public void execute(Project project) {
         ToolManager manager = ToolManager.getInstance();
 
-        ToolsGroup target = null;
+        ToolsGroup<Tool> target = null;
 
-        Collection<ToolsGroup> groups = new ArrayList<ToolsGroup>(Arrays.asList(manager.getGroups()));
+        List<ToolsGroup<Tool>> groups = new ArrayList<ToolsGroup<Tool>>(manager.getGroups());
 
-        for (ToolsGroup group : groups) {
+        for (ToolsGroup<Tool> group : groups) {
             if (group.getName().equalsIgnoreCase(DEFAULT_GROUP_NAME)) {
                 target = group;
             }
         }
 
         if (target == null) {
-            target = new ToolsGroup(DEFAULT_GROUP_NAME);
+            target = new ToolsGroup<Tool>(DEFAULT_GROUP_NAME);
             groups.add(target);
         }
 

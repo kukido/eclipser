@@ -6,6 +6,8 @@ import com.intellij.tools.ToolManager;
 import com.intellij.tools.ToolsGroup;
 import com.kukido.eclipser.configuration.ExternalToolConfiguration;
 
+import java.util.List;
+
 public class AddExternalToolCommandTest extends LightIdeaTestCase {
 
     private AddExternalToolCommand command;
@@ -24,7 +26,7 @@ public class AddExternalToolCommandTest extends LightIdeaTestCase {
 
         ToolManager toolManager = ToolManager.getInstance();
 
-        ToolsGroup[] toolsGroups = toolManager.getGroups();
+        List<ToolsGroup<Tool>> toolsGroups = toolManager.getGroups();
 
         ToolsGroup toolsGroup = null;
 
@@ -37,10 +39,10 @@ public class AddExternalToolCommandTest extends LightIdeaTestCase {
 
         if (toolsGroup == null) fail("Eclipser group was not created");
 
-        Tool[] tools = toolManager.getTools(AddExternalToolCommand.DEFAULT_GROUP_NAME);
-        assertEquals(1, tools.length);
+        List<Tool> tools = toolManager.getTools(AddExternalToolCommand.DEFAULT_GROUP_NAME);
+        assertEquals(1, tools.size());
 
-        Tool tool = tools[0];
+        Tool tool = tools.get(0);
 
         assertEquals(configuration.getName(), tool.getName());
         assertEquals(configuration.getProgram(), tool.getProgram());
@@ -62,7 +64,7 @@ public class AddExternalToolCommandTest extends LightIdeaTestCase {
 
         ToolManager toolManager = ToolManager.getInstance();
 
-        ToolsGroup[] toolsGroups = toolManager.getGroups();
+        List<ToolsGroup<Tool>> toolsGroups = toolManager.getGroups();
 
         ToolsGroup toolsGroup = null;
 
@@ -75,10 +77,10 @@ public class AddExternalToolCommandTest extends LightIdeaTestCase {
 
         if (toolsGroup == null) fail("Eclipser group was not created");
 
-        Tool[] tools = toolManager.getTools(AddExternalToolCommand.DEFAULT_GROUP_NAME);
-        assertEquals(1, tools.length);
+        List<Tool> tools = toolManager.getTools(AddExternalToolCommand.DEFAULT_GROUP_NAME);
+        assertEquals(1, tools.size());
 
-        Tool tool = tools[0];
+        Tool tool = tools.get(0);
 
         assertEquals(configuration.getName(), tool.getName());
         assertEquals(configuration.getProgram(), tool.getProgram());
