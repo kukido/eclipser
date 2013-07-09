@@ -56,7 +56,7 @@ public class ConfigurationBuilder {
                     if (EclipserXml.MAIN_TYPE_KEY.equalsIgnoreCase(key)) {
                         mainType = value;
                     } else if (EclipserXml.VM_ARGUMENTS_KEY.equalsIgnoreCase(key)) {
-                        vmParameters = normalizeQuotes(value);
+                        vmParameters = normalizeText(value);
                     } else if (EclipserXml.PROJECT_ATTR_KEY.equalsIgnoreCase(key)) {
                         moduleName = value;
                     } else if (EclipserXml.ATTR_LOCATION_KEY.equalsIgnoreCase(key)) {
@@ -93,14 +93,24 @@ public class ConfigurationBuilder {
         return matcher.group(2);
     }
 
+	private String normalizeText(String value) {
+		return normalizeQuotes(normalizeControlCharacters(value));
+	}
+
     private String normalizeQuotes(String value) {
         return value.replace("&quot;", "\"");
     }
 
+	private String normalizeControlCharacters(String value) {
+		String lineSeparator = String.format("%n");
+		String normalized = value.replace("&#13;&#10;", lineSeparator);
+		normalized = normalized.replace("&#13;", lineSeparator);
+		normalized = normalized.replace("&#10;", lineSeparator);
+
+		return normalized;
+	}
+
     private String convertWorkspace(String value) {
         return value.replace("}", "").replace("${workspace_loc:", ExternalToolConfiguration.PROJECT_FILE_DIR);
     }
-
-
-
 }

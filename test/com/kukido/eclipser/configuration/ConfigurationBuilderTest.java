@@ -14,11 +14,8 @@ public class ConfigurationBuilderTest extends LightIdeaTestCase {
 
     @Test
     public void testJavaConfiguration() throws Exception {
-
         PsiFile file = getPsiFile("java.launch");
-
         builder = new ConfigurationBuilder(file);
-
         Configuration conf = builder.build();
 
         assertInstanceOf(conf, JavaConfiguration.class);
@@ -30,7 +27,6 @@ public class ConfigurationBuilderTest extends LightIdeaTestCase {
         assertEquals("developerPortal", jc.getModuleName());
         assertEquals(JavaConfiguration.MODULE_DIR, jc.getWorkingDirectory());
         assertEquals("-ea -XX:MaxPermSize=128M -Xmx256M -DSHUTDOWN.PORT=\"28087\" -Djetty.port=\"8087\" -Dhibernate.config.file=\"../dbAccessLayer/resource/hibernate.cfg.xml\"", jc.getVmParameters());
-
     }
 
     @Test
@@ -67,9 +63,7 @@ public class ConfigurationBuilderTest extends LightIdeaTestCase {
     @Test
     public void testJavaConfigurationWithArguments() throws Exception {
         PsiFile file = getPsiFile("arguments.launch");
-
         builder = new ConfigurationBuilder(file);
-
         Configuration conf = builder.build();
 
         assertInstanceOf(conf, JavaConfiguration.class);
@@ -81,8 +75,20 @@ public class ConfigurationBuilderTest extends LightIdeaTestCase {
         assertEquals("jmemcached-server", jc.getModuleName());
         assertEquals(JavaConfiguration.MODULE_DIR, jc.getWorkingDirectory());
         assertEquals("--memory 10M --port 11111", jc.getProgramParameters());
-
     }
+
+	@Test
+	public void testJavaConfigurationWithControlCharacters() throws Exception {
+		PsiFile file = getPsiFile("newline.launch");
+		builder = new ConfigurationBuilder(file);
+		Configuration conf = builder.build();
+
+		assertInstanceOf(conf, JavaConfiguration.class);
+
+		JavaConfiguration jc = (JavaConfiguration)conf;
+
+		assertEquals(String.format("-ea -Xmx512M%n-Dhbase.test=true"), jc.getVmParameters());
+	}
 
     private PsiFile getPsiFile(String name) throws IOException {
         return createFile(name, FileUtil.loadFile(new File(this.getClass().getResource("/resources/" + name).getPath())));
