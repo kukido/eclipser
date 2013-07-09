@@ -48,7 +48,8 @@ public class AddApplicationConfigurationCommand implements Command {
         RunnerAndConfigurationSettingsImpl runnerAndConfigurationSettings = findConfigurationByName(javaConfiguration.getConfigurationName(), runManager);
 
         if (runnerAndConfigurationSettings != null) {
-            applicationConfiguration = (ApplicationConfiguration) runnerAndConfigurationSettings.getConfiguration();
+            String message = "Runtime configuration with name '" + javaConfiguration.getConfigurationName() + "' already exists. You can either rename it or delete to be replaced.";
+			throw new EclipserException(message);
         } else {
             EclipserConfigurationType type = application.getComponent(EclipserConfigurationType.class);
             runnerAndConfigurationSettings = (RunnerAndConfigurationSettingsImpl) runManager.createRunConfiguration(javaConfiguration.getConfigurationName(), type.getConfigurationFactories()[0]);

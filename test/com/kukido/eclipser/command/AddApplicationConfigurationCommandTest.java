@@ -45,7 +45,7 @@ public class AddApplicationConfigurationCommandTest extends LightIdeaTestCase {
         try {
             command.execute(getProject());
             fail("Execute should throw an exception when module is not found");
-        }catch (EclipserException ignored) {}
+        } catch (EclipserException ignored) {}
     }
 
     public void testExecuteWithMinimalConfiguration() throws Exception {
@@ -61,6 +61,22 @@ public class AddApplicationConfigurationCommandTest extends LightIdeaTestCase {
 
         validateCreatedConfiguration(configuration);
     }
+
+	public void testExecuteWithExistingConfiguration() throws Exception {
+		JavaConfiguration configuration = new JavaConfiguration(
+				"configuration",
+				"Main",
+				TEST_CASE_MODULE_NAME,
+				null,
+				null
+		);
+		command = new AddApplicationConfigurationCommand(configuration);
+		command.execute(getProject());
+		try {
+			command.execute(getProject());
+			fail("Execute should throw an exception on duplicate configuration");
+		} catch (EclipserException ignored) {}
+	}
 
     private void validateCreatedConfiguration(JavaConfiguration configuration) {
         ApplicationConfiguration applicationConfiguration = null;
