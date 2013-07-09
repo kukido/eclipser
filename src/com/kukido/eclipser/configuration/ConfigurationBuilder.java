@@ -8,9 +8,6 @@ import com.intellij.psi.xml.XmlTag;
 import com.kukido.eclipser.EclipserException;
 import com.kukido.eclipser.EclipserXml;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public class ConfigurationBuilder {
 
     private PsiFile psiFile;
@@ -84,13 +81,6 @@ public class ConfigurationBuilder {
         } else {
             throw new EclipserException("Unsupported configuration type: " + configurationType);
         }
-    }
-
-    private String extractText(String value) {
-        Pattern pattern = Pattern.compile("([a-zA-Z_]*):([a-zA-Z_/.[-]]*)");
-        Matcher matcher = pattern.matcher(value);
-        matcher.find();
-        return matcher.group(2);
     }
 
 	private String normalizeText(String value) {

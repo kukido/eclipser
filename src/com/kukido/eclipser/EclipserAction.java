@@ -6,6 +6,7 @@ import com.intellij.openapi.ui.Messages;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiManager;
+import com.intellij.psi.xml.XmlAttribute;
 import com.intellij.psi.xml.XmlDocument;
 import com.intellij.psi.xml.XmlFile;
 import com.intellij.psi.xml.XmlTag;
@@ -86,6 +87,12 @@ public class EclipserAction extends AnAction {
             disable(presentation);
             return;
         }
+
+		final XmlAttribute typeAttribute = rootTag.getAttribute(EclipserXml.TYPE);
+		if (typeAttribute == null) {
+			disable(presentation);
+			return;
+		}
 
         if (!"launchConfiguration".equalsIgnoreCase(rootTag.getName())) {
             disable(presentation);

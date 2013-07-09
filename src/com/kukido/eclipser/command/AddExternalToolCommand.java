@@ -54,7 +54,7 @@ public class AddExternalToolCommand implements Command {
         manager.setTools(groups.toArray(new ToolsGroup[groups.size()]));
     }
 
-    private class EclipserTool extends Tool {
+    static class EclipserTool extends Tool {
 
         private String name;
         private boolean shownInMainMenu;
@@ -114,6 +114,33 @@ public class AddExternalToolCommand implements Command {
             }
             return id.toString();
         }
-    }
 
+		@SuppressWarnings("RedundantIfStatement")
+		@Override
+		public boolean equals(Object o)
+		{
+			if (this == o) return true;
+			if (o == null || getClass() != o.getClass()) return false;
+			if (!super.equals(o)) return false;
+
+			EclipserTool that = (EclipserTool) o;
+
+			if (enabled != that.enabled) return false;
+			if (shownInMainMenu != that.shownInMainMenu) return false;
+			if (useConsole != that.useConsole) return false;
+			if (name != null ? !name.equals(that.name) : that.name != null) return false;
+
+			return true;
+		}
+
+		@Override
+		public int hashCode()
+		{
+			int result = name != null ? name.hashCode() : 0;
+			result = 31 * result + (shownInMainMenu ? 1 : 0);
+			result = 31 * result + (enabled ? 1 : 0);
+			result = 31 * result + (useConsole ? 1 : 0);
+			return result;
+		}
+	}
 }

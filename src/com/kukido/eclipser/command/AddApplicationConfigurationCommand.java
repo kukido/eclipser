@@ -13,7 +13,6 @@ import com.intellij.openapi.project.Project;
 import com.kukido.eclipser.EclipserConfigurationType;
 import com.kukido.eclipser.EclipserException;
 import com.kukido.eclipser.configuration.JavaConfiguration;
-import org.apache.commons.lang.StringUtils;
 
 public class AddApplicationConfigurationCommand implements Command {
 
