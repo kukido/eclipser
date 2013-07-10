@@ -90,6 +90,19 @@ public class ConfigurationBuilderTest extends LightIdeaTestCase {
 		assertEquals(String.format("-ea -Xmx512M%n-Dhbase.test=true"), jc.getVmParameters());
 	}
 
+	@Test
+	public void testJavaConfigurationWithWorskspaceDefinedInVmParameters() throws Exception {
+		PsiFile file = getPsiFile("workspace.launch");
+		builder = new ConfigurationBuilder(file);
+		Configuration conf = builder.build();
+
+		assertInstanceOf(conf, JavaConfiguration.class);
+
+		JavaConfiguration jc = (JavaConfiguration)conf;
+
+		assertEquals("-Dhibernate.config.file="+ExternalToolConfiguration.PROJECT_FILE_DIR+"/dbAccessLayer/resource/hibernate.cfg.xml", jc.getVmParameters());
+	}
+
     private PsiFile getPsiFile(String name) throws IOException {
         return createFile(name, FileUtil.loadFile(new File(this.getClass().getResource("/resources/" + name).getPath())));
     }

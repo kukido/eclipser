@@ -25,7 +25,7 @@ public class ConfigurationBuilder {
         this.psiFile = psiFile;
     }
 
-    public Configuration build() throws EclipserException {
+	public Configuration build() throws EclipserException {
 
         // read configuration type
         // based on the type create configuration
@@ -43,7 +43,6 @@ public class ConfigurationBuilder {
         PsiElement[] children = root.getChildren();
 
         for (PsiElement child : children) {
-            System.out.println();
             if (child instanceof XmlTagImpl) {
                 XmlTagImpl tag = (XmlTagImpl)child;
                 String key = tag.getAttributeValue(EclipserXml.KEY);
@@ -53,7 +52,7 @@ public class ConfigurationBuilder {
                     if (EclipserXml.MAIN_TYPE_KEY.equalsIgnoreCase(key)) {
                         mainType = value;
                     } else if (EclipserXml.VM_ARGUMENTS_KEY.equalsIgnoreCase(key)) {
-                        vmParameters = normalizeText(value);
+                        vmParameters = convertWorkspace(normalizeText(value));
                     } else if (EclipserXml.PROJECT_ATTR_KEY.equalsIgnoreCase(key)) {
                         moduleName = value;
                     } else if (EclipserXml.ATTR_LOCATION_KEY.equalsIgnoreCase(key)) {
@@ -74,14 +73,18 @@ public class ConfigurationBuilder {
             name = psiFile.getVirtualFile().getNameWithoutExtension();
         }
 
-        if (EclipserXml.CONFIGURATION_TYPE_LOCAL_JAVA_APPLICATION.equalsIgnoreCase(configurationType)) {
-            return new JavaConfiguration(name, mainType, moduleName, vmParameters, programArguments);
-        } else if (EclipserXml.CONFIGURATION_TYPE_PROGRAM_LAUNCH.equalsIgnoreCase(configurationType)) {
-            return new ExternalToolConfiguration(name, program, parameters, workingDirectory);
-        } else {
-            throw new EclipserException("Unsupported configuration type: " + configurationType);
-        }
-    }
+		return createConfiguration(configurationType);
+	}
+
+	private Configuration createConfiguration(String configurationType) throws EclipserException {
+		if (EclipserXml.CONFIGURATION_TYPE_LOCAL_JAVA_APPLICATION.equalsIgnoreCase(configurationType)) {
+			return new JavaConfiguration(name, mainType, moduleName, vmParameters, programArguments);
+		} else if (EclipserXml.CONFIGURATION_TYPE_PROGRAM_LAUNCH.equalsIgnoreCase(configurationType)) {
+			return new ExternalToolConfiguration(name, program, parameters, workingDirectory);
+		} else {
+			throw new EclipserException("Unsupported configuration type: " + configurationType);
+		}
+	}
 
 	private String normalizeText(String value) {
 		return normalizeQuotes(normalizeControlCharacters(value));
@@ -93,11 +96,10 @@ public class ConfigurationBuilder {
 
 	private String normalizeControlCharacters(String value) {
 		String lineSeparator = String.format("%n");
-		String normalized = value.replace("&#13;&#10;", lineSeparator);
-		normalized = normalized.replace("&#13;", lineSeparator);
-		normalized = normalized.replace("&#10;", lineSeparator);
-
-		return normalized;
+		return value
+				.replace("&#13;&#10;", lineSeparator)
+				.replace("&#13;", lineSeparator)
+				.replace("&#10;", lineSeparator);
 	}
 
     private String convertWorkspace(String value) {
