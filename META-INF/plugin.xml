@@ -1,8 +1,8 @@
 <idea-plugin version="2">
   <id>com.kukido.eclipser</id>
   <name>Eclipser</name>
-  <version>0.2</version>
-  <vendor email="mclovin@kukido.com" url="https://bitbucket.org/kukido/eclipser">Kukido</vendor>
+  <version>0.3</version>
+  <vendor email="mclovin@kukido.com" url="https://github.com/flurry/eclipser">Kukido</vendor>
 
   <description><![CDATA[
       Eclipser will automatically convert Eclipse launch configurations into IntelliJ IDEA configurations:
@@ -11,12 +11,23 @@
         <li>program launch Eclipse launcher will be converted into external tool in Tools menu</li>
         </ul>
       For limitations, known issues and support please refer to plugin wiki:
-        <a href="https://bitbucket.org/kukido/eclipser/wiki">https://bitbucket.org/kukido/eclipser/wiki</a>
+        <a href="https://github.com/flurry/eclipser/wiki">https://github.com/flurry/eclipser/wiki</a>
       ]]></description>
 
   <change-notes>
-      0.1 - Initial release (beta)
-      0.2 - Updated unit tests, updated error dialogs, updates for 12.1 version of IDEA
+	  0.3
+	  	- added warning for duplicate configuration
+	  	- added conversion for control characters (newline and carriage return)
+	  	- added conversion for workspace Eclipse macro in VM arguments
+	  	- changed project home from bitbucket to github
+
+	  0.2
+	  	- updated unit tests
+	 	- updated error dialogs
+	  	- updates for 12.1 version of IDEA
+
+	  0.1
+	  	- initial release (beta)
   </change-notes>
 
   <!-- please see http://confluence.jetbrains.net/display/IDEADEV/Build+Number+Ranges for description -->

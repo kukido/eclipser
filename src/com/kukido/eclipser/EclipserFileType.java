@@ -1,13 +1,10 @@
 package com.kukido.eclipser;
 
 import com.intellij.ide.highlighter.XmlLikeFileType;
-import com.intellij.lang.Language;
 import com.intellij.lang.xml.XMLLanguage;
-import com.intellij.openapi.fileTypes.FileType;
 import com.intellij.openapi.vfs.CharsetToolkit;
 import com.intellij.openapi.vfs.VirtualFile;
 import icons.EclipserIcons;
-import org.apache.xmlbeans.XmlLanguage;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

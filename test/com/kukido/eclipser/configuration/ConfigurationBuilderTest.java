@@ -3,7 +3,6 @@ package com.kukido.eclipser.configuration;
 import com.intellij.openapi.util.io.FileUtil;
 import com.intellij.psi.PsiFile;
 import com.intellij.testFramework.LightIdeaTestCase;
-import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,7 +11,6 @@ public class ConfigurationBuilderTest extends LightIdeaTestCase {
 
     private ConfigurationBuilder builder;
 
-    @Test
     public void testJavaConfiguration() throws Exception {
         PsiFile file = getPsiFile("java.launch");
         builder = new ConfigurationBuilder(file);
@@ -29,7 +27,6 @@ public class ConfigurationBuilderTest extends LightIdeaTestCase {
         assertEquals("-ea -XX:MaxPermSize=128M -Xmx256M -DSHUTDOWN.PORT=\"28087\" -Djetty.port=\"8087\" -Dhibernate.config.file=\"../dbAccessLayer/resource/hibernate.cfg.xml\"", jc.getVmParameters());
     }
 
-    @Test
     public void testExternalToolConfiguration() throws Exception {
         PsiFile file = getPsiFile("tool.launch");
         builder = new ConfigurationBuilder(file);
@@ -45,7 +42,6 @@ public class ConfigurationBuilderTest extends LightIdeaTestCase {
         assertEquals(ExternalToolConfiguration.PROJECT_FILE_DIR, etc.getWorkingDirectory());
     }
 
-    @Test
     public void testExternalToolConfigurationWithWorkingDirectory() throws Exception {
         PsiFile file = getPsiFile("directory.launch");
         builder = new ConfigurationBuilder(file);
@@ -60,7 +56,6 @@ public class ConfigurationBuilderTest extends LightIdeaTestCase {
         assertEquals(ExternalToolConfiguration.PROJECT_FILE_DIR+"/ms_api/hbase", etc.getWorkingDirectory());
     }
 
-    @Test
     public void testJavaConfigurationWithArguments() throws Exception {
         PsiFile file = getPsiFile("arguments.launch");
         builder = new ConfigurationBuilder(file);
@@ -77,7 +72,6 @@ public class ConfigurationBuilderTest extends LightIdeaTestCase {
         assertEquals("--memory 10M --port 11111", jc.getProgramParameters());
     }
 
-	@Test
 	public void testJavaConfigurationWithControlCharacters() throws Exception {
 		PsiFile file = getPsiFile("newline.launch");
 		builder = new ConfigurationBuilder(file);
@@ -90,7 +84,6 @@ public class ConfigurationBuilderTest extends LightIdeaTestCase {
 		assertEquals(String.format("-ea -Xmx512M%n-Dhbase.test=true"), jc.getVmParameters());
 	}
 
-	@Test
 	public void testJavaConfigurationWithWorskspaceDefinedInVmParameters() throws Exception {
 		PsiFile file = getPsiFile("workspace.launch");
 		builder = new ConfigurationBuilder(file);
@@ -106,5 +99,4 @@ public class ConfigurationBuilderTest extends LightIdeaTestCase {
     private PsiFile getPsiFile(String name) throws IOException {
         return createFile(name, FileUtil.loadFile(new File(this.getClass().getResource("/resources/" + name).getPath())));
     }
-
 }

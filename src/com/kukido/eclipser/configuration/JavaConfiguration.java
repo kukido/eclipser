@@ -13,7 +13,8 @@ public class JavaConfiguration implements Configuration {
     private String moduleName;
     private String vmParameters;
     private String programParameters;
-    private String workingDirectory = MODULE_DIR;
+    @SuppressWarnings("FieldCanBeLocal")
+	private String workingDirectory = MODULE_DIR;
 
     public JavaConfiguration(@NotNull String configurationName, @NotNull String mainClassName, @NotNull String moduleName, String vmParameters, String programParameters) {
         this.configurationName = configurationName;
