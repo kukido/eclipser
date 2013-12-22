@@ -55,6 +55,7 @@
       <action id="eclipser" class="com.kukido.eclipser.EclipserAction" text="Convert with Eclipser"
               description="Launch Eclipse run configuration file.">
           <add-to-group group-id="ProjectViewPopupMenuRunGroup" anchor="last"/>
+          <add-to-group group-id="CommanderPopupMenu" anchor="last"/>
       </action>
   </actions>
 
