@@ -81,7 +81,9 @@ public class ConfigurationBuilder {
 			return new JavaConfiguration(name, mainType, moduleName, vmParameters, programArguments);
 		} else if (EclipserXml.CONFIGURATION_TYPE_PROGRAM_LAUNCH.equalsIgnoreCase(configurationType)) {
 			return new ExternalToolConfiguration(name, program, parameters, workingDirectory);
-		} else {
+        } else if (EclipserXml.CONFIGURATION_TYPE_MAVEN2_LAUNCH.equalsIgnoreCase(configurationType)) {
+            return new Maven2Configuration();
+        } else {
 			throw new EclipserException("Unsupported configuration type: " + configurationType);
 		}
 	}

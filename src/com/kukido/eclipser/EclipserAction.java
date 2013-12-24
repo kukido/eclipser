@@ -13,6 +13,7 @@ import com.intellij.psi.xml.XmlTag;
 import com.kukido.eclipser.command.Command;
 import com.kukido.eclipser.configuration.Configuration;
 import com.kukido.eclipser.configuration.ConfigurationBuilder;
+import com.kukido.eclipser.configuration.PreFlight;
 
 public class EclipserAction extends AnAction {
 
@@ -28,10 +29,12 @@ public class EclipserAction extends AnAction {
             ConfigurationBuilder builder = new ConfigurationBuilder(psiFile);
             Configuration configuration = builder.build();
 
-            if (configuration != null) {
-                Command command = configuration.getCommand();
-                command.execute(e.getProject());
+            if (configuration instanceof PreFlight) {
+                ((PreFlight) configuration).check();
             }
+
+            Command command = configuration.getCommand();
+            command.execute(e.getProject());
 
         } catch (EclipserException ee) {
             message = ee.getMessage();

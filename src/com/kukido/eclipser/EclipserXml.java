@@ -22,9 +22,10 @@ public interface EclipserXml {
     @NonNls String STRING_ATTRIBUTE = "stringAttribute";
 
     // configuration type
-    @NonNls String CONFIGURATION_TYPE_ANT                       = "org.eclipse.ant.AntLaunchConfigurationType";
-    @NonNls String CONFIGURATION_TYPE_JUNIT                     = "org.eclipse.jdt.junit.launchconfig";
+    @NonNls String CONFIGURATION_TYPE_ANT_LAUNCH                = "org.eclipse.ant.AntLaunchConfigurationType";
+    @NonNls String CONFIGURATION_TYPE_JUNIT_LAUNCH              = "org.eclipse.jdt.junit.launchconfig";
     @NonNls String CONFIGURATION_TYPE_LOCAL_JAVA_APPLICATION    = "org.eclipse.jdt.launching.localJavaApplication";
+    @NonNls String CONFIGURATION_TYPE_MAVEN2_LAUNCH             = "org.eclipse.m2e.Maven2LaunchConfigurationType";
     @NonNls String CONFIGURATION_TYPE_PROGRAM_LAUNCH            = "org.eclipse.ui.externaltools.ProgramLaunchConfigurationType";
 
 }

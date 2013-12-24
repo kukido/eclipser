@@ -81,6 +81,7 @@ public class AddApplicationConfigurationCommandTest extends LightIdeaTestCase {
     private void validateCreatedConfiguration(JavaConfiguration configuration) {
         ApplicationConfiguration applicationConfiguration = null;
         RunManager manager = RunManager.getInstance(getProject());
+        // todo: java: getAllConfigurations() in com.intellij.execution.RunManager has been deprecated
         RunConfiguration[] configurations = manager.getAllConfigurations();
         for (RunConfiguration runConfiguration : configurations) {
             if (runConfiguration.getName().equals(configuration.getConfigurationName())) {
