@@ -2,7 +2,7 @@
   <id>com.kukido.eclipser</id>
   <name>Eclipser</name>
   <version>0.3</version>
-  <vendor email="mclovin@kukido.com" url="https://github.com/flurry/eclipser">Kukido</vendor>
+  <vendor email="mclovin@kukido.com" url="https://github.com/kukido/eclipser">Kukido</vendor>
 
   <description><![CDATA[
       Eclipser will automatically convert Eclipse launch configurations into IntelliJ IDEA configurations:
@@ -11,7 +11,7 @@
         <li>program launch Eclipse launcher will be converted into external tool in Tools menu</li>
         </ul>
       For limitations, known issues and support please refer to plugin wiki:
-        <a href="https://github.com/flurry/eclipser/wiki">https://github.com/flurry/eclipser/wiki</a>
+        <a href="https://github.com/kukido/eclipser/wiki">https://github.com/kukido/eclipser/wiki</a>
       ]]></description>
 
   <change-notes>

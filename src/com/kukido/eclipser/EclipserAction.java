@@ -16,7 +16,7 @@ import com.kukido.eclipser.configuration.ConfigurationBuilder;
 
 public class EclipserAction extends AnAction {
 
-    public static final String DEFAULT_FAILURE_MESSAGE = "Eclipser was unable to convert launch file. Please submit support ticket at https://github.com/flurry/eclipser/issues";
+    public static final String DEFAULT_FAILURE_MESSAGE = "Eclipser was unable to convert launch file. Please submit support ticket at https://github.com/kukido/eclipser/issues";
 
     public void actionPerformed(AnActionEvent e) {
 
