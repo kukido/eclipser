@@ -23,7 +23,7 @@ public class ConfigurationBuilderTest extends LightIdeaTestCase {
         assertEquals("java", jc.getConfigurationName());
         assertEquals("com.example.jetty.JettyServer", jc.getMainClassName());
         assertEquals("developerPortal", jc.getModuleName());
-        assertEquals(JavaConfiguration.MODULE_DIR, jc.getWorkingDirectory());
+        assertEquals(JavaConfiguration.MODULE_DIR_MACRO, jc.getWorkingDirectory());
         assertEquals("-ea -XX:MaxPermSize=128M -Xmx256M -DSHUTDOWN.PORT=\"28087\" -Djetty.port=\"8087\" -Dhibernate.config.file=\"../dbAccessLayer/resource/hibernate.cfg.xml\"", jc.getVmParameters());
     }
 
@@ -68,7 +68,7 @@ public class ConfigurationBuilderTest extends LightIdeaTestCase {
         assertEquals("arguments", jc.getConfigurationName());
         assertEquals("com.thimbleware.jmemcached.Main", jc.getMainClassName());
         assertEquals("jmemcached-server", jc.getModuleName());
-        assertEquals(JavaConfiguration.MODULE_DIR, jc.getWorkingDirectory());
+        assertEquals(JavaConfiguration.MODULE_DIR_MACRO, jc.getWorkingDirectory());
         assertEquals("--memory 10M --port 11111", jc.getProgramParameters());
     }
 
@@ -95,6 +95,46 @@ public class ConfigurationBuilderTest extends LightIdeaTestCase {
 
 		assertEquals("-Dhibernate.config.file="+ExternalToolConfiguration.PROJECT_FILE_DIR+"/dbAccessLayer/resource/hibernate.cfg.xml", jc.getVmParameters());
 	}
+
+    public void testMavenConfiguration() throws Exception {
+        PsiFile file = getPsiFile("maven.launch");
+        builder = new ConfigurationBuilder(file);
+        Configuration conf = builder.build();
+
+        assertInstanceOf(conf, Maven2Configuration.class);
+
+        Maven2Configuration mc = (Maven2Configuration)conf;
+
+        assertEquals("maven", mc.getConfigurationName());
+        assertEquals("clean install -DskipTests=true", mc.getCommandLine());
+        assertEquals(Maven2Configuration.MODULE_DIR_MACRO, mc.getWorkingDirectory());
+    }
+
+    public void testMavenConfigurationWithProfiles() throws Exception {
+        PsiFile file = getPsiFile("maven.launch");
+        builder = new ConfigurationBuilder(file);
+        Configuration conf = builder.build();
+
+        assertInstanceOf(conf, Maven2Configuration.class);
+
+        Maven2Configuration mc = (Maven2Configuration)conf;
+
+        assertEquals(2, mc.getProfiles().length);
+        assertEquals("localConfig", mc.getProfiles()[0]);
+        assertEquals("dependencies", mc.getProfiles()[1]);
+    }
+
+    public void testMavenConfigurationWithResolveToWorkspace() throws Exception {
+        PsiFile file = getPsiFile("resolve.launch");
+        builder = new ConfigurationBuilder(file);
+        Configuration conf = builder.build();
+
+        assertInstanceOf(conf, Maven2Configuration.class);
+
+        Maven2Configuration mc = (Maven2Configuration)conf;
+
+        assertTrue(mc.isResolveToWorkspace());
+    }
 
     private PsiFile getPsiFile(String name) throws IOException {
         return createFile(name, FileUtil.loadFile(new File(this.getClass().getResource("/resources/" + name).getPath())));

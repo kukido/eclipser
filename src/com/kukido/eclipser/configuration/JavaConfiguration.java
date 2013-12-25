@@ -6,15 +6,13 @@ import org.jetbrains.annotations.NotNull;
 
 public class JavaConfiguration implements Configuration {
 
-    public static final String MODULE_DIR = "$MODULE_DIR$";
+    public static final String MODULE_DIR_MACRO = "$MODULE_DIR$";
 
     private String configurationName;
     private String mainClassName;
     private String moduleName;
     private String vmParameters;
     private String programParameters;
-    @SuppressWarnings("FieldCanBeLocal")
-	private String workingDirectory = MODULE_DIR;
 
     public JavaConfiguration(@NotNull String configurationName, @NotNull String mainClassName, @NotNull String moduleName, String vmParameters, String programParameters) {
         this.configurationName = configurationName;
@@ -37,7 +35,7 @@ public class JavaConfiguration implements Configuration {
     }
 
     public String getWorkingDirectory() {
-        return workingDirectory;
+        return MODULE_DIR_MACRO;
     }
 
     public String getVmParameters() {

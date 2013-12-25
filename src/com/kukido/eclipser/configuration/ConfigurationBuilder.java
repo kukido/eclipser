@@ -20,6 +20,9 @@ public class ConfigurationBuilder {
     private String program;
     private String programArguments;
     private String workingDirectory;
+    private boolean resolveToWorkspace;
+    private String[] profiles;
+    private String commandLine;
 
     public ConfigurationBuilder(PsiFile psiFile) {
         this.psiFile = psiFile;
@@ -63,13 +66,23 @@ public class ConfigurationBuilder {
                         programArguments = value;
                     } else if (EclipserXml.ATTR_WORKING_DIRECTORY_KEY.equalsIgnoreCase(key)) {
                         workingDirectory = convertWorkspace(value);
+                    } else if (EclipserXml.M2_PROFILES_KEY.equalsIgnoreCase(key)) {
+                        profiles = convertProfiles(value);
+                    } else if (EclipserXml.M2_GOALS_KEY.equalsIgnoreCase(key)) {
+                        commandLine = value;
+                    }
+                } else if (EclipserXml.BOOLEAN_ATTRIBUTE.equalsIgnoreCase(name)) {
+                    boolean value = Boolean.valueOf(tag.getAttributeValue(EclipserXml.VALUE));
+                    if (EclipserXml.M2_WORKSPACE_RESOLUTION.equalsIgnoreCase(key)) {
+                        resolveToWorkspace = value;
                     }
                 }
             }
         }
 
         if (EclipserXml.CONFIGURATION_TYPE_LOCAL_JAVA_APPLICATION.equalsIgnoreCase(configurationType) ||
-                EclipserXml.CONFIGURATION_TYPE_PROGRAM_LAUNCH.equalsIgnoreCase(configurationType)) {
+            EclipserXml.CONFIGURATION_TYPE_PROGRAM_LAUNCH.equalsIgnoreCase(configurationType) ||
+            EclipserXml.CONFIGURATION_TYPE_MAVEN2_LAUNCH.equalsIgnoreCase(configurationType)) {
             name = psiFile.getVirtualFile().getNameWithoutExtension();
         }
 
@@ -82,7 +95,7 @@ public class ConfigurationBuilder {
 		} else if (EclipserXml.CONFIGURATION_TYPE_PROGRAM_LAUNCH.equalsIgnoreCase(configurationType)) {
 			return new ExternalToolConfiguration(name, program, parameters, workingDirectory);
         } else if (EclipserXml.CONFIGURATION_TYPE_MAVEN2_LAUNCH.equalsIgnoreCase(configurationType)) {
-            return new Maven2Configuration();
+            return new Maven2Configuration(name, resolveToWorkspace, profiles, commandLine);
         } else {
 			throw new EclipserException("Unsupported configuration type: " + configurationType);
 		}
@@ -103,6 +116,10 @@ public class ConfigurationBuilder {
 				.replace("&#13;", lineSeparator)
 				.replace("&#10;", lineSeparator);
 	}
+
+    private String[] convertProfiles(String value) {
+        return value.split(",");
+    }
 
     private String convertWorkspace(String value) {
         return value.replace("}", "").replace("${workspace_loc:", ExternalToolConfiguration.PROJECT_FILE_DIR);
