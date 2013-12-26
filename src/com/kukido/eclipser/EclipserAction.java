@@ -27,12 +27,8 @@ public class EclipserAction extends AnAction {
         try {
             ConfigurationBuilder builder = new ConfigurationBuilder(psiFile);
             Configuration configuration = builder.build();
-
-            if (configuration != null) {
-                Command command = configuration.getCommand();
-                command.execute(e.getProject());
-            }
-
+            Command command = configuration.getCommand();
+            command.execute(e.getProject());
         } catch (EclipserException ee) {
             message = ee.getMessage();
         } catch (Exception exc) {
