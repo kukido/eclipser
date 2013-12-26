@@ -1,67 +1,67 @@
 <idea-plugin version="2">
-  <id>com.kukido.eclipser</id>
-  <name>Eclipser</name>
-  <version>0.3</version>
-  <vendor email="mclovin@kukido.com" url="https://github.com/kukido/eclipser">Kukido</vendor>
+    <id>com.kukido.eclipser</id>
+    <name>Eclipser</name>
+    <version>0.3</version>
+    <vendor email="mclovin@kukido.com" url="https://github.com/kukido/eclipser">Kukido</vendor>
+    <depends optional="true">org.jetbrains.idea.maven</depends>
 
-  <description><![CDATA[
-      Eclipser will automatically convert Eclipse launch configurations into IntelliJ IDEA configurations:
+    <description><![CDATA[
+        Eclipser converts Eclipse launch configurations into IntelliJ IDEA configurations:
         <ul>
-        <li>local Java application Eclipse launcher will be converted into run configuration</li>
-        <li>program launch Eclipse launcher will be converted into external tool in Tools menu</li>
+            <li>Local Java application Eclipse launcher will be converted into Application run configuration</li>
+            <li>Program launch Eclipse launcher will be converted into external tool in Tools menu</li>
+            <li>Maven launch configuration will be converted into Maven run configuration[experimental]</li>
         </ul>
-      For limitations, known issues and support please refer to plugin wiki:
-        <a href="https://github.com/kukido/eclipser/wiki">https://github.com/kukido/eclipser/wiki</a>
-      ]]></description>
+        For limitations, known issues and support please refer to plugin wiki:
+            <a href="https://github.com/kukido/eclipser/wiki">https://github.com/kukido/eclipser/wiki</a>
+    ]]></description>
 
-  <change-notes>
-	  0.3
-	  	- added warning for duplicate configuration
-	  	- added conversion for control characters (newline and carriage return)
-	  	- added conversion for workspace Eclipse macro in VM arguments
-	  	- changed project home from bitbucket to github
+    <change-notes><![CDATA[
+        <dl>
+            <dt>0.4</dt>
+            <dd>- added support for Maven launch configuration[experimental]</dd>
+            <dd>- added Eclipser context menu in Commander view</dd>
+            <dd>- updated Eclipser to generate Application runtime configurations instead of Eclipser configurations
+            <dt>0.3</dt>
+            <dd>- added warning for duplicate configuration</dd>
+            <dd>- added conversion for control characters (newline and carriage return)</dd>
+            <dd>- added conversion for workspace Eclipse macro in VM arguments</dd>
+            <dd>- changed project home from bitbucket to github</dd>
+            <dt>0.2</dt>
+            <dd>- updated unit tests</dd>
+            <dd>- updated error dialogs</dd>
+            <dd>- updates for 12.1 version of IDEA</dd>
+            <dt>0.1</dt>
+            <dd>- initial release (beta)</dd>
+        </dl>
+    ]]></change-notes>
 
-	  0.2
-	  	- updated unit tests
-	 	- updated error dialogs
-	  	- updates for 12.1 version of IDEA
+    <!-- please see http://confluence.jetbrains.net/display/IDEADEV/Build+Number+Ranges for description -->
+    <idea-version since-build="133.0"/>
 
-	  0.1
-	  	- initial release (beta)
-  </change-notes>
+    <application-components>
+        <component>
+            <implementation-class>com.kukido.eclipser.EclipserPlugin</implementation-class>
+            <interface-class>com.kukido.eclipser.EclipserPlugin</interface-class>
+        </component>
+        <component>
+            <!-- keeping Eclipser Configuration Type for backward compatibility -->
+            <implementation-class>com.kukido.eclipser.EclipserConfigurationType</implementation-class>
+            <interface-class>com.kukido.eclipser.EclipserConfigurationType</interface-class>
+        </component>
+    </application-components>
 
-  <!-- please see http://confluence.jetbrains.net/display/IDEADEV/Build+Number+Ranges for description -->
-  <idea-version since-build="126.232"/>
+    <actions>
+        <action id="eclipser" class="com.kukido.eclipser.EclipserAction" text="Convert with Eclipser"
+                description="Convert Eclipse run configuration file.">
+            <add-to-group group-id="ProjectViewPopupMenuRunGroup" anchor="last"/>
+            <add-to-group group-id="CommanderPopupMenu" anchor="last"/>
+        </action>
+    </actions>
 
-  <!-- please see http://confluence.jetbrains.net/display/IDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products
-       on how to target different products -->
-  <!-- uncomment to enable plugin in all products
-  <depends>com.intellij.modules.lang</depends>
-  -->
-
-  <application-components>
-    <!-- Add your application components here -->
-      <component>
-          <implementation-class>com.kukido.eclipser.EclipserConfigurationType</implementation-class>
-      </component>
-  </application-components>
-
-  <project-components>
-    <!-- Add your project components here -->
-  </project-components>
-
-  <actions>
-    <!-- Add your actions here -->
-      <action id="eclipser" class="com.kukido.eclipser.EclipserAction" text="Convert with Eclipser"
-              description="Launch Eclipse run configuration file.">
-          <add-to-group group-id="ProjectViewPopupMenuRunGroup" anchor="last"/>
-          <add-to-group group-id="CommanderPopupMenu" anchor="last"/>
-      </action>
-  </actions>
-
-  <extensions defaultExtensionNs="com.intellij">
-      <fileTypeFactory implementation="com.kukido.eclipser.EclipserFileTypeFactory"/>
-      <configurationType implementation="com.kukido.eclipser.EclipserConfigurationType"/>
-      <syntaxHighlighter key="Eclipser" implementationClass="com.intellij.ide.highlighter.XmlFileHighlighter"/>
-  </extensions>
+    <extensions defaultExtensionNs="com.intellij">
+        <fileTypeFactory implementation="com.kukido.eclipser.EclipserFileTypeFactory"/>
+        <configurationType implementation="com.kukido.eclipser.EclipserConfigurationType"/>
+        <syntaxHighlighter key="Eclipser" implementationClass="com.intellij.ide.highlighter.XmlFileHighlighter"/>
+    </extensions>
 </idea-plugin>

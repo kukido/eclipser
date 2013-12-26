@@ -3,14 +3,12 @@ package com.kukido.eclipser.command;
 import com.intellij.execution.RunManager;
 import com.intellij.execution.RunnerAndConfigurationSettings;
 import com.intellij.execution.application.ApplicationConfiguration;
+import com.intellij.execution.application.ApplicationConfigurationType;
 import com.intellij.execution.impl.RunManagerImpl;
 import com.intellij.execution.impl.RunnerAndConfigurationSettingsImpl;
-import com.intellij.openapi.application.Application;
-import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.module.ModuleManager;
 import com.intellij.openapi.project.Project;
-import com.kukido.eclipser.EclipserConfigurationType;
 import com.kukido.eclipser.EclipserException;
 import com.kukido.eclipser.configuration.JavaConfiguration;
 
@@ -38,8 +36,6 @@ public class AddApplicationConfigurationCommand implements Command {
             throw new EclipserException(message);
         }
 
-        Application application = ApplicationManager.getApplication();
-
         ApplicationConfiguration applicationConfiguration;
 
         RunManagerImpl runManager = (RunManagerImpl) RunManager.getInstance(project);
@@ -50,7 +46,7 @@ public class AddApplicationConfigurationCommand implements Command {
             String message = "Runtime configuration with name '" + javaConfiguration.getConfigurationName() + "' already exists. You can either rename it or delete to be replaced.";
 			throw new EclipserException(message);
         } else {
-            EclipserConfigurationType type = application.getComponent(EclipserConfigurationType.class);
+            ApplicationConfigurationType type = ApplicationConfigurationType.getInstance();
             runnerAndConfigurationSettings = (RunnerAndConfigurationSettingsImpl) runManager.createRunConfiguration(javaConfiguration.getConfigurationName(), type.getConfigurationFactories()[0]);
             applicationConfiguration = (ApplicationConfiguration) runnerAndConfigurationSettings.getConfiguration();
             runManager.addConfiguration(runnerAndConfigurationSettings, true);
