@@ -17,7 +17,7 @@ public class EclipserConfigurationType extends ApplicationConfigurationType impl
     }
 
     public String getDisplayName() {
-        return "My eclipser";
+        return "Eclipser";
     }
 
     public String getConfigurationTypeDescription() {

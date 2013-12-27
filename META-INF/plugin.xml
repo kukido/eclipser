@@ -1,7 +1,7 @@
 <idea-plugin version="2">
     <id>com.kukido.eclipser</id>
     <name>Eclipser</name>
-    <version>0.3</version>
+    <version>0.4</version>
     <vendor email="mclovin@kukido.com" url="https://github.com/kukido/eclipser">Kukido</vendor>
     <depends optional="true">org.jetbrains.idea.maven</depends>
 
@@ -19,9 +19,10 @@
     <change-notes><![CDATA[
         <dl>
             <dt>0.4</dt>
-            <dd>- added support for Maven launch configuration[experimental]</dd>
+            <dd>- support for Maven launch configuration[experimental]</dd>
             <dd>- added Eclipser context menu in Commander view</dd>
             <dd>- updated Eclipser to generate Application runtime configurations instead of Eclipser configurations
+            <dd>- renamed configuration name to Eclipser
             <dt>0.3</dt>
             <dd>- added warning for duplicate configuration</dd>
             <dd>- added conversion for control characters (newline and carriage return)</dd>
