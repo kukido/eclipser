@@ -16,41 +16,13 @@ import java.util.Map;
 public class Maven2Configuration implements Configuration {
 
     public static final String MAVEN_PLUGIN_IDENTIFIER  = "org.jetbrains.idea.maven";
-    public static final String MODULE_DIR_MACRO         = "$MODULE_DIR$";
 
     private String configurationName;
 
-    // <stringAttribute key="M2_GOALS" value="clean install -DskipTests=true"/>
     private String commandLine;
-    // <stringAttribute key="M2_PROFILES" value="localConfig,dependencies"/>
     private String[] profiles;
-    // <booleanAttribute key="M2_WORKSPACE_RESOLUTION" value="false"/>
     private boolean resolveToWorkspace;
     private String workingDirectory;
-
-    /*
-    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-    <launchConfiguration type="org.eclipse.m2e.Maven2LaunchConfigurationType">
-    <booleanAttribute key="M2_DEBUG_OUTPUT" value="false"/>
-    <stringAttribute key="M2_GOALS" value="clean install -DskipTests=true"/>
-    <booleanAttribute key="M2_NON_RECURSIVE" value="false"/>
-    <booleanAttribute key="M2_OFFLINE" value="false"/>
-    <stringAttribute key="M2_PROFILES" value="localConfig,dependencies"/>
-    <listAttribute key="M2_PROPERTIES"/>
-    <stringAttribute key="M2_RUNTIME" value="EMBEDDED"/>
-    <booleanAttribute key="M2_SKIP_TESTS" value="false"/>
-    <intAttribute key="M2_THREADS" value="1"/>
-    <booleanAttribute key="M2_UPDATE_SNAPSHOTS" value="false"/>
-    <booleanAttribute key="M2_WORKSPACE_RESOLUTION" value="false"/>
-    <stringAttribute key="org.eclipse.debug.core.ATTR_REFRESH_SCOPE" value="${workspace}"/>
-    <listAttribute key="org.eclipse.debug.ui.favoriteGroups">
-    <listEntry value="org.eclipse.debug.ui.launchGroup.debug"/>
-    <listEntry value="org.eclipse.debug.ui.launchGroup.run"/>
-    </listAttribute>
-    <booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_START_ON_FIRST_THREAD" value="true"/>
-    <stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="${workspace_loc:/}"/>
-    </launchConfiguration>
-     */
 
     public Maven2Configuration(@NotNull String configurationName, boolean resolveToWorkspace, String[] profiles, String commandLine, String workingDirectory) {
         this.configurationName = configurationName;
