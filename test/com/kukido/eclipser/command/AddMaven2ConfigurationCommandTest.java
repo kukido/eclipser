@@ -19,7 +19,8 @@ public class AddMaven2ConfigurationCommandTest extends LightIdeaTestCase {
                 "kukido-test",
                 true,
                 new String[]{"local", "remote"},
-                "clean compile"
+                "clean compile",
+                "/home/eclipser"
         );
 
         configuration.getCommand();

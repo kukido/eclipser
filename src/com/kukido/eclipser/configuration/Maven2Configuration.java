@@ -26,6 +26,7 @@ public class Maven2Configuration implements Configuration {
     private String[] profiles;
     // <booleanAttribute key="M2_WORKSPACE_RESOLUTION" value="false"/>
     private boolean resolveToWorkspace;
+    private String workingDirectory;
 
     /*
     <?xml version="1.0" encoding="UTF-8" standalone="no"?>
@@ -51,11 +52,12 @@ public class Maven2Configuration implements Configuration {
     </launchConfiguration>
      */
 
-    public Maven2Configuration(@NotNull String configurationName, boolean resolveToWorkspace, String[] profiles, String commandLine) {
+    public Maven2Configuration(@NotNull String configurationName, boolean resolveToWorkspace, String[] profiles, String commandLine, String workingDirectory) {
         this.configurationName = configurationName;
         this.resolveToWorkspace = resolveToWorkspace;
         this.profiles = profiles;
         this.commandLine = commandLine;
+        this.workingDirectory = workingDirectory;
     }
 
     public String getConfigurationName() {
@@ -75,7 +77,7 @@ public class Maven2Configuration implements Configuration {
     }
 
     public String getWorkingDirectory() {
-        return MODULE_DIR_MACRO;
+        return workingDirectory;
     }
 
     public Map<String, Boolean> getProfilesMap() {

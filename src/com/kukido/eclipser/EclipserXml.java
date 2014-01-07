@@ -33,4 +33,8 @@ public interface EclipserXml {
     @NonNls String CONFIGURATION_TYPE_MAVEN2_LAUNCH             = "org.eclipse.m2e.Maven2LaunchConfigurationType";
     @NonNls String CONFIGURATION_TYPE_PROGRAM_LAUNCH            = "org.eclipse.ui.externaltools.ProgramLaunchConfigurationType";
 
+    // eclipse macros
+    @NonNls String WORKSPACE_LOC    = "workspace_loc";
+    @NonNls String PROJECT_LOC      = "project_loc";
+
 }

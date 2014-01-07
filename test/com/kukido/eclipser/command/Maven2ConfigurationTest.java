@@ -11,7 +11,8 @@ public class Maven2ConfigurationTest extends LightIdeaTestCase {
                 "kukido-test",
                 true,
                 new String[]{"local", "remote"},
-                "clean compile"
+                "clean compile",
+                "/home/test/eclipser"
         );
 
         try {

@@ -107,7 +107,8 @@ public class ConfigurationBuilderTest extends LightIdeaTestCase {
 
         assertEquals("maven", mc.getConfigurationName());
         assertEquals("clean install -DskipTests=true", mc.getCommandLine());
-        assertEquals(Maven2Configuration.MODULE_DIR_MACRO, mc.getWorkingDirectory());
+        String workingDirectory = getProject().getBasePath() + "/";
+        assertEquals(workingDirectory, mc.getWorkingDirectory());
     }
 
     public void testMavenConfigurationWithProfiles() throws Exception {
@@ -134,6 +135,40 @@ public class ConfigurationBuilderTest extends LightIdeaTestCase {
         Maven2Configuration mc = (Maven2Configuration)conf;
 
         assertTrue(mc.isResolveToWorkspace());
+    }
+
+    public void testMavenConfigurationWithAbsolutePath() throws Exception {
+        PsiFile file = getPsiFile("maven-absolute.launch");
+        builder = new ConfigurationBuilder(file);
+        Configuration conf = builder.build();
+
+        Maven2Configuration mc = (Maven2Configuration)conf;
+
+        assertEquals("/home/test/eclipser", mc.getWorkingDirectory());
+    }
+
+    public void testMavenConfigurationWithRelativePath() throws Exception {
+        PsiFile file = getPsiFile("maven-relative.launch");
+        builder = new ConfigurationBuilder(file);
+        Configuration conf = builder.build();
+
+        Maven2Configuration mc = (Maven2Configuration)conf;
+
+        String expected = getProject().getBasePath() + "/foobar";
+
+        assertEquals(expected, mc.getWorkingDirectory());
+    }
+
+    public void testMavenConfigurationWithProjectLocation() throws Exception {
+        PsiFile file = getPsiFile("maven-project-loc.launch");
+        builder = new ConfigurationBuilder(file);
+        Configuration conf = builder.build();
+
+        Maven2Configuration mc = (Maven2Configuration)conf;
+
+        String expected = getProject().getBasePath() + "/foobar/";
+
+        assertEquals(expected, mc.getWorkingDirectory());
     }
 
     private PsiFile getPsiFile(String name) throws IOException {
