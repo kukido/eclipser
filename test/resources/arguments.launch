@@ -8,6 +8,6 @@
         <listEntry value="1"/>
     </listAttribute>
     <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.thimbleware.jmemcached.Main"/>
-    <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="--memory 10M --port 11111"/>
+    <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="--memory 10M --port 11111 --env ${ENV}"/>
     <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="jmemcached-server"/>
 </launchConfiguration>

@@ -8,6 +8,8 @@ import com.intellij.psi.xml.XmlTag;
 import com.kukido.eclipser.EclipserException;
 import com.kukido.eclipser.EclipserXml;
 
+import java.util.regex.Matcher;
+
 public class ConfigurationBuilder {
 
     private PsiFile psiFile;
@@ -125,14 +127,18 @@ public class ConfigurationBuilder {
     }
 
     private String convertWorkspace(String value) {
-        return value.replace("}", "").replace("${workspace_loc:", ExternalToolConfiguration.PROJECT_FILE_DIR);
+        return replaceWorkspaceLoc(value, ExternalToolConfiguration.PROJECT_FILE_DIR);
+    }
+
+    private String replaceWorkspaceLoc(String value, String basePath) {
+        return value.replaceAll("\\$\\{workspace_loc:([^\\}]*)\\}", Matcher.quoteReplacement(basePath) + "$1");
     }
 
     private String resolveToProjectLocation(String value) {
         if (value.contains(EclipserXml.PROJECT_LOC)) {
             return value.replace("${project_loc}", psiFile.getProject().getBasePath());
         } else if (value.contains(EclipserXml.WORKSPACE_LOC)) {
-            return value.replace("${workspace_loc:", psiFile.getProject().getBasePath()).replace("}", "");
+            return replaceWorkspaceLoc(value, psiFile.getProject().getBasePath());
         } else {
             return value;
         }

@@ -69,7 +69,7 @@ public class ConfigurationBuilderTest extends LightIdeaTestCase {
         assertEquals("com.thimbleware.jmemcached.Main", jc.getMainClassName());
         assertEquals("jmemcached-server", jc.getModuleName());
         assertEquals(JavaConfiguration.MODULE_DIR_MACRO, jc.getWorkingDirectory());
-        assertEquals("--memory 10M --port 11111", jc.getProgramParameters());
+        assertEquals("--memory 10M --port 11111 --env ${ENV}", jc.getProgramParameters());
     }
 
 	public void testJavaConfigurationWithControlCharacters() throws Exception {
