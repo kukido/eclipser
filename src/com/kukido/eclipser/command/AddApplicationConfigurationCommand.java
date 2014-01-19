@@ -44,7 +44,7 @@ public class AddApplicationConfigurationCommand implements Command {
 
         if (runnerAndConfigurationSettings != null) {
             String message = "Runtime configuration with name '" + javaConfiguration.getConfigurationName() + "' already exists. You can either rename it or delete to be replaced.";
-			throw new EclipserException(message);
+            throw new EclipserException(message);
         } else {
             ApplicationConfigurationType type = ApplicationConfigurationType.getInstance();
             runnerAndConfigurationSettings = (RunnerAndConfigurationSettingsImpl) runManager.createRunConfiguration(javaConfiguration.getConfigurationName(), type.getConfigurationFactories()[0]);
@@ -57,12 +57,13 @@ public class AddApplicationConfigurationCommand implements Command {
         applicationConfiguration.setWorkingDirectory(javaConfiguration.getWorkingDirectory());
         applicationConfiguration.setVMParameters(javaConfiguration.getVmParameters());
         applicationConfiguration.setProgramParameters(javaConfiguration.getProgramParameters());
+        applicationConfiguration.setEnvs(javaConfiguration.getEnvironmentVariables());
 
         runManager.setSelectedConfiguration(runnerAndConfigurationSettings);
     }
 
-    private RunnerAndConfigurationSettingsImpl findConfigurationByName(String name, RunManagerImpl runManager){
-        for (RunnerAndConfigurationSettings settings : runManager.getSortedConfigurations()){
+    private RunnerAndConfigurationSettingsImpl findConfigurationByName(String name, RunManagerImpl runManager) {
+        for (RunnerAndConfigurationSettings settings : runManager.getSortedConfigurations()) {
             if (settings.getName().equals(name))
                 return (RunnerAndConfigurationSettingsImpl) settings;
         }
