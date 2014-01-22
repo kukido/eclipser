@@ -1,7 +1,7 @@
 <idea-plugin version="2">
     <id>com.kukido.eclipser</id>
     <name>Eclipser</name>
-    <version>0.4.1</version>
+    <version>0.4.2</version>
     <vendor email="mclovin@kukido.com" url="https://github.com/kukido/eclipser">Kukido</vendor>
     <depends optional="true">org.jetbrains.idea.maven</depends>
 
@@ -18,6 +18,8 @@
 
     <change-notes><![CDATA[
         <dl>
+            <dt>0.4.2</dt>
+            <dd>- improve handling for environment variables[contributed by <a href="https://github.com/pwielgolaski">pwielgolaski</a>]</dd>
             <dt>0.4.1</dt>
             <dd>- support for Android Studio</dd>
             <dt>0.4</dt>
