@@ -41,12 +41,12 @@ public class ConfigurationBuilderTest extends LightIdeaTestCase {
         JavaConfiguration jc = (JavaConfiguration)conf;
 
         assertEquals("env", jc.getConfigurationName());
-        assertEquals("com.example.jetty.JettyServer", jc.getMainClassName());
-        assertEquals("developerPortal", jc.getModuleName());
+        assertEquals("Main", jc.getMainClassName());
+        assertEquals("simple", jc.getModuleName());
         assertEquals(JavaConfiguration.MODULE_DIR_MACRO, jc.getWorkingDirectory());
-        assertEquals("-ea -XX:MaxPermSize=128M -Xmx256M -DSHUTDOWN.PORT=\"28087\" -Djetty.port=\"8087\" -Dhibernate.config.file=\"../dbAccessLayer/resource/hibernate.cfg.xml\"", jc.getVmParameters());
+        assertEquals("-Duser=${USER}", jc.getVmParameters());
         Map<String, String> expectedEnv = new LinkedHashMap<String, String>();
-        expectedEnv.put("name","value");
+        expectedEnv.put("ENV","TEST");
         assertEquals(expectedEnv, jc.getEnvironmentVariables());
     }
 
