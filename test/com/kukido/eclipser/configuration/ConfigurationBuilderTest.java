@@ -6,6 +6,9 @@ import com.intellij.testFramework.LightIdeaTestCase;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class ConfigurationBuilderTest extends LightIdeaTestCase {
 
@@ -25,6 +28,26 @@ public class ConfigurationBuilderTest extends LightIdeaTestCase {
         assertEquals("developerPortal", jc.getModuleName());
         assertEquals(JavaConfiguration.MODULE_DIR_MACRO, jc.getWorkingDirectory());
         assertEquals("-ea -XX:MaxPermSize=128M -Xmx256M -DSHUTDOWN.PORT=\"28087\" -Djetty.port=\"8087\" -Dhibernate.config.file=\"../dbAccessLayer/resource/hibernate.cfg.xml\"", jc.getVmParameters());
+        assertEquals(Collections.<String, String>emptyMap(), jc.getEnvironmentVariables());
+    }
+
+    public void testEnvConfiguration() throws Exception {
+        PsiFile file = getPsiFile("env.launch");
+        builder = new ConfigurationBuilder(file);
+        Configuration conf = builder.build();
+
+        assertInstanceOf(conf, JavaConfiguration.class);
+
+        JavaConfiguration jc = (JavaConfiguration)conf;
+
+        assertEquals("env", jc.getConfigurationName());
+        assertEquals("Main", jc.getMainClassName());
+        assertEquals("simple", jc.getModuleName());
+        assertEquals(JavaConfiguration.MODULE_DIR_MACRO, jc.getWorkingDirectory());
+        assertEquals("-Duser=${USER}", jc.getVmParameters());
+        Map<String, String> expectedEnv = new LinkedHashMap<String, String>();
+        expectedEnv.put("ENV","TEST");
+        assertEquals(expectedEnv, jc.getEnvironmentVariables());
     }
 
     public void testExternalToolConfiguration() throws Exception {

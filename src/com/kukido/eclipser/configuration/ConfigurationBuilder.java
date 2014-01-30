@@ -8,12 +8,13 @@ import com.intellij.psi.xml.XmlTag;
 import com.kukido.eclipser.EclipserException;
 import com.kukido.eclipser.EclipserXml;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 
 public class ConfigurationBuilder {
 
     private PsiFile psiFile;
-
     private String name;
     private String mainType;
     private String moduleName;
@@ -26,12 +27,13 @@ public class ConfigurationBuilder {
     private boolean resolveToWorkspace;
     private String[] profiles;
     private String commandLine;
+    private Map<String, String> environmentVariables;
 
     public ConfigurationBuilder(PsiFile psiFile) {
         this.psiFile = psiFile;
     }
 
-	public Configuration build() throws EclipserException {
+    public Configuration build() throws EclipserException {
 
         // read configuration type
         // based on the type create configuration
@@ -40,7 +42,7 @@ public class ConfigurationBuilder {
             // throw exception
         }
 
-        XmlFile input = (XmlFile)psiFile;
+        XmlFile input = (XmlFile) psiFile;
 
         XmlTag root = input.getRootTag();
 
@@ -50,7 +52,7 @@ public class ConfigurationBuilder {
 
         for (PsiElement child : children) {
             if (child instanceof XmlTagImpl) {
-                XmlTagImpl tag = (XmlTagImpl)child;
+                XmlTagImpl tag = (XmlTagImpl) child;
                 String key = tag.getAttributeValue(EclipserXml.KEY);
                 String name = tag.getName();
                 if (EclipserXml.STRING_ATTRIBUTE.equalsIgnoreCase(name)) {
@@ -81,46 +83,61 @@ public class ConfigurationBuilder {
                     if (EclipserXml.M2_WORKSPACE_RESOLUTION.equalsIgnoreCase(key)) {
                         resolveToWorkspace = value;
                     }
+                } else if (EclipserXml.MAP_ATTRIBUTE.equalsIgnoreCase(name)) {
+                    if (EclipserXml.ENVIRONMENT_VARIABLES_KEY.equalsIgnoreCase(key)) {
+                        environmentVariables = getMap(tag.getChildren());
+                    }
                 }
             }
         }
 
         if (EclipserXml.CONFIGURATION_TYPE_LOCAL_JAVA_APPLICATION.equalsIgnoreCase(configurationType) ||
-            EclipserXml.CONFIGURATION_TYPE_PROGRAM_LAUNCH.equalsIgnoreCase(configurationType) ||
-            EclipserXml.CONFIGURATION_TYPE_MAVEN2_LAUNCH.equalsIgnoreCase(configurationType)) {
+                EclipserXml.CONFIGURATION_TYPE_PROGRAM_LAUNCH.equalsIgnoreCase(configurationType) ||
+                EclipserXml.CONFIGURATION_TYPE_MAVEN2_LAUNCH.equalsIgnoreCase(configurationType)) {
             name = psiFile.getVirtualFile().getNameWithoutExtension();
         }
 
-		return createConfiguration(configurationType);
-	}
+        return createConfiguration(configurationType);
+    }
 
-	private Configuration createConfiguration(String configurationType) throws EclipserException {
-		if (EclipserXml.CONFIGURATION_TYPE_LOCAL_JAVA_APPLICATION.equalsIgnoreCase(configurationType)) {
-			return new JavaConfiguration(name, mainType, moduleName, vmParameters, programArguments);
-		} else if (EclipserXml.CONFIGURATION_TYPE_PROGRAM_LAUNCH.equalsIgnoreCase(configurationType)) {
-			return new ExternalToolConfiguration(name, program, parameters, attrWorkingDirectory);
+    private Map<String, String> getMap(PsiElement[] entries) {
+        Map<String, String> result = new LinkedHashMap<String, String>();
+        for (PsiElement entry : entries) {
+            if (entry instanceof XmlTagImpl && EclipserXml.MAP_ENTRY_ATTRIBUTE.equalsIgnoreCase(((XmlTagImpl) entry).getName())) {
+                XmlTagImpl tag = (XmlTagImpl) entry;
+                result.put(tag.getAttributeValue(EclipserXml.KEY), tag.getAttributeValue(EclipserXml.VALUE));
+            }
+        }
+        return result;
+    }
+
+    private Configuration createConfiguration(String configurationType) throws EclipserException {
+        if (EclipserXml.CONFIGURATION_TYPE_LOCAL_JAVA_APPLICATION.equalsIgnoreCase(configurationType)) {
+            return new JavaConfiguration(name, mainType, moduleName, vmParameters, programArguments, environmentVariables);
+        } else if (EclipserXml.CONFIGURATION_TYPE_PROGRAM_LAUNCH.equalsIgnoreCase(configurationType)) {
+            return new ExternalToolConfiguration(name, program, parameters, attrWorkingDirectory);
         } else if (EclipserXml.CONFIGURATION_TYPE_MAVEN2_LAUNCH.equalsIgnoreCase(configurationType)) {
             return new Maven2Configuration(name, resolveToWorkspace, profiles, commandLine, resolveToProjectLocation(workingDirectory));
         } else {
-			throw new EclipserException("Unsupported configuration type: " + configurationType);
-		}
-	}
+            throw new EclipserException("Unsupported configuration type: " + configurationType);
+        }
+    }
 
-	private String normalizeText(String value) {
-		return normalizeQuotes(normalizeControlCharacters(value));
-	}
+    private String normalizeText(String value) {
+        return normalizeQuotes(normalizeControlCharacters(value));
+    }
 
     private String normalizeQuotes(String value) {
         return value.replace("&quot;", "\"");
     }
 
-	private String normalizeControlCharacters(String value) {
-		String lineSeparator = String.format("%n");
-		return value
-				.replace("&#13;&#10;", lineSeparator)
-				.replace("&#13;", lineSeparator)
-				.replace("&#10;", lineSeparator);
-	}
+    private String normalizeControlCharacters(String value) {
+        String lineSeparator = String.format("%n");
+        return value
+                .replace("&#13;&#10;", lineSeparator)
+                .replace("&#13;", lineSeparator)
+                .replace("&#10;", lineSeparator);
+    }
 
     private String[] convertProfiles(String value) {
         return value.split(",");

@@ -19,12 +19,14 @@ public interface EclipserXml {
     @NonNls String M2_PROFILES_KEY = "M2_PROFILES";
     @NonNls String M2_WORKSPACE_RESOLUTION = "M2_WORKSPACE_RESOLUTION";
     @NonNls String WORKING_DIRECTORY_KEY = "org.eclipse.jdt.launching.WORKING_DIRECTORY";
+    @NonNls String ENVIRONMENT_VARIABLES_KEY = "org.eclipse.debug.core.environmentVariables";
 
     // attribute type
     @NonNls String BOOLEAN_ATTRIBUTE = "booleanAttribute";
     @NonNls String LIST_ATTRIBUTE = "listAttribute";
     @NonNls String MAP_ATTRIBUTE = "mapAttribute";
     @NonNls String STRING_ATTRIBUTE = "stringAttribute";
+    @NonNls String MAP_ENTRY_ATTRIBUTE = "mapEntry";
 
     // configuration type
     @NonNls String CONFIGURATION_TYPE_ANT_LAUNCH                = "org.eclipse.ant.AntLaunchConfigurationType";
