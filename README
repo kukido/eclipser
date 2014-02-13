@@ -25,3 +25,13 @@ Context menu for supported launch files will contain "Convert with Eclipser" ite
 ##Support:
 * Email: mclovin@kukido.com
 * Support tickets: https://github.com/kukido/eclipser/issues
+
+##For developers:
+* The project has dependency on Maven and Properties plugins. In order to build the project you will have to define the following global libraries:
+    - "maven-plugin-lib" with jar from:
+        - IDEA_SDK_HOME/plugins/maven/lib
+        - IDEA_SDK_HOME/plugins/maven/lib/maven2
+        - IDEA_SDK_HOME/plugins/maven/lib/maven3
+
+    - "properties-plugin-lib" with jars from:
+        - IDEA_SDK_HOME/plugins/properties/lib
