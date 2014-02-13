@@ -47,6 +47,7 @@ public class AddApplicationConfigurationCommand implements Command {
             throw new EclipserException(message);
         } else {
             ApplicationConfigurationType type = ApplicationConfigurationType.getInstance();
+            assert type != null;
             runnerAndConfigurationSettings = (RunnerAndConfigurationSettingsImpl) runManager.createRunConfiguration(javaConfiguration.getConfigurationName(), type.getConfigurationFactories()[0]);
             applicationConfiguration = (ApplicationConfiguration) runnerAndConfigurationSettings.getConfiguration();
             runManager.addConfiguration(runnerAndConfigurationSettings, true);

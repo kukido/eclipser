@@ -5,10 +5,13 @@ import com.intellij.openapi.util.IconLoader;
 import javax.swing.*;
 
 public class EclipserIcons {
-    private static Icon load(String path) {
-        return IconLoader.getIcon(path, EclipserIcons.class);
+
+    public static final String ECLIPSER_ICON_PATH = "/images/eclipser.gif";
+
+    private static Icon load() {
+        return IconLoader.getIcon(ECLIPSER_ICON_PATH, EclipserIcons.class);
     }
 
-    public static final Icon Launch = load("/images/eclipser.gif");
+    public static final Icon Launch = load();
 
 }

@@ -1,9 +1,10 @@
+<!--suppress XmlUnboundNsPrefix -->
 <idea-plugin version="2">
     <id>com.kukido.eclipser</id>
     <name>Eclipser</name>
     <version>0.4.2</version>
     <vendor email="mclovin@kukido.com" url="https://github.com/kukido/eclipser">Kukido</vendor>
-    <depends optional="true">org.jetbrains.idea.maven</depends>
+    <depends>org.jetbrains.idea.maven</depends>
 
     <description><![CDATA[
         Eclipser converts Eclipse launch configurations into IntelliJ IDEA configurations:

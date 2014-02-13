@@ -19,7 +19,16 @@ public class AddMaven2ConfigurationCommand implements Command {
 
     @Override
     public void execute(Project project) throws EclipserException {
-        // todo: check configuration with the same name
+
+        RunManagerImpl runManager = (RunManagerImpl) RunManager.getInstance(project);
+
+        RunnerAndConfigurationSettings runnerAndConfigurationSettings = findConfigurationByName(maven2Configuration.getConfigurationName(), runManager);
+
+        if (runnerAndConfigurationSettings != null) {
+            String message = "Runtime configuration with name '" + maven2Configuration.getConfigurationName() + "' already exists. You can either rename it or delete to be replaced.";
+            throw new EclipserException(message);
+        }
+
         MavenRunnerParameters parameters = new MavenRunnerParameters();
         parameters.setGoals(maven2Configuration.getGoals());
         parameters.setProfilesMap(maven2Configuration.getProfilesMap());
@@ -29,8 +38,15 @@ public class AddMaven2ConfigurationCommand implements Command {
         RunnerAndConfigurationSettings settings = MavenRunConfigurationType.createRunnerAndConfigurationSettings(null, null, parameters, project);
         settings.setName(maven2Configuration.getConfigurationName());
 
-        RunManagerImpl runManager = (RunManagerImpl) RunManager.getInstance(project);
         runManager.addConfiguration(settings, false);
         runManager.setSelectedConfiguration(settings);
+    }
+
+    private RunnerAndConfigurationSettings findConfigurationByName(String name, RunManagerImpl runManager) {
+        for (RunnerAndConfigurationSettings settings : runManager.getSortedConfigurations()) {
+            if (settings.getName().equals(name))
+                return settings;
+        }
+        return null;
     }
 }

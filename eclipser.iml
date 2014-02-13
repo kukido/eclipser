@@ -10,7 +10,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" scope="PROVIDED" name="maven-plugin" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="maven-plugin-lib" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="properties-plugin-lib" level="project" />
   </component>
   <component name="org.twodividedbyzero.idea.findbugs">
     <option name="_basePreferences">

@@ -35,17 +35,13 @@ public class ConfigurationBuilder {
 
     public Configuration build() throws EclipserException {
 
-        // read configuration type
-        // based on the type create configuration
-
-        if (!(psiFile instanceof XmlFile)) {
-            // throw exception
-        }
+        assert psiFile instanceof XmlFile;
 
         XmlFile input = (XmlFile) psiFile;
 
         XmlTag root = input.getRootTag();
 
+        @SuppressWarnings("ConstantConditions")
         String configurationType = root.getAttribute(EclipserXml.TYPE).getValue();
 
         PsiElement[] children = root.getChildren();
