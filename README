@@ -2,7 +2,7 @@
 Eclipser will automatically convert Eclipse launch configurations into IntelliJ IDEA configurations:
 * local Java application Eclipse launcher will be converted into run configuration
 * program launch Eclipse launcher will be converted into external tool in Tools menu
-* Maven launch configuration will be converted into Maven run configuration[experimental]
+* Maven launch configuration will be converted into Maven run configuration
 
 ##How to use:
 Eclipser is available in Project and Commander views.
