@@ -8,6 +8,7 @@ import com.intellij.openapi.actionSystem.Presentation;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.Messages;
 import com.intellij.openapi.vfs.VirtualFile;
+import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiManager;
 import com.intellij.psi.xml.XmlAttribute;
@@ -17,14 +18,29 @@ import com.intellij.psi.xml.XmlTag;
 import com.kukido.eclipser.command.Command;
 import com.kukido.eclipser.configuration.Configuration;
 import com.kukido.eclipser.configuration.ConfigurationBuilder;
+import org.jetbrains.annotations.NotNull;
 
 public class EclipserAction extends AnAction {
 
-    public static final String DEFAULT_FAILURE_MESSAGE = "Eclipser was unable to convert launch file. Please submit support ticket at https://github.com/kukido/eclipser/issues";
+    public static final String DEFAULT_FAILURE_MESSAGE = "Eclipser was unable to convert launch file(s). Please submit support ticket at https://github.com/kukido/eclipser/issues";
 
-    public void actionPerformed(AnActionEvent e) {
+    public void actionPerformed(@NotNull AnActionEvent e) {
 
-        PsiFile psiFile = e.getData(LangDataKeys.PSI_FILE);
+        final Project project = e.getProject();
+        final PsiElement[] elements = e.getData(LangDataKeys.PSI_ELEMENT_ARRAY);
+
+        if (elements == null) {
+            say(DEFAULT_FAILURE_MESSAGE);
+            return;
+        }
+
+        for (PsiElement element : elements) {
+            process(element, project);
+        }
+    }
+
+    private void process(PsiElement psiElement, Project project) {
+        PsiFile psiFile = (PsiFile) psiElement;
 
         String message = null;
 
@@ -32,7 +48,7 @@ public class EclipserAction extends AnAction {
             ConfigurationBuilder builder = new ConfigurationBuilder(psiFile);
             Configuration configuration = builder.build();
             Command command = configuration.getCommand();
-            command.execute(e.getProject());
+            command.execute(project);
         } catch (EclipserException ee) {
             message = ee.getMessage();
         } catch (Exception exc) {
@@ -48,7 +64,7 @@ public class EclipserAction extends AnAction {
     }
 
     @Override
-    public void update(AnActionEvent e) {
+    public void update(@NotNull AnActionEvent e) {
 
         final Presentation presentation = e.getPresentation();
         final Project project = e.getProject();
@@ -58,48 +74,51 @@ public class EclipserAction extends AnAction {
             return;
         }
 
-        final VirtualFile file = e.getData(PlatformDataKeys.VIRTUAL_FILE);
-        if (file == null) {
+        final VirtualFile[] files = e.getData(PlatformDataKeys.VIRTUAL_FILE_ARRAY);
+
+        if (files == null) {
             disable(presentation);
             return;
         }
 
-        final PsiFile psiFile = PsiManager.getInstance(project).findFile(file);
-        if (psiFile == null) {
-            disable(presentation);
-            return;
+        for (VirtualFile file : files) {
+            final PsiFile psiFile = PsiManager.getInstance(project).findFile(file);
+            if (!isSupported(psiFile)) {
+                disable(presentation);
+                return;
+            }
         }
+
+        enable(presentation);
+    }
+
+    protected boolean isSupported(PsiFile psiFile) {
 
         if (!(psiFile instanceof XmlFile)) {
-            disable(presentation);
-            return;
+            return false;
         }
 
         final XmlFile xmlFile = (XmlFile) psiFile;
         final XmlDocument document = xmlFile.getDocument();
         if (document == null) {
-            disable(presentation);
-            return;
+            return false;
         }
 
         final XmlTag rootTag = xmlFile.getRootTag();
         if (rootTag == null) {
-            disable(presentation);
-            return;
+            return false;
         }
 
         final XmlAttribute typeAttribute = rootTag.getAttribute(EclipserXml.TYPE);
         if (typeAttribute == null) {
-            disable(presentation);
-            return;
+            return false;
         }
 
         if (!"launchConfiguration".equalsIgnoreCase(rootTag.getName())) {
-            disable(presentation);
-            return;
+            return false;
         }
 
-        enable(presentation);
+        return true;
     }
 
     private void disable(Presentation presentation) {

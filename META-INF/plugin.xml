@@ -19,6 +19,8 @@
 
     <change-notes><![CDATA[
         <dl>
+            <dt>0.6</dt>
+            <dd>- multi-selection support [<a href="https://github.com/kukido/eclipser/issues/10">ECLIPSER-10</a>]</dd>
             <dt>0.5</dt>
             <dd>- improved support for environment variables [contributed by <a href="https://github.com/pwielgolaski">Piotr Wielgolaski</a>]</dd>
             <dd>- improved support for Maven launch configuration</dd>

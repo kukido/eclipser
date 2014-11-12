@@ -2,6 +2,9 @@
   <library name="maven-plugin-lib">
     <CLASSES>
       <root url="file://$PROJECT_DIR$/../community/out/production/maven" />
+      <root url="file://$PROJECT_DIR$/../community/out/production/maven-server-api" />
+      <root url="file://$PROJECT_DIR$/../community/out/production/maven3-server-impl" />
+      <root url="file://$PROJECT_DIR$/../community/out/production/maven2-server-impl" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
