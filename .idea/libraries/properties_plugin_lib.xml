@@ -1,10 +1,9 @@
 <component name="libraryTable">
   <library name="properties-plugin-lib">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/../community/out/artifacts/IntelliJ IDEA 13 CE EAP.app/plugins/properties/lib" />
+      <root url="file://$PROJECT_DIR$/../community/out/production/properties" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
-    <jarDirectory url="file://$PROJECT_DIR$/../community/out/artifacts/IntelliJ IDEA 13 CE EAP.app/plugins/properties/lib" recursive="false" />
   </library>
 </component>

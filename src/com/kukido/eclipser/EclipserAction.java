@@ -1,6 +1,10 @@
 package com.kukido.eclipser;
 
-import com.intellij.openapi.actionSystem.*;
+import com.intellij.openapi.actionSystem.AnAction;
+import com.intellij.openapi.actionSystem.AnActionEvent;
+import com.intellij.openapi.actionSystem.LangDataKeys;
+import com.intellij.openapi.actionSystem.PlatformDataKeys;
+import com.intellij.openapi.actionSystem.Presentation;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.Messages;
 import com.intellij.openapi.vfs.VirtualFile;
@@ -84,11 +88,11 @@ public class EclipserAction extends AnAction {
             return;
         }
 
-		final XmlAttribute typeAttribute = rootTag.getAttribute(EclipserXml.TYPE);
-		if (typeAttribute == null) {
-			disable(presentation);
-			return;
-		}
+        final XmlAttribute typeAttribute = rootTag.getAttribute(EclipserXml.TYPE);
+        if (typeAttribute == null) {
+            disable(presentation);
+            return;
+        }
 
         if (!"launchConfiguration".equalsIgnoreCase(rootTag.getName())) {
             disable(presentation);

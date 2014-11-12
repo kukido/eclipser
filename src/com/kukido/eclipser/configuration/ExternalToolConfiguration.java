@@ -4,7 +4,7 @@ import com.kukido.eclipser.command.AddExternalToolCommand;
 import com.kukido.eclipser.command.Command;
 import org.jetbrains.annotations.NotNull;
 
-public class ExternalToolConfiguration implements  Configuration {
+public class ExternalToolConfiguration implements Configuration {
 
     public static final String PROJECT_FILE_DIR = "$ProjectFileDir$";
 

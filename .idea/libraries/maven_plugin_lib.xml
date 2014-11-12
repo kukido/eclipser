@@ -1,14 +1,9 @@
 <component name="libraryTable">
   <library name="maven-plugin-lib">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/../community/out/artifacts/IntelliJ IDEA 13 CE EAP.app/plugins/maven/lib" />
-      <root url="file://$PROJECT_DIR$/../community/out/artifacts/IntelliJ IDEA 13 CE EAP.app/plugins/maven/lib/maven2" />
-      <root url="file://$PROJECT_DIR$/../community/out/artifacts/IntelliJ IDEA 13 CE EAP.app/plugins/maven/lib/maven3" />
+      <root url="file://$PROJECT_DIR$/../community/out/production/maven" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
-    <jarDirectory url="file://$PROJECT_DIR$/../community/out/artifacts/IntelliJ IDEA 13 CE EAP.app/plugins/maven/lib" recursive="false" />
-    <jarDirectory url="file://$PROJECT_DIR$/../community/out/artifacts/IntelliJ IDEA 13 CE EAP.app/plugins/maven/lib/maven2" recursive="false" />
-    <jarDirectory url="file://$PROJECT_DIR$/../community/out/artifacts/IntelliJ IDEA 13 CE EAP.app/plugins/maven/lib/maven3" recursive="false" />
   </library>
 </component>

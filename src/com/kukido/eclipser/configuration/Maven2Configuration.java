@@ -15,7 +15,7 @@ import java.util.Map;
 
 public class Maven2Configuration implements Configuration {
 
-    public static final String MAVEN_PLUGIN_IDENTIFIER  = "org.jetbrains.idea.maven";
+    public static final String MAVEN_PLUGIN_IDENTIFIER = "org.jetbrains.idea.maven";
 
     private String configurationName;
 
@@ -82,8 +82,10 @@ public class Maven2Configuration implements Configuration {
             enabled = descriptor.isEnabled();
         }
 
-        if (!installed) throw new EclipserException("Maven plugin is not installed. Please install Maven plugin to continue.");
-        if (!enabled) throw new EclipserException("Maven plugin is installed, but not enabled. Please enable Maven plugin to continue.");
+        if (!installed)
+            throw new EclipserException("Maven plugin is not installed. Please install Maven plugin to continue.");
+        if (!enabled)
+            throw new EclipserException("Maven plugin is installed, but not enabled. Please enable Maven plugin to continue.");
     }
 }
 
