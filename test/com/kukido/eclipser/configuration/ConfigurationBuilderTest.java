@@ -194,6 +194,29 @@ public class ConfigurationBuilderTest extends LightIdeaTestCase {
         assertEquals(expected, mc.getWorkingDirectory());
     }
 
+    public void testAntTargetConfiguration() throws Exception {
+        PsiFile file = getPsiFile("ant.launch");
+        builder = new ConfigurationBuilder(file);
+        Configuration conf = builder.build();
+
+        AntTargetConfiguration at = (AntTargetConfiguration) conf;
+
+        String expected = getProject().getBasePath() + "/developerPortal/build.xml";
+        assertEquals(expected, at.getLocation());
+        assertEquals("ant", at.getName());
+    }
+
+    public void testAntTargetConfigurationWithAbsolutePath() throws Exception {
+        PsiFile file = getPsiFile("ant-github.launch");
+        builder = new ConfigurationBuilder(file);
+        Configuration conf = builder.build();
+
+        AntTargetConfiguration at = (AntTargetConfiguration) conf;
+
+        String expected = "/home/kukido/workspace/build.xml";
+        assertEquals(expected, at.getLocation());
+    }
+
     private PsiFile getPsiFile(String name) throws IOException {
         return createFile(name, FileUtil.loadFile(new File(this.getClass().getResource("/resources/" + name).getPath())));
     }

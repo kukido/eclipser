@@ -1,8 +1,7 @@
-package com.kukido.eclipser.command;
+package com.kukido.eclipser.configuration;
 
 import com.intellij.testFramework.LightIdeaTestCase;
 import com.kukido.eclipser.EclipserException;
-import com.kukido.eclipser.configuration.Maven2Configuration;
 
 public class Maven2ConfigurationTest extends LightIdeaTestCase {
 

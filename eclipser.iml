@@ -8,10 +8,12 @@
       <sourceFolder url="file://$MODULE_DIR$/resources" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/test" isTestSource="true" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="IDEA IU-139.144.2" jdkType="IDEA JDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="properties-plugin-lib" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="maven-plugin-lib" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="ant-plugin-lib" level="project" />
+    <orderEntry type="library" scope="TEST" name="ant-jps-plugin" level="project" />
   </component>
   <component name="org.twodividedbyzero.idea.findbugs">
     <option name="_basePreferences">

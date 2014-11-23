@@ -15,14 +15,14 @@ import java.util.Map;
 
 public class Maven2Configuration implements Configuration {
 
-    public static final String MAVEN_PLUGIN_IDENTIFIER = "org.jetbrains.idea.maven";
+    private static final String MAVEN_PLUGIN_IDENTIFIER = "org.jetbrains.idea.maven";
 
-    private String configurationName;
+    private final String configurationName;
 
-    private String commandLine;
-    private String[] profiles;
-    private boolean resolveToWorkspace;
-    private String workingDirectory;
+    private final String commandLine;
+    private final String[] profiles;
+    private final boolean resolveToWorkspace;
+    private final String workingDirectory;
 
     public Maven2Configuration(@NotNull String configurationName, boolean resolveToWorkspace, String[] profiles, String commandLine, String workingDirectory) {
         this.configurationName = configurationName;

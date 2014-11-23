@@ -5,6 +5,7 @@
     <version>0.5.0</version>
     <vendor email="mclovin@kukido.com" url="https://github.com/kukido/eclipser">Kukido</vendor>
     <depends>org.jetbrains.idea.maven</depends>
+    <depends>AntSupport</depends>
 
     <description><![CDATA[
         Eclipser converts Eclipse launch configurations into IntelliJ IDEA configurations:
@@ -20,6 +21,7 @@
     <change-notes><![CDATA[
         <dl>
             <dt>0.6</dt>
+            <dd>- support for Ant launch configuration [experimental] [<a href="https://github.com/kukido/eclipser/issues/4">ECLIPSER-4</a>]</dd>
             <dd>- multi-selection support [<a href="https://github.com/kukido/eclipser/issues/10">ECLIPSER-10</a>]</dd>
             <dt>0.5</dt>
             <dd>- improved support for environment variables [contributed by <a href="https://github.com/pwielgolaski">Piotr Wielgolaski</a>]</dd>

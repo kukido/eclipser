@@ -8,10 +8,10 @@ public class ExternalToolConfiguration implements Configuration {
 
     public static final String PROJECT_FILE_DIR = "$ProjectFileDir$";
 
-    private String name;
-    private String program;
-    private String parameters;
-    private String workingDirectory;
+    private final String name;
+    private final String program;
+    private final String parameters;
+    private final String workingDirectory;
 
     public ExternalToolConfiguration(@NotNull String name, @NotNull String program, String parameters, String workingDirectory) {
         this.name = name;

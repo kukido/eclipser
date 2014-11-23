@@ -23,6 +23,7 @@ public interface EclipserXml {
 
     // attribute type
     @NonNls String BOOLEAN_ATTRIBUTE = "booleanAttribute";
+    @SuppressWarnings("UnusedDeclaration")
     @NonNls String LIST_ATTRIBUTE = "listAttribute";
     @NonNls String MAP_ATTRIBUTE = "mapAttribute";
     @NonNls String STRING_ATTRIBUTE = "stringAttribute";
@@ -30,6 +31,7 @@ public interface EclipserXml {
 
     // configuration type
     @NonNls String CONFIGURATION_TYPE_ANT_LAUNCH                = "org.eclipse.ant.AntLaunchConfigurationType";
+    @SuppressWarnings("UnusedDeclaration")
     @NonNls String CONFIGURATION_TYPE_JUNIT_LAUNCH              = "org.eclipse.jdt.junit.launchconfig";
     @NonNls String CONFIGURATION_TYPE_LOCAL_JAVA_APPLICATION    = "org.eclipse.jdt.launching.localJavaApplication";
     @NonNls String CONFIGURATION_TYPE_MAVEN2_LAUNCH             = "org.eclipse.m2e.Maven2LaunchConfigurationType";

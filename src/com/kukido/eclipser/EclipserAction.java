@@ -22,7 +22,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class EclipserAction extends AnAction {
 
-    public static final String DEFAULT_FAILURE_MESSAGE = "Eclipser was unable to convert launch file(s). Please submit support ticket at https://github.com/kukido/eclipser/issues";
+    private static final String DEFAULT_FAILURE_MESSAGE = "Eclipser was unable to convert launch file(s). Please submit support ticket at https://github.com/kukido/eclipser/issues";
 
     public void actionPerformed(@NotNull AnActionEvent e) {
 
@@ -59,7 +59,7 @@ public class EclipserAction extends AnAction {
         if (message != null) say(message);
     }
 
-    public void say(String message) {
+    void say(String message) {
         Messages.showMessageDialog(message, "Info", Messages.getInformationIcon());
     }
 
@@ -114,6 +114,7 @@ public class EclipserAction extends AnAction {
             return false;
         }
 
+        //noinspection RedundantIfStatement
         if (!"launchConfiguration".equalsIgnoreCase(rootTag.getName())) {
             return false;
         }

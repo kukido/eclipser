@@ -13,7 +13,7 @@ public class AddExternalToolCommand implements Command {
 
     public static final String DEFAULT_GROUP_NAME = "Eclipser";
 
-    private ExternalToolConfiguration configuration;
+    private final ExternalToolConfiguration configuration;
 
     public AddExternalToolCommand(ExternalToolConfiguration configuration) {
         this.configuration = configuration;
@@ -75,6 +75,7 @@ public class AddExternalToolCommand implements Command {
             return shownInMainMenu;
         }
 
+        @SuppressWarnings("SameParameterValue")
         public void setShownInMainMenu(boolean shownInMainMenu) {
             this.shownInMainMenu = shownInMainMenu;
         }
@@ -94,6 +95,7 @@ public class AddExternalToolCommand implements Command {
             return useConsole;
         }
 
+        @SuppressWarnings("SameParameterValue")
         public void setUseConsole(boolean useConsole) {
             this.useConsole = useConsole;
         }
@@ -105,10 +107,9 @@ public class AddExternalToolCommand implements Command {
 
             String group = getGroup();
 
-            if (group != null) {
-                id.append(group);
-                id.append('_');
-            }
+            id.append(group);
+            id.append('_');
+
             if (name != null) {
                 id.append(name);
             }

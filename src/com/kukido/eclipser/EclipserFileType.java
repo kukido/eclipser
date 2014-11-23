@@ -10,7 +10,7 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 
-public class EclipserFileType extends XmlLikeFileType {
+class EclipserFileType extends XmlLikeFileType {
 
     public EclipserFileType() {
         super(XMLLanguage.INSTANCE);
@@ -47,7 +47,7 @@ public class EclipserFileType extends XmlLikeFileType {
 
     @Nullable
     @Override
-    public String getCharset(@NotNull VirtualFile file, byte[] content) {
+    public String getCharset(@NotNull VirtualFile file, @NotNull byte[] content) {
         return CharsetToolkit.UTF8;
     }
 }

@@ -14,13 +14,13 @@ import java.util.regex.Matcher;
 
 public class ConfigurationBuilder {
 
-    private PsiFile psiFile;
+    private final PsiFile psiFile;
     private String name;
     private String mainType;
     private String moduleName;
     private String vmParameters;
     private String parameters;
-    private String program;
+    private String location;
     private String programArguments;
     private String attrWorkingDirectory;
     private String workingDirectory;
@@ -60,7 +60,7 @@ public class ConfigurationBuilder {
                     } else if (EclipserXml.PROJECT_ATTR_KEY.equalsIgnoreCase(key)) {
                         moduleName = value;
                     } else if (EclipserXml.ATTR_LOCATION_KEY.equalsIgnoreCase(key)) {
-                        program = convertWorkspace(value);
+                        location = value;
                     } else if (EclipserXml.ATTR_TOOL_ARGUMENTS_KEY.equalsIgnoreCase(key)) {
                         parameters = convertWorkspace(value);
                     } else if (EclipserXml.PROGRAM_ARGUMENTS_KEY.equalsIgnoreCase(key)) {
@@ -89,7 +89,8 @@ public class ConfigurationBuilder {
 
         if (EclipserXml.CONFIGURATION_TYPE_LOCAL_JAVA_APPLICATION.equalsIgnoreCase(configurationType) ||
                 EclipserXml.CONFIGURATION_TYPE_PROGRAM_LAUNCH.equalsIgnoreCase(configurationType) ||
-                EclipserXml.CONFIGURATION_TYPE_MAVEN2_LAUNCH.equalsIgnoreCase(configurationType)) {
+                EclipserXml.CONFIGURATION_TYPE_MAVEN2_LAUNCH.equalsIgnoreCase(configurationType) ||
+                EclipserXml.CONFIGURATION_TYPE_ANT_LAUNCH.equalsIgnoreCase(configurationType)) {
             name = psiFile.getVirtualFile().getNameWithoutExtension();
         }
 
@@ -111,9 +112,11 @@ public class ConfigurationBuilder {
         if (EclipserXml.CONFIGURATION_TYPE_LOCAL_JAVA_APPLICATION.equalsIgnoreCase(configurationType)) {
             return new JavaConfiguration(name, mainType, moduleName, vmParameters, programArguments, environmentVariables);
         } else if (EclipserXml.CONFIGURATION_TYPE_PROGRAM_LAUNCH.equalsIgnoreCase(configurationType)) {
-            return new ExternalToolConfiguration(name, program, parameters, attrWorkingDirectory);
+            return new ExternalToolConfiguration(name, convertWorkspace(location), parameters, attrWorkingDirectory);
         } else if (EclipserXml.CONFIGURATION_TYPE_MAVEN2_LAUNCH.equalsIgnoreCase(configurationType)) {
             return new Maven2Configuration(name, resolveToWorkspace, profiles, commandLine, resolveToProjectLocation(workingDirectory));
+        } else if (EclipserXml.CONFIGURATION_TYPE_ANT_LAUNCH.equalsIgnoreCase(configurationType)) {
+            return new AntTargetConfiguration(name, resolveToProjectLocation(location));
         } else {
             throw new EclipserException("Unsupported configuration type: " + configurationType);
         }

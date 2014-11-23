@@ -10,11 +10,12 @@ import com.intellij.openapi.module.Module;
 import com.intellij.openapi.module.ModuleManager;
 import com.intellij.openapi.project.Project;
 import com.kukido.eclipser.EclipserException;
+import com.kukido.eclipser.configuration.Configuration;
 import com.kukido.eclipser.configuration.JavaConfiguration;
 
 public class AddApplicationConfigurationCommand implements Command {
 
-    private JavaConfiguration javaConfiguration;
+    private final JavaConfiguration javaConfiguration;
 
     public AddApplicationConfigurationCommand(JavaConfiguration conf) {
         this.javaConfiguration = conf;
@@ -47,10 +48,9 @@ public class AddApplicationConfigurationCommand implements Command {
             throw new EclipserException(message);
         } else {
             ApplicationConfigurationType type = ApplicationConfigurationType.getInstance();
-            assert type != null;
             runnerAndConfigurationSettings = (RunnerAndConfigurationSettingsImpl) runManager.createRunConfiguration(javaConfiguration.getConfigurationName(), type.getConfigurationFactories()[0]);
             applicationConfiguration = (ApplicationConfiguration) runnerAndConfigurationSettings.getConfiguration();
-            runManager.addConfiguration(runnerAndConfigurationSettings, true);
+            runManager.addConfiguration(runnerAndConfigurationSettings, Configuration.SHARE_RUN_CONFIGURATION_DEFAULT_SETTING);
         }
 
         applicationConfiguration.setModule(module);

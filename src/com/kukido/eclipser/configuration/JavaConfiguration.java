@@ -10,12 +10,12 @@ import java.util.Map;
 public class JavaConfiguration implements Configuration {
 
     public static final String MODULE_DIR_MACRO = "$MODULE_DIR$";
-    private String configurationName;
-    private String mainClassName;
-    private String moduleName;
-    private String vmParameters;
-    private String programParameters;
-    private Map<String, String> environmentVariables = new LinkedHashMap<String, String>();
+    private final String configurationName;
+    private final String mainClassName;
+    private final String moduleName;
+    private final String vmParameters;
+    private final String programParameters;
+    private final Map<String, String> environmentVariables = new LinkedHashMap<String, String>();
 
     public JavaConfiguration(@NotNull String configurationName, @NotNull String mainClassName, @NotNull String moduleName, String vmParameters, String programParameters, Map<String, String> environmentVariables) {
         this.configurationName = configurationName;
@@ -40,6 +40,7 @@ public class JavaConfiguration implements Configuration {
         return moduleName;
     }
 
+    @SuppressWarnings("SameReturnValue")
     public String getWorkingDirectory() {
         return MODULE_DIR_MACRO;
     }

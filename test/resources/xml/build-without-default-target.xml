@@ -1,0 +1,6 @@
+<project name="without-default-target" basedir=".">
+  <target name="not-default-target">
+    <!-- Create the time stamp -->
+    <tstamp/>
+  </target>
+</project>
