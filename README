@@ -3,6 +3,7 @@ Eclipser will automatically convert Eclipse launch configurations into IntelliJ 
 * local Java application Eclipse launcher will be converted into run configuration
 * program launch Eclipse launcher will be converted into external tool in Tools menu
 * Maven launch configuration will be converted into Maven run configuration
+* Ant launch configuration will be converted into Ant target run configuration
 
 ##How to use:
 Eclipser is available in Project and Commander views.
@@ -11,10 +12,6 @@ Context menu for supported launch files will contain "Convert with Eclipser" ite
 ##Functionality limitations:
 * Current support for one Eclipse macro only: 
 	- $workspace_loc
-* Current support for the following Eclipse launch configurations:
-	- local Java application - converted to run configuration
-	- program launch - converted to external tool
-	- Maven launch - converted to Maven run configuration
 
 ##Known issues:
 * None
@@ -27,7 +24,7 @@ Context menu for supported launch files will contain "Convert with Eclipser" ite
 * Support tickets: https://github.com/kukido/eclipser/issues
 
 ##For developers:
-* The project has dependency on Maven and Properties plugins. In order to build the project you will have to define the following global libraries:
+* The project has dependency on Maven, Properties and Ant plugins. In order to build the project you will have to define the following global libraries:
     - "maven-plugin-lib" with jars from:
         - IDEA_SDK_HOME/plugins/maven/lib
         - IDEA_SDK_HOME/plugins/maven/lib/maven2
@@ -35,3 +32,6 @@ Context menu for supported launch files will contain "Convert with Eclipser" ite
 
     - "properties-plugin-lib" with jars from:
         - IDEA_SDK_HOME/plugins/properties/lib
+        
+    - "ant-plugin-lib" with jars from:
+    	- IDEA_SDK_HOME/plugins/ant/lib
