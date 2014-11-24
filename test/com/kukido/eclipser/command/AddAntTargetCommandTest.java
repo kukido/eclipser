@@ -39,30 +39,6 @@ public class AddAntTargetCommandTest extends LightIdeaTestCase {
         assertNotNull(antRunConfiguration);
     }
 
-    public void testExecuteWithoutDefaultTarget() throws Exception {
-
-        URL resource = this.getClass().getClassLoader().getResource("resources/xml/build-without-default-target.xml");
-
-        @SuppressWarnings("ConstantConditions")
-        AntTargetConfiguration configuration = new AntTargetConfiguration("without-default", resource.getPath());
-
-        command = (AddAntTargetCommand) configuration.getCommand();
-
-        Project project = getProject();
-        try {
-            command.execute(project);
-            fail("Execute should throw an exception on build file without default target");
-        } catch (EclipserException ignored) {
-        }
-
-        AntConfiguration antConfiguration = AntConfiguration.getInstance(project);
-        AntBuildFile[] antBuildFiles = antConfiguration.getBuildFiles();
-        assertEquals(1, antBuildFiles.length);
-
-        AntRunConfiguration antRunConfiguration = getAntRunConfiguration(configuration.getName());
-        assertNull(antRunConfiguration);
-    }
-
     public void testExecuteWithMissingBuildFile() throws Exception {
         Project project = getProject();
 
@@ -71,22 +47,6 @@ public class AddAntTargetCommandTest extends LightIdeaTestCase {
         try {
             command.execute(project);
             fail("Execute should throw an exception on missing build file");
-        } catch (EclipserException ignored) {
-        }
-    }
-
-    public void testExecuteWithInvalidBuildFile() throws Exception {
-        URL resource = this.getClass().getClassLoader().getResource("resources/xml/invalid-build.xml");
-
-        @SuppressWarnings("ConstantConditions")
-        AntTargetConfiguration configuration = new AntTargetConfiguration("invalid-build", resource.getPath());
-
-        Project project = getProject();
-
-        command = (AddAntTargetCommand) configuration.getCommand();
-        try {
-            command.execute(project);
-            fail("Execute should throw an exception with invalid build file");
         } catch (EclipserException ignored) {
         }
     }

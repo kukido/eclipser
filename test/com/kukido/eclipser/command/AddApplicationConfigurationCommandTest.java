@@ -15,7 +15,7 @@ import java.util.Map;
 
 public class AddApplicationConfigurationCommandTest extends LightIdeaTestCase {
 
-    public static final String TEST_CASE_MODULE_NAME = "light_idea_test_case";
+    private static final String TEST_CASE_MODULE_NAME = "light_idea_test_case";
 
     private AddApplicationConfigurationCommand command;
 

@@ -2,7 +2,7 @@
 <idea-plugin version="2">
     <id>com.kukido.eclipser</id>
     <name>Eclipser</name>
-    <version>0.5.0</version>
+    <version>0.6.0</version>
     <vendor email="mclovin@kukido.com" url="https://github.com/kukido/eclipser">Kukido</vendor>
     <depends>org.jetbrains.idea.maven</depends>
     <depends>AntSupport</depends>
@@ -10,9 +10,11 @@
     <description><![CDATA[
         Eclipser converts Eclipse launch configurations into IntelliJ IDEA configurations:
         <ul>
-            <li>Local Java application Eclipse launcher will be converted into Application run configuration</li>
-            <li>Program launch Eclipse launcher will be converted into external tool in Tools menu</li>
-            <li>Maven launch configuration will be converted into Maven run configuration[experimental]</li>
+            <li>Local Java application Eclipse launcher into Application run configuration</li>
+            <li>Program launch Eclipse launcher into external tool in Tools menu</li>
+            <li>Maven launch configuration into Maven run configuration</li>
+            <li>Remote Java application Eclipse launcher into Remote run configuration</li>
+            <li>Ant launch configuration into Ant target run configuration</li>
         </ul>
         For limitations, known issues and support please refer to plugin wiki:
             <a href="https://github.com/kukido/eclipser/wiki">https://github.com/kukido/eclipser/wiki</a>
@@ -21,8 +23,9 @@
     <change-notes><![CDATA[
         <dl>
             <dt>0.6</dt>
-            <dd>- support for Ant launch configuration [experimental] [<a href="https://github.com/kukido/eclipser/issues/4">ECLIPSER-4</a>]</dd>
-            <dd>- multi-selection support [<a href="https://github.com/kukido/eclipser/issues/10">ECLIPSER-10</a>]</dd>
+            <dd>- support for Ant launch configuration [experimental]</dd>
+            <dd>- support for Remote Java application configuration [experimental]</dd>
+            <dd>- multi-selection support</dd>
             <dt>0.5</dt>
             <dd>- improved support for environment variables [contributed by <a href="https://github.com/pwielgolaski">Piotr Wielgolaski</a>]</dd>
             <dd>- improved support for Maven launch configuration</dd>
@@ -50,17 +53,12 @@
     ]]></change-notes>
 
     <!-- please see http://confluence.jetbrains.net/display/IDEADEV/Build+Number+Ranges for description -->
-    <idea-version since-build="129.0"/>
+    <idea-version since-build="139.0"/>
 
     <application-components>
         <component>
             <implementation-class>com.kukido.eclipser.EclipserPlugin</implementation-class>
             <interface-class>com.kukido.eclipser.EclipserPlugin</interface-class>
-        </component>
-        <component>
-            <!-- keeping Eclipser Configuration Type for backward compatibility -->
-            <implementation-class>com.kukido.eclipser.EclipserConfigurationType</implementation-class>
-            <interface-class>com.kukido.eclipser.EclipserConfigurationType</interface-class>
         </component>
     </application-components>
 

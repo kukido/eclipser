@@ -3,7 +3,7 @@ package com.kukido.eclipser;
 import com.intellij.openapi.components.ApplicationComponent;
 import org.jetbrains.annotations.NotNull;
 
-public class EclipserPlugin implements ApplicationComponent {
+class EclipserPlugin implements ApplicationComponent {
     @Override
     public void initComponent() {
     }

@@ -5,7 +5,7 @@ import com.intellij.openapi.fileTypes.FileTypeConsumer;
 import com.intellij.openapi.fileTypes.FileTypeFactory;
 import org.jetbrains.annotations.NotNull;
 
-public class EclipserFileTypeFactory extends FileTypeFactory {
+class EclipserFileTypeFactory extends FileTypeFactory {
 
     private final static FileType fileType = new EclipserFileType();
 

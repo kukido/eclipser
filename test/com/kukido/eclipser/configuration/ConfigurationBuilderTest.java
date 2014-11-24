@@ -217,6 +217,19 @@ public class ConfigurationBuilderTest extends LightIdeaTestCase {
         assertEquals(expected, at.getLocation());
     }
 
+    public void testRemoteApplicationConfiguration() throws Exception {
+        PsiFile file = getPsiFile("remote.launch");
+        builder = new ConfigurationBuilder(file);
+        Configuration configuration = builder.build();
+
+        RemoteJavaApplicationConfiguration rlc = (RemoteJavaApplicationConfiguration)configuration;
+        assertEquals("localhost", rlc.getHostName());
+        assertEquals("8000", rlc.getPort());
+        assertEquals("remote", rlc.getName());
+        assertEquals("org.eclipse.jdt.launching.socketAttachConnector", rlc.getVmConnectorId());
+        assertEquals("spacebook", rlc.getModuleName());
+    }
+
     private PsiFile getPsiFile(String name) throws IOException {
         return createFile(name, FileUtil.loadFile(new File(this.getClass().getResource("/resources/" + name).getPath())));
     }

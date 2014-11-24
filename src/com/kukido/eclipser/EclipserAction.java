@@ -20,7 +20,7 @@ import com.kukido.eclipser.configuration.Configuration;
 import com.kukido.eclipser.configuration.ConfigurationBuilder;
 import org.jetbrains.annotations.NotNull;
 
-public class EclipserAction extends AnAction {
+class EclipserAction extends AnAction {
 
     private static final String DEFAULT_FAILURE_MESSAGE = "Eclipser was unable to convert launch file(s). Please submit support ticket at https://github.com/kukido/eclipser/issues";
 
@@ -92,7 +92,7 @@ public class EclipserAction extends AnAction {
         enable(presentation);
     }
 
-    protected boolean isSupported(PsiFile psiFile) {
+    boolean isSupported(PsiFile psiFile) {
 
         if (!(psiFile instanceof XmlFile)) {
             return false;

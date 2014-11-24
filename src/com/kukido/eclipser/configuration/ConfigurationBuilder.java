@@ -28,6 +28,8 @@ public class ConfigurationBuilder {
     private String[] profiles;
     private String commandLine;
     private Map<String, String> environmentVariables;
+    private Map<String, String> connectMap;
+    private String vmConnectorId;
 
     public ConfigurationBuilder(PsiFile psiFile) {
         this.psiFile = psiFile;
@@ -73,6 +75,8 @@ public class ConfigurationBuilder {
                         commandLine = value;
                     } else if (EclipserXml.WORKING_DIRECTORY_KEY.equalsIgnoreCase(key)) {
                         workingDirectory = value;
+                    } else if (EclipserXml.VM_CONNECTOR_ID_KEY.equalsIgnoreCase(key)) {
+                        vmConnectorId = value;
                     }
                 } else if (EclipserXml.BOOLEAN_ATTRIBUTE.equalsIgnoreCase(name)) {
                     boolean value = Boolean.valueOf(tag.getAttributeValue(EclipserXml.VALUE));
@@ -82,15 +86,14 @@ public class ConfigurationBuilder {
                 } else if (EclipserXml.MAP_ATTRIBUTE.equalsIgnoreCase(name)) {
                     if (EclipserXml.ENVIRONMENT_VARIABLES_KEY.equalsIgnoreCase(key)) {
                         environmentVariables = getMap(tag.getChildren());
+                    } else if (EclipserXml.CONNECT_MAP_KEY.equalsIgnoreCase(key)) {
+                        connectMap = getMap(tag.getChildren());
                     }
                 }
             }
         }
 
-        if (EclipserXml.CONFIGURATION_TYPE_LOCAL_JAVA_APPLICATION.equalsIgnoreCase(configurationType) ||
-                EclipserXml.CONFIGURATION_TYPE_PROGRAM_LAUNCH.equalsIgnoreCase(configurationType) ||
-                EclipserXml.CONFIGURATION_TYPE_MAVEN2_LAUNCH.equalsIgnoreCase(configurationType) ||
-                EclipserXml.CONFIGURATION_TYPE_ANT_LAUNCH.equalsIgnoreCase(configurationType)) {
+        if (useLaunchFileNameForConfigurationName(configurationType)) {
             name = psiFile.getVirtualFile().getNameWithoutExtension();
         }
 
@@ -117,6 +120,8 @@ public class ConfigurationBuilder {
             return new Maven2Configuration(name, resolveToWorkspace, profiles, commandLine, resolveToProjectLocation(workingDirectory));
         } else if (EclipserXml.CONFIGURATION_TYPE_ANT_LAUNCH.equalsIgnoreCase(configurationType)) {
             return new AntTargetConfiguration(name, resolveToProjectLocation(location));
+        } else if (EclipserXml.CONFIGURATION_TYPE_REMOTE_JAVA_APPLICATION.equalsIgnoreCase(configurationType)) {
+            return new RemoteJavaApplicationConfiguration(name, connectMap, vmConnectorId, moduleName);
         } else {
             throw new EclipserException("Unsupported configuration type: " + configurationType);
         }
@@ -158,5 +163,13 @@ public class ConfigurationBuilder {
         } else {
             return value;
         }
+    }
+
+    private boolean useLaunchFileNameForConfigurationName(String configurationType) {
+        return EclipserXml.CONFIGURATION_TYPE_LOCAL_JAVA_APPLICATION.equalsIgnoreCase(configurationType) ||
+                EclipserXml.CONFIGURATION_TYPE_PROGRAM_LAUNCH.equalsIgnoreCase(configurationType) ||
+                EclipserXml.CONFIGURATION_TYPE_MAVEN2_LAUNCH.equalsIgnoreCase(configurationType) ||
+                EclipserXml.CONFIGURATION_TYPE_ANT_LAUNCH.equalsIgnoreCase(configurationType) ||
+                EclipserXml.CONFIGURATION_TYPE_REMOTE_JAVA_APPLICATION.equalsIgnoreCase(configurationType);
     }
 }

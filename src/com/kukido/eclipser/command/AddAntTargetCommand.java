@@ -3,7 +3,6 @@ package com.kukido.eclipser.command;
 import com.intellij.execution.RunManager;
 import com.intellij.execution.impl.RunManagerImpl;
 import com.intellij.execution.impl.RunnerAndConfigurationSettingsImpl;
-import com.intellij.execution.remote.RemoteConfigurationType;
 import com.intellij.lang.ant.config.AntBuildFile;
 import com.intellij.lang.ant.config.AntBuildListener;
 import com.intellij.lang.ant.config.AntBuildModel;

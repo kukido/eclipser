@@ -20,6 +20,8 @@ public interface EclipserXml {
     @NonNls String M2_WORKSPACE_RESOLUTION = "M2_WORKSPACE_RESOLUTION";
     @NonNls String WORKING_DIRECTORY_KEY = "org.eclipse.jdt.launching.WORKING_DIRECTORY";
     @NonNls String ENVIRONMENT_VARIABLES_KEY = "org.eclipse.debug.core.environmentVariables";
+    @NonNls String CONNECT_MAP_KEY = "org.eclipse.jdt.launching.CONNECT_MAP";
+    @NonNls String VM_CONNECTOR_ID_KEY = "org.eclipse.jdt.launching.VM_CONNECTOR_ID";
 
     // attribute type
     @NonNls String BOOLEAN_ATTRIBUTE = "booleanAttribute";
@@ -36,6 +38,7 @@ public interface EclipserXml {
     @NonNls String CONFIGURATION_TYPE_LOCAL_JAVA_APPLICATION    = "org.eclipse.jdt.launching.localJavaApplication";
     @NonNls String CONFIGURATION_TYPE_MAVEN2_LAUNCH             = "org.eclipse.m2e.Maven2LaunchConfigurationType";
     @NonNls String CONFIGURATION_TYPE_PROGRAM_LAUNCH            = "org.eclipse.ui.externaltools.ProgramLaunchConfigurationType";
+    @NonNls String CONFIGURATION_TYPE_REMOTE_JAVA_APPLICATION   = "org.eclipse.jdt.launching.remoteJavaApplication";
 
     // eclipse macros
     @NonNls String WORKSPACE_LOC    = "workspace_loc";

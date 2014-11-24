@@ -1,9 +1,10 @@
 ##Introduction:
 Eclipser will automatically convert Eclipse launch configurations into IntelliJ IDEA configurations:
-* local Java application Eclipse launcher will be converted into run configuration
-* program launch Eclipse launcher will be converted into external tool in Tools menu
-* Maven launch configuration will be converted into Maven run configuration
-* Ant launch configuration will be converted into Ant target run configuration
+* local Java application Eclipse launcher into run configuration
+* remote Java application Eclipse launcher into remote run configuration
+* program launch Eclipse launcher into external tool in Tools menu
+* Maven launch configuration into Maven run configuration
+* Ant launch configuration into Ant target run configuration
 
 ##How to use:
 Eclipser is available in Project and Commander views.
@@ -11,11 +12,11 @@ Context menu for supported launch files will contain "Convert with Eclipser" ite
 
 ##Functionality limitations:
 * Current support for one Eclipse macro only: 
-	- $workspace_loc
+    - $workspace_loc
 
 ##Known issues:
 * None
-	
+
 ##Disclaimer:
 * Plugin is currently in beta. Please report any errors and suggestions to the link below.
 
@@ -34,4 +35,4 @@ Context menu for supported launch files will contain "Convert with Eclipser" ite
         - IDEA_SDK_HOME/plugins/properties/lib
         
     - "ant-plugin-lib" with jars from:
-    	- IDEA_SDK_HOME/plugins/ant/lib
+        - IDEA_SDK_HOME/plugins/ant/lib
