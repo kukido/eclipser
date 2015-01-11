@@ -72,7 +72,6 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <fileTypeFactory implementation="com.kukido.eclipser.EclipserFileTypeFactory"/>
-        <configurationType implementation="com.kukido.eclipser.EclipserConfigurationType"/>
         <syntaxHighlighter key="Eclipser" implementationClass="com.intellij.ide.highlighter.XmlFileHighlighter"/>
     </extensions>
 </idea-plugin>
