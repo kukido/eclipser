@@ -66,7 +66,7 @@ public class ConfigurationBuilder {
                     } else if (EclipserXml.ATTR_TOOL_ARGUMENTS_KEY.equalsIgnoreCase(key)) {
                         parameters = convertWorkspace(value);
                     } else if (EclipserXml.PROGRAM_ARGUMENTS_KEY.equalsIgnoreCase(key)) {
-                        programArguments = value;
+                        programArguments = normalizeText(value);
                     } else if (EclipserXml.ATTR_WORKING_DIRECTORY_KEY.equalsIgnoreCase(key)) {
                         attrWorkingDirectory = convertWorkspace(value);
                     } else if (EclipserXml.M2_PROFILES_KEY.equalsIgnoreCase(key)) {
