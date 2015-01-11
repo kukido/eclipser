@@ -2,7 +2,7 @@
 <idea-plugin version="2">
     <id>com.kukido.eclipser</id>
     <name>Eclipser</name>
-    <version>0.6.0</version>
+    <version>0.6.1</version>
     <vendor email="mclovin@kukido.com" url="https://github.com/kukido/eclipser">Kukido</vendor>
     <depends>org.jetbrains.idea.maven</depends>
     <depends>AntSupport</depends>
