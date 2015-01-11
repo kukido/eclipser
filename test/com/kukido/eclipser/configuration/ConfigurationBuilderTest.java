@@ -95,6 +95,22 @@ public class ConfigurationBuilderTest extends LightIdeaTestCase {
         assertEquals("--memory 10M --port 11111 --env ${ENV}", jc.getProgramParameters());
     }
 
+    public void testJavaConfigurationWithArgumentsIncludingNewLine() throws Exception {
+        PsiFile file = getPsiFile("arguments-withnewline.launch");
+        builder = new ConfigurationBuilder(file);
+        Configuration conf = builder.build();
+
+        assertInstanceOf(conf, JavaConfiguration.class);
+
+        JavaConfiguration jc = (JavaConfiguration)conf;
+
+        assertEquals("arguments-withnewline", jc.getConfigurationName());
+        assertEquals("com.thimbleware.jmemcached.Main", jc.getMainClassName());
+        assertEquals("jmemcached-server", jc.getModuleName());
+        assertEquals(JavaConfiguration.MODULE_DIR_MACRO, jc.getWorkingDirectory());
+        assertEquals(String.format("--memory 10M%n--port 11111 --env ${ENV}"), jc.getProgramParameters());
+    }
+
 	public void testJavaConfigurationWithControlCharacters() throws Exception {
 		PsiFile file = getPsiFile("newline.launch");
 		builder = new ConfigurationBuilder(file);
