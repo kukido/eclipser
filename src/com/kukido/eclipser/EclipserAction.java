@@ -29,10 +29,7 @@ class EclipserAction extends AnAction {
         final Project project = e.getProject();
         final PsiElement[] elements = e.getData(LangDataKeys.PSI_ELEMENT_ARRAY);
 
-        if (elements == null) {
-            say(DEFAULT_FAILURE_MESSAGE);
-            return;
-        }
+        if (elements == null) return;
 
         for (PsiElement element : elements) {
             process(element, project);
