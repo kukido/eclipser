@@ -71,6 +71,7 @@
                 description="Convert Eclipse run configuration file.">
             <add-to-group group-id="ProjectViewPopupMenuRunGroup" anchor="last"/>
             <add-to-group group-id="CommanderPopupMenu" anchor="last"/>
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
         </action>
     </actions>
 
