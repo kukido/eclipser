@@ -27,9 +27,7 @@ class EclipserAction extends AnAction {
     public void actionPerformed(@NotNull AnActionEvent e) {
 
         final Project project = e.getProject();
-        final PsiElement[] elements = e.getData(LangDataKeys.PSI_ELEMENT_ARRAY);
-
-        if (elements == null) return;
+        final PsiElement[] elements = getPsiElements(e);
 
         for (PsiElement element : elements) {
             process(element, project);
@@ -117,6 +115,21 @@ class EclipserAction extends AnAction {
         }
 
         return true;
+    }
+
+    PsiElement[] getPsiElements(AnActionEvent event) {
+
+        PsiElement[] psiElements = event.getData(LangDataKeys.PSI_ELEMENT_ARRAY);
+        PsiFile psiFile = event.getData(LangDataKeys.PSI_FILE);
+
+        if (psiFile == null && psiElements == null)
+            return PsiElement.EMPTY_ARRAY;
+
+        if (psiFile == null) {
+            return psiElements;
+        } else {
+            return new PsiElement[]{psiFile};
+        }
     }
 
     private void disable(Presentation presentation) {
