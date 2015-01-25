@@ -2,7 +2,7 @@
 <idea-plugin version="2">
     <id>com.kukido.eclipser</id>
     <name>Eclipser</name>
-    <version>0.6.2</version>
+    <version>0.6.3</version>
     <vendor email="mclovin@kukido.com" url="https://github.com/kukido/eclipser">Kukido</vendor>
     <depends>org.jetbrains.idea.maven</depends>
     <depends>AntSupport</depends>
@@ -22,6 +22,9 @@
 
     <change-notes><![CDATA[
         <dl>
+            <dt>0.6.3</dt>
+            <dd>- hot key bug fix
+            <dd>- added Eclipser action to editor context menu
             <dt>0.6.2</dt>
             <dd>- improved plugin stability in certain corner cases
             <dt>0.6.1</dt>
