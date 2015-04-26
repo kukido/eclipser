@@ -1,9 +1,7 @@
 <component name="libraryTable">
   <library name="properties-plugin-lib">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/../community/out/production/properties" />
-      <root url="file://$PROJECT_DIR$/../community/out/production/properties-psi-api" />
-      <root url="file://$PROJECT_DIR$/../community/out/production/properties-psi-impl" />
+      <root url="jar://$PROJECT_DIR$/lib/properties/properties.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

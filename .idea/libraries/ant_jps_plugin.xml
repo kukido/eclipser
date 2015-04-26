@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="ant-jps-plugin">
-    <CLASSES>
-      <root url="file://$PROJECT_DIR$/../community/out/production/ant-jps-plugin" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
