@@ -6,6 +6,7 @@ import com.intellij.tools.ToolManager;
 import com.intellij.tools.ToolsGroup;
 import com.kukido.eclipser.configuration.ExternalToolConfiguration;
 
+import java.util.Collections;
 import java.util.List;
 
 public class AddExternalToolCommandTest extends LightIdeaTestCase {
@@ -89,7 +90,7 @@ public class AddExternalToolCommandTest extends LightIdeaTestCase {
 
     @Override
     protected void tearDown() throws Exception {
-        ToolManager.getInstance().setTools(new ToolsGroup[]{});
+        ToolManager.getInstance().setTools(Collections.<ToolsGroup<Tool>>emptyList());
         super.tearDown();
     }
 }

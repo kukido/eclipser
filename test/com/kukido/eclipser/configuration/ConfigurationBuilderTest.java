@@ -3,6 +3,7 @@ package com.kukido.eclipser.configuration;
 import com.intellij.openapi.util.io.FileUtil;
 import com.intellij.psi.PsiFile;
 import com.intellij.testFramework.LightIdeaTestCase;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.IOException;
@@ -111,29 +112,43 @@ public class ConfigurationBuilderTest extends LightIdeaTestCase {
         assertEquals(String.format("--memory 10M%n--port 11111 --env ${ENV}"), jc.getProgramParameters());
     }
 
-	public void testJavaConfigurationWithControlCharacters() throws Exception {
-		PsiFile file = getPsiFile("newline.launch");
-		builder = new ConfigurationBuilder(file);
-		Configuration conf = builder.build();
+    public void testJavaConfigurationWithControlCharacters() throws Exception {
+        PsiFile file = getPsiFile("newline.launch");
+        builder = new ConfigurationBuilder(file);
+        Configuration conf = builder.build();
 
-		assertInstanceOf(conf, JavaConfiguration.class);
+        assertInstanceOf(conf, JavaConfiguration.class);
 
-		JavaConfiguration jc = (JavaConfiguration)conf;
+        JavaConfiguration jc = (JavaConfiguration) conf;
 
-		assertEquals(String.format("-ea -Xmx512M%n-Dhbase.test=true"), jc.getVmParameters());
-	}
+        assertEquals(String.format("-ea -Xmx512M%n-Dhbase.test=true"), jc.getVmParameters());
+    }
 
-	public void testJavaConfigurationWithWorskspaceDefinedInVmParameters() throws Exception {
-		PsiFile file = getPsiFile("workspace.launch");
-		builder = new ConfigurationBuilder(file);
-		Configuration conf = builder.build();
+    public void testJavaConfigurationWithWorkingDirectory() throws Exception {
+        PsiFile file = getPsiFile("java-wd.launch");
+        builder = new ConfigurationBuilder(file);
+        Configuration conf = builder.build();
 
-		assertInstanceOf(conf, JavaConfiguration.class);
+        assertInstanceOf(conf, JavaConfiguration.class);
 
-		JavaConfiguration jc = (JavaConfiguration)conf;
+        JavaConfiguration jc = (JavaConfiguration) conf;
 
-		assertEquals("-Dhibernate.config.file="+ExternalToolConfiguration.PROJECT_FILE_DIR+"/dbAccessLayer/resource/hibernate.cfg.xml", jc.getVmParameters());
-	}
+        String workingDirectory = getProject().getBasePath() + "/";
+
+        assertEquals(workingDirectory, jc.getWorkingDirectory());
+    }
+
+    public void testJavaConfigurationWithWorskspaceDefinedInVmParameters() throws Exception {
+        PsiFile file = getPsiFile("workspace.launch");
+        builder = new ConfigurationBuilder(file);
+        Configuration conf = builder.build();
+
+        assertInstanceOf(conf, JavaConfiguration.class);
+
+        JavaConfiguration jc = (JavaConfiguration) conf;
+
+        assertEquals("-Dhibernate.config.file=" + ExternalToolConfiguration.PROJECT_FILE_DIR + "/dbAccessLayer/resource/hibernate.cfg.xml", jc.getVmParameters());
+    }
 
     public void testMavenConfiguration() throws Exception {
         PsiFile file = getPsiFile("maven.launch");
@@ -246,6 +261,7 @@ public class ConfigurationBuilderTest extends LightIdeaTestCase {
         assertEquals("spacebook", rlc.getModuleName());
     }
 
+    @NotNull
     private PsiFile getPsiFile(String name) throws IOException {
         return createFile(name, FileUtil.loadFile(new File(this.getClass().getResource("/resources/" + name).getPath())));
     }

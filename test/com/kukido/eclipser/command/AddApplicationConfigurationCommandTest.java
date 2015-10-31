@@ -28,7 +28,8 @@ public class AddApplicationConfigurationCommandTest extends LightIdeaTestCase {
                 TEST_CASE_MODULE_NAME,
                 "-ea -Xmx256M",
                 "--port 8080",
-                envs
+                envs,
+                null
         );
 
         command = new AddApplicationConfigurationCommand(configuration);
@@ -46,6 +47,7 @@ public class AddApplicationConfigurationCommandTest extends LightIdeaTestCase {
                 TEST_CASE_MODULE_NAME,
                 "-ea -Xmx256M",
                 "--port 8080",
+                null,
                 null
         );
 
@@ -62,6 +64,7 @@ public class AddApplicationConfigurationCommandTest extends LightIdeaTestCase {
                 "configuration",
                 "Main",
                 "undefined",
+                null,
                 null,
                 null,
                 null
@@ -82,6 +85,7 @@ public class AddApplicationConfigurationCommandTest extends LightIdeaTestCase {
                 TEST_CASE_MODULE_NAME,
                 null,
                 null,
+                null,
                 null
         );
         command = new AddApplicationConfigurationCommand(configuration);
@@ -95,6 +99,7 @@ public class AddApplicationConfigurationCommandTest extends LightIdeaTestCase {
                 "configuration",
                 "Main",
                 TEST_CASE_MODULE_NAME,
+                null,
                 null,
                 null,
                 null

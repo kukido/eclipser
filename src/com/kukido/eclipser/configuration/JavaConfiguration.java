@@ -15,14 +15,23 @@ public class JavaConfiguration implements Configuration {
     private final String moduleName;
     private final String vmParameters;
     private final String programParameters;
+    private final String workingDirectory;
     private final Map<String, String> environmentVariables = new LinkedHashMap<String, String>();
 
-    public JavaConfiguration(@NotNull String configurationName, @NotNull String mainClassName, @NotNull String moduleName, String vmParameters, String programParameters, Map<String, String> environmentVariables) {
+    public JavaConfiguration(
+            @NotNull String configurationName,
+            @NotNull String mainClassName,
+            @NotNull String moduleName,
+            String vmParameters,
+            String programParameters,
+            Map<String, String> environmentVariables,
+            String workingDirectory) {
         this.configurationName = configurationName;
         this.mainClassName = mainClassName;
         this.moduleName = moduleName;
         this.vmParameters = vmParameters;
         this.programParameters = programParameters;
+        this.workingDirectory = workingDirectory;
         if (environmentVariables != null) {
             this.environmentVariables.putAll(environmentVariables);
         }
@@ -40,9 +49,8 @@ public class JavaConfiguration implements Configuration {
         return moduleName;
     }
 
-    @SuppressWarnings("SameReturnValue")
     public String getWorkingDirectory() {
-        return MODULE_DIR_MACRO;
+        return workingDirectory == null ? MODULE_DIR_MACRO : workingDirectory;
     }
 
     public String getVmParameters() {

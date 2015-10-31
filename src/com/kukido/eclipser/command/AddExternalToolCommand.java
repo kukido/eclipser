@@ -51,7 +51,7 @@ public class AddExternalToolCommand implements Command {
 
         target.addElement(tool);
 
-        manager.setTools(groups.toArray(new ToolsGroup[groups.size()]));
+        manager.setTools(groups);
     }
 
     static class EclipserTool extends Tool {

@@ -7,6 +7,8 @@ import com.intellij.psi.xml.XmlFile;
 import com.intellij.psi.xml.XmlTag;
 import com.kukido.eclipser.EclipserException;
 import com.kukido.eclipser.EclipserXml;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -113,7 +115,7 @@ public class ConfigurationBuilder {
 
     private Configuration createConfiguration(String configurationType) throws EclipserException {
         if (EclipserXml.CONFIGURATION_TYPE_LOCAL_JAVA_APPLICATION.equalsIgnoreCase(configurationType)) {
-            return new JavaConfiguration(name, mainType, moduleName, vmParameters, programArguments, environmentVariables);
+            return new JavaConfiguration(name, mainType, moduleName, vmParameters, programArguments, environmentVariables, resolveToProjectLocation(workingDirectory));
         } else if (EclipserXml.CONFIGURATION_TYPE_PROGRAM_LAUNCH.equalsIgnoreCase(configurationType)) {
             return new ExternalToolConfiguration(name, convertWorkspace(location), parameters, attrWorkingDirectory);
         } else if (EclipserXml.CONFIGURATION_TYPE_MAVEN2_LAUNCH.equalsIgnoreCase(configurationType)) {
@@ -143,6 +145,7 @@ public class ConfigurationBuilder {
                 .replace("&#10;", lineSeparator);
     }
 
+    @NotNull
     private String[] convertProfiles(String value) {
         return value.split(",");
     }
@@ -155,8 +158,11 @@ public class ConfigurationBuilder {
         return value.replaceAll("\\$\\{workspace_loc:([^\\}]*)\\}", Matcher.quoteReplacement(basePath) + "$1");
     }
 
+    @Contract("null -> null")
     private String resolveToProjectLocation(String value) {
-        if (value.contains(EclipserXml.PROJECT_LOC)) {
+        if (value == null) {
+            return null;
+        } else if (value.contains(EclipserXml.PROJECT_LOC)) {
             return value.replace("${project_loc}", psiFile.getProject().getBasePath());
         } else if (value.contains(EclipserXml.WORKSPACE_LOC)) {
             return replaceWorkspaceLoc(value, psiFile.getProject().getBasePath());
