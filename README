@@ -13,6 +13,8 @@ Context menu for supported launch files will contain "Convert with Eclipser" ite
 ##Functionality limitations:
 * Current support for one Eclipse macro only: 
     - $workspace_loc
+* Eclipse UI launch configuration is not supported:
+    - org.eclipse.pde.ui.RuntimeWorkbench
 
 ##Known issues:
 * None
@@ -26,4 +28,5 @@ Context menu for supported launch files will contain "Convert with Eclipser" ite
 
 ##For developers:
 * The project has dependency on Maven, Properties and Ant plugins. They all included with the project.
+* If you are developing in IntelliJ Ultimate, you have to add Netty jar from lib/netty as project library.
 * You will have to redefine `IntelliJ Platform Plugin SDK` location once you open the project.

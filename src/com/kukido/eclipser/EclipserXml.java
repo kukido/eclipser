@@ -33,12 +33,14 @@ public interface EclipserXml {
 
     // configuration type
     @NonNls String CONFIGURATION_TYPE_ANT_LAUNCH                = "org.eclipse.ant.AntLaunchConfigurationType";
-    @SuppressWarnings("UnusedDeclaration")
-    @NonNls String CONFIGURATION_TYPE_JUNIT_LAUNCH              = "org.eclipse.jdt.junit.launchconfig";
     @NonNls String CONFIGURATION_TYPE_LOCAL_JAVA_APPLICATION    = "org.eclipse.jdt.launching.localJavaApplication";
     @NonNls String CONFIGURATION_TYPE_MAVEN2_LAUNCH             = "org.eclipse.m2e.Maven2LaunchConfigurationType";
     @NonNls String CONFIGURATION_TYPE_PROGRAM_LAUNCH            = "org.eclipse.ui.externaltools.ProgramLaunchConfigurationType";
     @NonNls String CONFIGURATION_TYPE_REMOTE_JAVA_APPLICATION   = "org.eclipse.jdt.launching.remoteJavaApplication";
+    // unsupported
+    @NonNls String CONFIGURATION_TYPE_GWT_WEB_APPLICATION       = "com.google.gdt.eclipse.suite.webapp";
+    @NonNls String CONFIGURATION_TYPE_JUNIT_LAUNCH              = "org.eclipse.jdt.junit.launchconfig";
+    @NonNls String CONFIGURATION_TYPE_RUNTIME_WORKBENCH         = "org.eclipse.pde.ui.RuntimeWorkbench";
 
     // eclipse macros
     @NonNls String WORKSPACE_LOC    = "workspace_loc";

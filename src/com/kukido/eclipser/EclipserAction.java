@@ -18,11 +18,14 @@ import com.intellij.psi.xml.XmlTag;
 import com.kukido.eclipser.command.Command;
 import com.kukido.eclipser.configuration.Configuration;
 import com.kukido.eclipser.configuration.ConfigurationBuilder;
+import com.kukido.eclipser.configuration.ConfigurationType;
 import org.jetbrains.annotations.NotNull;
 
 class EclipserAction extends AnAction {
 
-    private static final String DEFAULT_FAILURE_MESSAGE = "Eclipser was unable to convert launch file(s). Please submit support ticket at https://github.com/kukido/eclipser/issues";
+    private static final String DEFAULT_FAILURE_MESSAGE = "%s\nEclipser was unable to convert launch file. Please submit a ticket at <a href='https://github.com/kukido/eclipser/issues'>eclipser/issues</a>";
+    private static final String MESSAGE_FOR_UNSUPPORTED_LAUNCH_CONFIGURATION = "%s\nThe launch configuration is currently not supported by Eclipser.";
+    private static final String MESSAGE_FOR_UNKNOWN_LAUNCH_CONFIGURATION = "%s\nThis is an unknown launch configuration. If you would like Eclipser to support it, please submit a ticket at <a href='https://github.com/kukido/eclipser/issues'>eclipser/issues</a>";
 
     public void actionPerformed(@NotNull AnActionEvent e) {
 
@@ -40,6 +43,18 @@ class EclipserAction extends AnAction {
         String message = null;
 
         try {
+            ConfigurationType type = ConfigurationType.configurationTypeForPsiFile(psiFile);
+            switch (type) {
+                case UNSUPPORTED:
+                    say(String.format(MESSAGE_FOR_UNSUPPORTED_LAUNCH_CONFIGURATION, psiFile.getName()));
+                    return;
+                case UNKNOWN:
+                    say(String.format(MESSAGE_FOR_UNKNOWN_LAUNCH_CONFIGURATION, psiFile.getName()));
+                    return;
+                case SUPPORTED:
+                    break;
+            }
+
             ConfigurationBuilder builder = new ConfigurationBuilder(psiFile);
             Configuration configuration = builder.build();
             Command command = configuration.getCommand();
@@ -48,7 +63,7 @@ class EclipserAction extends AnAction {
             message = ee.getMessage();
         } catch (Exception exc) {
             exc.printStackTrace();
-            message = DEFAULT_FAILURE_MESSAGE;
+            message = String.format(DEFAULT_FAILURE_MESSAGE, psiFile.getName());
         }
 
         if (message != null) say(message);
