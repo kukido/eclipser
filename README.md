@@ -1,4 +1,4 @@
-##Introduction:
+## Introduction:
 Eclipser will automatically convert Eclipse launch configurations into IntelliJ IDEA configurations:
 
   * local Java application Eclipse launcher into run configuration
@@ -7,27 +7,27 @@ Eclipser will automatically convert Eclipse launch configurations into IntelliJ 
   * Maven launch configuration into Maven run configuration
   * Ant launch configuration into Ant target run configuration
 
-##How to use:
+## How to use:
   * Eclipser is available in Project and Commander views.
   * Context menu for supported launch files will contain "Convert with Eclipser" item.
 
-##Functionality limitations:
+## Functionality limitations:
   * Current support for one Eclipse macro only: 
     - $workspace_loc
   * Eclipse UI launch configuration is not supported:
     - org.eclipse.pde.ui.RuntimeWorkbench
 
-##Known issues:
+## Known issues:
   * None
 
-##Disclaimer:
+## Disclaimer:
   * Plugin is currently in beta. Please report any errors and suggestions to the link below.
 
-##Support:
+## Support:
   * Email: mclovin@kukido.com
   * Support tickets: [https://github.com/kukido/eclipser/issues](https://github.com/kukido/eclipser/issues)
 
-##For developers:
+## For developers:
   * The project has dependency on Maven, Properties and Ant plugins. They all included with the project.
   * If you are developing in IntelliJ Ultimate, you have to add Netty jar from lib/netty as project library.
   * You will have to redefine `IntelliJ Platform Plugin SDK` location once you open the project.
