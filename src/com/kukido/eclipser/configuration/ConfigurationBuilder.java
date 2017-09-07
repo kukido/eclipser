@@ -115,7 +115,7 @@ public class ConfigurationBuilder {
 
     private Configuration createConfiguration(String configurationType) throws EclipserException {
         if (EclipserXml.CONFIGURATION_TYPE_LOCAL_JAVA_APPLICATION.equalsIgnoreCase(configurationType)) {
-            return new JavaConfiguration(name, mainType, moduleName, vmParameters, programArguments, environmentVariables, resolveToProjectLocation(workingDirectory));
+            return new JavaConfiguration(name, mainType, moduleName, convertEnvVarMacro(vmParameters), convertEnvVarMacro(programArguments), environmentVariables, resolveToProjectLocation(workingDirectory));
         } else if (EclipserXml.CONFIGURATION_TYPE_PROGRAM_LAUNCH.equalsIgnoreCase(configurationType)) {
             return new ExternalToolConfiguration(name, convertWorkspace(location), parameters, attrWorkingDirectory);
         } else if (EclipserXml.CONFIGURATION_TYPE_MAVEN2_LAUNCH.equalsIgnoreCase(configurationType)) {
@@ -127,6 +127,13 @@ public class ConfigurationBuilder {
         } else {
             throw new EclipserException("Unsupported configuration type: " + configurationType);
         }
+    }
+    
+    private String convertEnvVarMacro(String value) {
+        if (value == null) {
+            return null;
+        }
+        return value.replace(EclipserXml.ENV_VAR + ":", "");
     }
 
     private String normalizeText(String value) {

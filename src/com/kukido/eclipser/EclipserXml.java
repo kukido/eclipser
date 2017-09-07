@@ -45,5 +45,6 @@ public interface EclipserXml {
     // eclipse macros
     @NonNls String WORKSPACE_LOC    = "workspace_loc";
     @NonNls String PROJECT_LOC      = "project_loc";
+    @NonNls String ENV_VAR          = "env_var";
 
 }

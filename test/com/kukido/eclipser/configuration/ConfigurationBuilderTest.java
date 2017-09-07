@@ -45,7 +45,7 @@ public class ConfigurationBuilderTest extends LightIdeaTestCase {
         assertEquals("Main", jc.getMainClassName());
         assertEquals("simple", jc.getModuleName());
         assertEquals(JavaConfiguration.MODULE_DIR_MACRO, jc.getWorkingDirectory());
-        assertEquals("-Duser=${USER}", jc.getVmParameters());
+        assertEquals("-Duser=${USER} -Dhost.fqdn=${COMPUTERNAME}.domain.local", jc.getVmParameters());
         Map<String, String> expectedEnv = new LinkedHashMap<String, String>();
         expectedEnv.put("ENV","TEST");
         assertEquals(expectedEnv, jc.getEnvironmentVariables());
