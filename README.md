@@ -12,8 +12,9 @@ Eclipser will automatically convert Eclipse launch configurations into IntelliJ 
   * Context menu for supported launch files will contain "Convert with Eclipser" item.
 
 ## Functionality limitations:
-  * Current support for one Eclipse macro only: 
+  * Current support for two Eclipse macros only:
     - $workspace_loc
+    - $env_var
   * Eclipse UI launch configuration is not supported:
     - org.eclipse.pde.ui.RuntimeWorkbench
 
