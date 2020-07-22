@@ -74,7 +74,6 @@
     <application-components>
         <component>
             <implementation-class>com.kukido.eclipser.EclipserPlugin</implementation-class>
-            <interface-class>com.kukido.eclipser.EclipserPlugin</interface-class>
         </component>
     </application-components>
 
