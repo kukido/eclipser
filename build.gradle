@@ -1,23 +1,27 @@
 buildscript {
     repositories {
         mavenCentral()
-        //maven { url 'http://dl.bintray.com/jetbrains/intellij-plugin-service' }
+        maven { url 'http://dl.bintray.com/jetbrains/intellij-plugin-service' }
     }
 }
 
 plugins {
-    id "org.jetbrains.intellij" version "0.3.1"
+    id "org.jetbrains.intellij" version "0.4.21"
 }
 
 apply plugin: 'idea'
 apply plugin: 'org.jetbrains.intellij'
 apply plugin: 'java'
 
+repositories {
+    mavenCentral()
+}
+
 intellij {
-    version 'IC-2016.3'
-    plugins 'maven', 'ant', 'properties'
+    version 'IC-2020.1'
+    plugins 'maven', 'ant', 'properties', 'java'
     pluginName 'Eclipser2'
 }
 
 group 'org.jetbrains'
-version '0.7.2' // Plugin version
+version '0.8.0' // Plugin version

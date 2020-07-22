@@ -1,5 +1,6 @@
 package com.kukido.eclipser;
 
+import com.intellij.ide.highlighter.DomSupportEnabled;
 import com.intellij.ide.highlighter.XmlLikeFileType;
 import com.intellij.lang.xml.XMLLanguage;
 import com.intellij.openapi.vfs.CharsetToolkit;
@@ -10,7 +11,7 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 
-class EclipserFileType extends XmlLikeFileType {
+class EclipserFileType extends XmlLikeFileType implements DomSupportEnabled {
 
     public EclipserFileType() {
         super(XMLLanguage.INSTANCE);
