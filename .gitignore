@@ -2,3 +2,7 @@
 out
 .idea\/workspace.xml
 eclipser.jar
+.idea
+build/
+.gradle
+*.iml

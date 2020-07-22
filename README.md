@@ -1,3 +1,4 @@
+![Travis CI status](https://travis-ci.org/deepy/eclipser2.svg?branch=master)
 ## Introduction:
 Eclipser will automatically convert Eclipse launch configurations into IntelliJ IDEA configurations:
 
