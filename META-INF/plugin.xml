@@ -68,8 +68,8 @@
         </dl>
     ]]></change-notes>
 
-    <!-- please see http://confluence.jetbrains.net/display/IDEADEV/Build+Number+Ranges for description -->
-    <idea-version since-build="143.0"/>
+    <!-- please see https://jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+    <idea-version since-build="191"/>
 
     <application-components>
         <component>

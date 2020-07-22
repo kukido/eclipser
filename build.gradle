@@ -20,7 +20,7 @@ repositories {
 intellij {
     version 'IC-2020.1'
     plugins 'maven', 'ant', 'properties', 'java'
-    pluginName 'Eclipser2'
+    pluginName 'Eclipser'
 }
 
 group 'org.jetbrains'
