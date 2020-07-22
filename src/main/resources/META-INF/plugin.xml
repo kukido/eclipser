@@ -2,9 +2,10 @@
 <idea-plugin>
     <id>com.kukido.eclipser</id>
     <name>Eclipser</name>
-    <version>0.8.0</version>
+    <version>0.8.4</version>
     <vendor email="mclovin@kukido.com" url="https://github.com/kukido/eclipser">Kukido</vendor>
     <depends>org.jetbrains.idea.maven</depends>
+    <depends>com.intellij.modules.java</depends>
     <depends>AntSupport</depends>
 
     <description><![CDATA[
@@ -22,6 +23,12 @@
 
     <change-notes><![CDATA[
         <dl>
+            <dt>0.8.4</dt>
+            <dd>- compatibility release
+            <dt>0.8.3</dt>
+            <dd>- even wider compatibility range
+            <dt>0.8.1</dt>
+            <dd>- wider compatibility range
             <dt>0.8.0</dt>
             <dd>- converted to gradle, contributed by https://github.com/deepy
             <dd>- fixed https://github.com/kukido/eclipser/issues/32, contributed by  https://github.com/taizel
@@ -69,7 +76,7 @@
     ]]></change-notes>
 
     <!-- please see https://jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
-    <idea-version since-build="191"/>
+    <idea-version since-build="193"/>
 
     <application-components>
         <component>
