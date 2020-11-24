@@ -24,7 +24,7 @@ intellij {
 }
 
 patchPluginXml {
-    untilBuild '202.*'
+    untilBuild '203.*'
 }
 
 group 'org.jetbrains'
