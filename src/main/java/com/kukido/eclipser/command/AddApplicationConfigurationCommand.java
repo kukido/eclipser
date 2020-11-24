@@ -10,7 +10,6 @@ import com.intellij.openapi.module.Module;
 import com.intellij.openapi.module.ModuleManager;
 import com.intellij.openapi.project.Project;
 import com.kukido.eclipser.EclipserException;
-import com.kukido.eclipser.configuration.Configuration;
 import com.kukido.eclipser.configuration.JavaConfiguration;
 
 public class AddApplicationConfigurationCommand implements Command {
@@ -23,10 +22,10 @@ public class AddApplicationConfigurationCommand implements Command {
 
     @Override
     public void execute(Project project) throws EclipserException {
-        createRunConfiguration(project);
+        createConfiguration(project);
     }
 
-    private void createRunConfiguration(Project project) throws EclipserException {
+    private void createConfiguration(Project project) throws EclipserException {
 
         String moduleNameOfRunner = javaConfiguration.getModuleName();
 
@@ -48,9 +47,9 @@ public class AddApplicationConfigurationCommand implements Command {
             throw new EclipserException(message);
         } else {
             ApplicationConfigurationType type = ApplicationConfigurationType.getInstance();
-            runnerAndConfigurationSettings = (RunnerAndConfigurationSettingsImpl) runManager.createRunConfiguration(javaConfiguration.getConfigurationName(), type.getConfigurationFactories()[0]);
+            runnerAndConfigurationSettings = (RunnerAndConfigurationSettingsImpl) runManager.createConfiguration(javaConfiguration.getConfigurationName(), type.getConfigurationFactories()[0]);
             applicationConfiguration = (ApplicationConfiguration) runnerAndConfigurationSettings.getConfiguration();
-            runManager.addConfiguration(runnerAndConfigurationSettings, Configuration.SHARE_RUN_CONFIGURATION_DEFAULT_SETTING);
+            runManager.addConfiguration(runnerAndConfigurationSettings);
         }
 
         applicationConfiguration.setModule(module);
@@ -64,7 +63,7 @@ public class AddApplicationConfigurationCommand implements Command {
     }
 
     private RunnerAndConfigurationSettingsImpl findConfigurationByName(String name, RunManagerImpl runManager) {
-        for (RunnerAndConfigurationSettings settings : runManager.getSortedConfigurations()) {
+        for (RunnerAndConfigurationSettings settings : runManager.getAllSettings()) {
             if (settings.getName().equals(name))
                 return (RunnerAndConfigurationSettingsImpl) settings;
         }

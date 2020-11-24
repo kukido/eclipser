@@ -9,7 +9,6 @@ import com.intellij.openapi.module.Module;
 import com.intellij.openapi.module.ModuleManager;
 import com.intellij.openapi.project.Project;
 import com.kukido.eclipser.EclipserException;
-import com.kukido.eclipser.configuration.Configuration;
 import com.kukido.eclipser.configuration.RemoteJavaApplicationConfiguration;
 
 public class AddRemoteJavaApplicationCommand implements Command {
@@ -47,7 +46,7 @@ public class AddRemoteJavaApplicationCommand implements Command {
             RemoteConfigurationType remoteConfigurationType = RemoteConfigurationType.getInstance();
             runnerAndConfigurationSettings = (RunnerAndConfigurationSettingsImpl) runManager.createRunConfiguration(configuration.getName(), remoteConfigurationType.getConfigurationFactories()[0]);
             remoteConfiguration = (RemoteConfiguration) runnerAndConfigurationSettings.getConfiguration();
-            runManager.addConfiguration(runnerAndConfigurationSettings, Configuration.SHARE_RUN_CONFIGURATION_DEFAULT_SETTING);
+            runManager.addConfiguration(runnerAndConfigurationSettings);
         }
 
         remoteConfiguration.setModule(module);
