@@ -5,7 +5,6 @@ import com.intellij.execution.RunnerAndConfigurationSettings;
 import com.intellij.execution.impl.RunManagerImpl;
 import com.intellij.openapi.project.Project;
 import com.kukido.eclipser.EclipserException;
-import com.kukido.eclipser.configuration.Configuration;
 import com.kukido.eclipser.configuration.Maven2Configuration;
 import org.jetbrains.idea.maven.execution.MavenRunConfigurationType;
 import org.jetbrains.idea.maven.execution.MavenRunnerParameters;
@@ -39,12 +38,12 @@ public class AddMaven2ConfigurationCommand implements Command {
         RunnerAndConfigurationSettings settings = MavenRunConfigurationType.createRunnerAndConfigurationSettings(null, null, parameters, project);
         settings.setName(maven2Configuration.getConfigurationName());
 
-        runManager.addConfiguration(settings, Configuration.SHARE_RUN_CONFIGURATION_DEFAULT_SETTING);
+        runManager.addConfiguration(settings);
         runManager.setSelectedConfiguration(settings);
     }
 
     private RunnerAndConfigurationSettings findConfigurationByName(String name, RunManagerImpl runManager) {
-        for (RunnerAndConfigurationSettings settings : runManager.getSortedConfigurations()) {
+        for (RunnerAndConfigurationSettings settings : runManager.getAllSettings()) {
             if (settings.getName().equals(name))
                 return settings;
         }

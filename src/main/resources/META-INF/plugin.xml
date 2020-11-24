@@ -2,7 +2,7 @@
 <idea-plugin>
     <id>com.kukido.eclipser</id>
     <name>Eclipser</name>
-    <version>0.8.4</version>
+    <version>0.8.5</version>
     <vendor email="mclovin@kukido.com" url="https://github.com/kukido/eclipser">Kukido</vendor>
     <depends>org.jetbrains.idea.maven</depends>
     <depends>com.intellij.modules.java</depends>
@@ -23,6 +23,8 @@
 
     <change-notes><![CDATA[
         <dl>
+            <dt>0.8.5</dt>
+            <dd>- maintenance release
             <dt>0.8.4</dt>
             <dd>- compatibility release
             <dt>0.8.3</dt>
@@ -76,7 +78,7 @@
     ]]></change-notes>
 
     <!-- please see https://jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
-    <idea-version since-build="193"/>
+    <idea-version since-build="202"/>
 
     <application-components>
         <component>

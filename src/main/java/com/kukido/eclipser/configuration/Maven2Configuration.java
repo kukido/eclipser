@@ -53,7 +53,7 @@ public class Maven2Configuration implements Configuration {
     }
 
     public Map<String, Boolean> getProfilesMap() {
-        Map<String, Boolean> profilesMap = new HashMap<String, Boolean>(profiles.length);
+        Map<String, Boolean> profilesMap = new HashMap<>(profiles.length);
         for (String profile : profiles) {
             profilesMap.put(profile, Boolean.TRUE);
         }

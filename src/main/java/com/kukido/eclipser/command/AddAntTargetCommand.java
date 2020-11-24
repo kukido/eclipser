@@ -17,7 +17,6 @@ import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.openapi.vfs.VirtualFileManager;
 import com.kukido.eclipser.EclipserException;
 import com.kukido.eclipser.configuration.AntTargetConfiguration;
-import com.kukido.eclipser.configuration.Configuration;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -55,7 +54,7 @@ public class AddAntTargetCommand implements Command {
         AntRunConfigurationType type = AntRunConfigurationType.getInstance();
         RunnerAndConfigurationSettingsImpl runnerAndConfigurationSettings = (RunnerAndConfigurationSettingsImpl) runManager.createConfiguration(configuration.getName(), type.getConfigurationFactories()[0]);
         antRunConfiguration = (AntRunConfiguration) runnerAndConfigurationSettings.getConfiguration();
-        runManager.addConfiguration(runnerAndConfigurationSettings, Configuration.SHARE_RUN_CONFIGURATION_DEFAULT_SETTING);
+        runManager.addConfiguration(runnerAndConfigurationSettings);
         AntBuildTarget antBuildTarget = new BuildTarget(antBuildFile, target);
         antRunConfiguration.acceptSettings(antBuildTarget);
         runManager.setSelectedConfiguration(runnerAndConfigurationSettings);

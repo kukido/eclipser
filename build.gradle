@@ -18,7 +18,7 @@ repositories {
 }
 
 intellij {
-    version 'IC-2019.3'
+    version 'IC-2020.2'
     plugins 'maven', 'ant', 'properties', 'java'
     pluginName 'Eclipser'
 }
@@ -28,4 +28,4 @@ patchPluginXml {
 }
 
 group 'org.jetbrains'
-version '0.8.4' // Plugin version
+version '0.8.5' // Plugin version
