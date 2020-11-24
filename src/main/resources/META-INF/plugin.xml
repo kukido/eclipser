@@ -2,7 +2,7 @@
 <idea-plugin>
     <id>com.kukido.eclipser</id>
     <name>Eclipser</name>
-    <version>0.8.6</version>
+    <version>0.8.7</version>
     <vendor email="mclovin@kukido.com" url="https://github.com/kukido/eclipser">Kukido</vendor>
     <depends>org.jetbrains.idea.maven</depends>
     <depends>com.intellij.modules.java</depends>
@@ -23,6 +23,8 @@
 
     <change-notes><![CDATA[
         <dl>
+            <dt>0.8.7</dt>
+            <dd>- maintenance release (ApplicationComponent removal)
             <dt>0.8.6</dt>
             <dd>- maintenance release (FileTypeFactory deprecation)
             <dt>0.8.5</dt>
@@ -81,12 +83,6 @@
 
     <!-- please see https://jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
     <idea-version since-build="202"/>
-
-    <application-components>
-        <component>
-            <implementation-class>com.kukido.eclipser.EclipserPlugin</implementation-class>
-        </component>
-    </application-components>
 
     <actions>
         <action id="eclipser" class="com.kukido.eclipser.EclipserAction" text="Convert with Eclipser"
