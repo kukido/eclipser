@@ -13,7 +13,9 @@ import javax.swing.*;
 
 class EclipserFileType extends XmlLikeFileType implements DomSupportEnabled {
 
-    public EclipserFileType() {
+    public static final EclipserFileType INSTANCE = new EclipserFileType();
+
+    private EclipserFileType() {
         super(XMLLanguage.INSTANCE);
     }
 

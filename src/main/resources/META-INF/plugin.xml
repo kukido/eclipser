@@ -96,7 +96,13 @@
     </actions>
 
     <extensions defaultExtensionNs="com.intellij">
-        <fileTypeFactory implementation="com.kukido.eclipser.EclipserFileTypeFactory"/>
+        <fileType
+                name="Eclipser"
+                implementationClass="com.kukido.eclipser.EclipserFileType"
+                fieldName="INSTANCE"
+                language="XML"
+                extensions="launch"
+        />
         <syntaxHighlighter key="Eclipser" implementationClass="com.intellij.ide.highlighter.XmlFileHighlighter"/>
     </extensions>
 </idea-plugin>
