@@ -1,7 +1,7 @@
 package com.kukido.eclipser.configuration;
 
 import com.intellij.ide.plugins.IdeaPluginDescriptor;
-import com.intellij.ide.plugins.PluginManager;
+import com.intellij.ide.plugins.PluginManagerCore;
 import com.intellij.openapi.extensions.PluginId;
 import com.kukido.eclipser.EclipserException;
 import com.kukido.eclipser.command.AddMaven2ConfigurationCommand;
@@ -73,11 +73,11 @@ public class Maven2Configuration implements Configuration {
     private void checkMavenPluginStatus() throws EclipserException {
         PluginId pluginId = PluginId.getId(MAVEN_PLUGIN_IDENTIFIER);
 
-        boolean installed = PluginManager.isPluginInstalled(pluginId);
+        boolean installed = PluginManagerCore.isPluginInstalled(pluginId);
         boolean enabled = false;
 
         if (installed) {
-            IdeaPluginDescriptor descriptor = PluginManager.getPlugin(pluginId);
+            IdeaPluginDescriptor descriptor = PluginManagerCore.getPlugin(pluginId);
             assert descriptor != null;
             enabled = descriptor.isEnabled();
         }

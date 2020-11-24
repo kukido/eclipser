@@ -44,7 +44,7 @@ public class AddRemoteJavaApplicationCommand implements Command {
             throw new EclipserException(message);
         } else {
             RemoteConfigurationType remoteConfigurationType = RemoteConfigurationType.getInstance();
-            runnerAndConfigurationSettings = (RunnerAndConfigurationSettingsImpl) runManager.createRunConfiguration(configuration.getName(), remoteConfigurationType.getConfigurationFactories()[0]);
+            runnerAndConfigurationSettings = (RunnerAndConfigurationSettingsImpl) runManager.createConfiguration(configuration.getName(), remoteConfigurationType.getConfigurationFactories()[0]);
             remoteConfiguration = (RemoteConfiguration) runnerAndConfigurationSettings.getConfiguration();
             runManager.addConfiguration(runnerAndConfigurationSettings);
         }
