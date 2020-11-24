@@ -28,4 +28,4 @@ patchPluginXml {
 }
 
 group 'org.jetbrains'
-version '0.8.5' // Plugin version
+version '0.8.6' // Plugin version

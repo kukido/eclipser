@@ -2,7 +2,7 @@
 <idea-plugin>
     <id>com.kukido.eclipser</id>
     <name>Eclipser</name>
-    <version>0.8.5</version>
+    <version>0.8.6</version>
     <vendor email="mclovin@kukido.com" url="https://github.com/kukido/eclipser">Kukido</vendor>
     <depends>org.jetbrains.idea.maven</depends>
     <depends>com.intellij.modules.java</depends>
@@ -23,6 +23,8 @@
 
     <change-notes><![CDATA[
         <dl>
+            <dt>0.8.6</dt>
+            <dd>- maintenance release (FileTypeFactory deprecation)
             <dt>0.8.5</dt>
             <dd>- maintenance release
             <dt>0.8.4</dt>
