@@ -17,14 +17,14 @@ repositories {
 }
 
 intellij {
-    version 'IC-2021.1'
+    version 'IC-2021.2'
     plugins 'maven', 'ant', 'properties', 'java'
     pluginName 'Eclipser'
 }
 
 patchPluginXml {
-    untilBuild '211.*'
+    untilBuild '212.*'
 }
 
 group 'org.jetbrains'
-version '0.8.8' // Plugin version
+version '0.8.9' // Plugin version
