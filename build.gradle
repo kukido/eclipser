@@ -5,7 +5,7 @@ buildscript {
 }
 
 plugins {
-    id "org.jetbrains.intellij" version "0.7.3"
+    id "org.jetbrains.intellij" version "1.8.1"
 }
 
 apply plugin: 'idea'
@@ -17,14 +17,14 @@ repositories {
 }
 
 intellij {
-    version 'IC-2021.3'
-    plugins 'maven', 'ant', 'properties', 'java'
-    pluginName 'Eclipser'
+    version = 'IC-2022.2'
+    plugins = ['maven', 'ant', 'properties', 'java']
+    pluginName = 'Eclipser'
 }
 
 patchPluginXml {
-    untilBuild '221.*'
+    untilBuild = '222.*'
 }
 
 group 'org.jetbrains'
-version '0.9.1' // Plugin version
+version '0.9.2' // Plugin version
