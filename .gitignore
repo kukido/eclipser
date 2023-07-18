@@ -6,3 +6,4 @@ eclipser.jar
 build/
 .gradle
 *.iml
+bin/
