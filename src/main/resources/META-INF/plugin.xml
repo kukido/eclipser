@@ -2,7 +2,7 @@
 <idea-plugin>
     <id>com.kukido.eclipser</id>
     <name>Eclipser</name>
-    <version>0.9.3</version>
+    <version>0.9.4</version>
     <vendor email="mclovin@kukido.com" url="https://github.com/kukido/eclipser">Kukido</vendor>
     <depends>org.jetbrains.idea.maven</depends>
     <depends>com.intellij.modules.java</depends>
@@ -23,6 +23,8 @@
 
     <change-notes><![CDATA[
         <dl>
+            <dt>0.9.3</dt>
+            <dd>- updated IntelliJ version
             <dt>0.9.3</dt>
             <dd>- updated IntelliJ version
             <dd>- switched to Kotlin build script
@@ -95,7 +97,7 @@
     ]]></change-notes>
 
     <!-- please see https://jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
-    <idea-version since-build="232"/>
+    <idea-version since-build="241"/>
 
     <actions>
         <action id="eclipser" class="com.kukido.eclipser.EclipserAction" text="Convert with Eclipser"
